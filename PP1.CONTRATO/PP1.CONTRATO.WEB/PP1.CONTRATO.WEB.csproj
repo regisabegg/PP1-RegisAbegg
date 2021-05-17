@@ -131,6 +131,8 @@
     <Content Include="assets\demo\chart-bar-demo.js" />
     <Content Include="assets\demo\chart-pie-demo.js" />
     <Content Include="assets\demo\datatables-demo.js" />
+    <Content Include="assets\imagens\Budget-Gray.png" />
+    <Content Include="assets\imagens\Budget.png" />
     <Content Include="assets\img\error-404-monochrome.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
