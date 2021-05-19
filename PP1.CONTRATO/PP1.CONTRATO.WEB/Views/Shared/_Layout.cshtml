@@ -43,9 +43,9 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="@Url.Action("Index","Home")">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Painel
                         </a>
                         <div class="sb-sidenav-menu-heading">Cadastros</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -55,7 +55,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Index","Home")">País</a>
+                                <a class="nav-link" href="@Url.Action("Index","Pais")">País</a>
                                 <a class="nav-link" href="@Url.Action("Index","Home")">Cidade</a>
                                 <a class="nav-link" href="@Url.Action("Index","Home")">Estado</a>
                             </nav>

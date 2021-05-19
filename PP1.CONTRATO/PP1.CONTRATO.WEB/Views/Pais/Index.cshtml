@@ -1,0 +1,137 @@
+﻿
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Pais</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Pais</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Lista de paises
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Sigla</th>
+                                <th>Cadastro</th>
+                                <th>Alteração</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Sigla</th>
+                                <th>Cadastro</th>
+                                <th>Alteração</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Argentina</td>
+                                <td>AR</td>
+                                <td>18/05/2021</td>
+                                <td>18/05/2021</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Brasil</td>
+                                <td>BR</td>
+                                <td>18/05/2021</td>
+                                <td>18/05/2021</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Paraguai</td>
+                                <td>PY</td>
+                                <td>18/05/2021</td>
+                                <td>18/05/2021</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@*TODO*@
+
+
+@*@model IEnumerable<PP1.CONTRATO.WEB.Models.Pais.PaisVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nmPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsSigla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nrDDI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtAtualizacao)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nmPais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsSigla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nrDDI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtAtualizacao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@{
+    ViewBag.Title = "Home Page";
+}*@
