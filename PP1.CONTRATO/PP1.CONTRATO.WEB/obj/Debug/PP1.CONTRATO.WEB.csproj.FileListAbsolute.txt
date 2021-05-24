@@ -77,3 +77,13 @@ C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\obj\Debug\PP1.CONTRATO.W
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\obj\Debug\PP1.CONTRATO.WEB.csproj.CopyComplete
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\obj\Debug\PP1.CONTRATO.WEB.dll
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\obj\Debug\PP1.CONTRATO.WEB.pdb
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\System.Linq.Dynamic.dll
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\Aliencube.HtmlHelper.Extended.dll
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\Aliencube.HtmlHelper.Extended.pdb
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\Aliencube.HtmlHelper.Extended.xml
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.BLL.dll
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.DAO.dll
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.Entity.dll
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.BLL.pdb
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.DAO.pdb
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.WEB\bin\PP1.CONTRATO.Entity.pdb

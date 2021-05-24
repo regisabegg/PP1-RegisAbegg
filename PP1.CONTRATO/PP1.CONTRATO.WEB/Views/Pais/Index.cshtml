@@ -1,137 +1,108 @@
-﻿
-
-<main>
-    <div class="container-fluid">
-        <h1 class="mt-4">Pais</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Pais</li>
-        </ol>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                Lista de paises
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Sigla</th>
-                                <th>Cadastro</th>
-                                <th>Alteração</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Sigla</th>
-                                <th>Cadastro</th>
-                                <th>Alteração</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Argentina</td>
-                                <td>AR</td>
-                                <td>18/05/2021</td>
-                                <td>18/05/2021</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Brasil</td>
-                                <td>BR</td>
-                                <td>18/05/2021</td>
-                                <td>18/05/2021</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Paraguai</td>
-                                <td>PY</td>
-                                <td>18/05/2021</td>
-                                <td>18/05/2021</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-@*TODO*@
-
-
-@*@model IEnumerable<PP1.CONTRATO.WEB.Models.Pais.PaisVM>
+﻿@model IEnumerable<PP1.CONTRATO.WEB.Models.Pais.PaisVM>
+@using PP1.CONTRATO.WEB.Util
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<nav class="breadcrumb sl-breadcrumb">
+    <a class="breadcrumb-item" href="@Url.Action("Index","Home")">Painel</a>
+    <span class="breadcrumb-item active">País</span>
+</nav>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idPais)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nmPais)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dsSigla)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nrDDI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtCadastro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtAtualizacao)
-        </th>
-        <th></th>
-    </tr>
+<div class="sl-pagebody">
+    <div class="card pd-20 pd-sm-40">
+        @Html.RenderFlashMessage()
+        <div class="card bd-0 mg-b-20">
+            <div class="card-header card-header-default bg-info">
+                Filtro
+            </div><!-- card-header -->
+            <div class="card-body bd bd-t-0">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idPais)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nmPais)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dsSigla)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nrDDI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dtCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dtAtualizacao)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
+                <div class="form-group">
+                    <div class="row row-xs align=" right"">
+                        @Html.Label("filter", "Filtrar", new { @class = "col-sm-1 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBox("filter", null, new { @class = "form-control", @id = "filter", maxlength = "100", @placeholder = "Pesquisar...", @autofocus = "autofocus" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-xs">
+                        @Html.Label("btnFilter", " ", new { @class = "col-sm-1 control-label" })
+                        <div class="col-md-7">
+                            <div class="visible-md visible-lg visible-sm hidden-xs">
+                                @Html.CustomButton("Localizar", "submit", new { @class = "btn btn-info btn-form", id = "btnFilter" }, new { @left = "ion-search" }, false)
+                                @Html.CustomActionLink("Limpar", "Index", new { @clear = true }, new { @class = "btn btn-secondary btn-form" }, new { @left = "ion-close" }, false)
+                                @Html.CustomActionLink(" Adicionar", "Create", new { @class = "btn btn-success btn-form", @title = "Novo registro" }, new { @left = "ion-plus" }, false)
+                            </div>
+                            <div class="hidden-sm-up hidden-md-up hidden-lg-up hidden-xl-up">
+                                <div class="btn-group">
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" title="Mais ações"><i class="glyphicon glyphicon-cog"></i> Ações <span class="caret"></span></a>
+                                    <ul class="dropdown-menu dropdown-black">
+                                        <li><a href="#" data-form-type="submit"><i class="ion-search"></i> Localizar</a></li>
+                                        <li><a href="@Url.Action("Index", new { clear = true })"><i class="ion-close"></i> Limpar</a></li>
+                                        <li><a href="@Url.Action("Create")"><i class="ion-plus"></i> Adicionar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-</table>
+                </div>
+            </div><!-- card-body -->
+        </div><!-- card -->
+        <div class="table-wrapper">
+            <table id="lista" class=" table display responsive nowrap" style="width:100%" data-url="@Url.Action("JsSearch")">
+                <thead>
+                    <tr>
+                        <th class="note-icon-orderedlist"></th>
+                        <th class="wd-10p">Código</th>
+                        <th class="wd-50p">País</th>
+                        <th class="wd-10p">Sigla</th>
+                        <th class="wd-10p">DDI</th>
+                        @*<th class="wd-10p">Cadastro</th>
+                        <th class="wd-10p">Atualização</th>*@
+                    </tr>
+                </thead>               
+            </table>
+            <script type="text/x-tmpl" id="lista-actions">
+                <div class="hidden-xs-down hidden-sm-down" style="width:100px">
+                    <a title="Visualizar" class="btn btn-success btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.id%}" }))"><i class="fa fa-eye"></i></a>
+                    <a title="Editar" class="btn btn-info btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.id%}" }))"><i class="fa fa-edit"></i></a>
+                    <a title="Excluir" class="btn btn-danger btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id="{%=o.id%}" }))"><i class="fa fa-trash "></i></a>
+                </div>
+                <div class=" hidden-md-up hidden-lg-up hidden-xl-up ">
+                    <div class="btn-group">
+                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">
+                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-black">
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-eye"></i> Visualizar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-trash"></i> Excluir
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </script>
 
 
 
-@{
-    ViewBag.Title = "Home Page";
-}*@
+        </div><!-- card -->
+    </div>
+</div><!-- sl-pagebody -->
+@section scripts{
+    @Scripts.Render("~/Scripts/Pais/Index.js?v=" + DateTime.Now.Ticks)
+}

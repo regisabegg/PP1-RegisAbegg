@@ -23,5 +23,17 @@ namespace PP1.CONTRATO.WEB.Models.Pais
         [Display(Name = "Atualização")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtAtualizacao { get; set; }
+
+        public Entity.Pais VM2E(Entity.Pais bean)
+        {
+            bean.nmPais = this.nmPais;
+            bean.dsSigla = this.dsSigla;
+            bean.nrDDI = this.nrDDI;
+            bean.dtAtualizacao = this.dtAtualizacao;
+            bean.dtCadastro = this.dtCadastro;
+
+            return bean;
+        }
+
     }
 }

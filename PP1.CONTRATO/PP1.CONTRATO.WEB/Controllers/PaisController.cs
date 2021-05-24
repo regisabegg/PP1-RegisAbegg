@@ -3,16 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PP1.CONTRATO.DAO;
+using PP1.CONTRATO.Entity;
+using PP1.CONTRATO.BLL;
+using PP1.CONTRATO.WEB.Models;
+using PP1.CONTRATO.WEB.Util.DataTables;
+using PP1.CONTRATO.WEB.Models.Pais;
+using PP1.CONTRATO.WEB.Util;
 
 namespace PP1.CONTRATO.WEB.Controllers
 {
     public class PaisController : Controller
     {
-        // GET: Pais
+        PaisBLL objPaisBLL;
+        public PaisController()
+        {
+            objPaisBLL = new PaisBLL();
+        }
+        // GET: Clube
         public ActionResult Index()
         {
+           
             return View();
         }
+
+
+        //PaisDAO daoPaises = new PaisDAO();
+
+        //public ActionResult Index()
+        //{
+        //    var daoPaises = new PaisDAO();
+        //    List<Pais> list = daoPaises.findAllPais();
+        //    return View(list);
+        //}
+
+
+
 
         // GET: Pais/Details/5
         public ActionResult Details(int id)
@@ -28,20 +54,29 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         // POST: Pais/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PaisVM model)
         {
-            try
+            model.dtCadastro = DateTime.Now;
+            model.dtAtualizacao = DateTime.Now;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                try
+                {
+                    var bean = model.VM2E(new Pais());
+                    var bll = new BLL.PaisBLL();
+                    bll.create(bean);
 
-                return RedirectToAction("Index");
+                    this.AddFlashMessage("Registro salvo com sucesso!");
+                    return RedirectToAction("index");
+                }
+                catch (Exception ex)
+                {
+                    this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+                    return View(model);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
-
         // GET: Pais/Edit/5
         public ActionResult Edit(int id)
         {
@@ -85,5 +120,88 @@ namespace PP1.CONTRATO.WEB.Controllers
                 return View();
             }
         }
+
+        #region JsonResult
+
+        //public JsonResult JsSelect(string q, int? page, int? pageSize)
+        //{
+        //    var query = db..Where(u => u.Nome.Contains(q));
+
+        //    var select = query.Select(s => new
+        //    {
+        //        id = s.id,
+        //        text = s.Nome
+        //    }).OrderBy(u => u.text);
+
+        //    return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
+        //}
+
+
+
+        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
+                //var query = context.Empresa.AsQueryable();
+                //var filter = requestModel.Search.Value;
+                //if (!string.IsNullOrEmpty(filter))
+                //{
+                //    int id;
+                //    if (int.TryParse(filter, out id))
+                //    {
+                //        query = query.Where(u => u.id == id);
+                //    }
+                //    else
+                //    {
+                //        query = query.Where(u => u.Nome.ToLower().Contains(filter.ToLower()) || u.Estado.nmEstado.ToLower().Contains(filter.ToLower()));
+                //    }
+                //}
+                //var select = query.Select(u => new
+                //{
+                //    u.id,
+                //    u.Nome,
+                //    u.RazaoSocial,
+                //    u.CNPJ
+
+                //});
+
+                //return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
+
+                var select = this.Find();
+
+                var totalResult = select.Count();
+
+                var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+
+                return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+        private IQueryable<dynamic> Find()
+        {
+            var daoPaises = new PaisBLL();
+            var list = daoPaises.findAll();
+            var select = list.Select(u => new
+            {
+                u.idPais,
+                u.nmPais,
+                u.nrDDI,
+                u.dsSigla
+                //u.dtCadastro,
+                //u.dtAtualizacao
+
+            }).OrderBy(u => u.idPais).ToList();
+            return select.AsQueryable();
+        }
+        #endregion
+
     }
 }

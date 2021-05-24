@@ -1,160 +1,300 @@
-﻿<!DOCTYPE html>
+﻿@using PP1.CONTRATO.WEB.Util
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Sistema produzido para conclusão do curso de Sistema de Informação - UDC" />
-    <meta name="author" content="Régis Alexandre Abegg" />
-    <title>Sistema administrativo</title>
-    <link href="~/Content/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Sistema produzido para conclusão do curso de Sistema de Informação - UDC">
+    <meta name="author" content="Régis Alexandre Abegg">
+
+    <title>BUDGET | Sistema administrativo</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Assets/img/favicon.ico">
+
+    <!-- vendor css -->
+    <link href="~/Assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Assets/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="~/Assets/lib/Ionicons-2.0.1/css/ionicons.css" rel="stylesheet">
+    <link href="~/Assets/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="~/Assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+
+    <link href="~/Assets/lib/highlightjs/github.css" rel="stylesheet">
+    <link href="~/Assets/lib/datatables/jquery.dataTables.css" rel="stylesheet">
+
+
+    <!-- BEGIN Select2 css -->
+
+    <link href="~/Content/select/select2.css" rel="stylesheet" />
+    <link href="~/Content/select/select2-bootstrap.css" rel="stylesheet" />
+    <!-- BEGIN Select2 css -->
+
+
+    <link href="~/Assets/lib/spectrum/spectrum.css" rel="stylesheet">
+
+
+    <!-- Starlight CSS -->
+    <link rel="stylesheet" href="~/Assets/css/starlight.css">
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="~/Content/commons.css" rel="stylesheet" />
+
 </head>
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/assets/imagens/Budget-Gray.png" width="170" height="42"/></a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            </li>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#!">Settings</a>
-                <a class="dropdown-item" href="#!">Activity Log</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="login.html">Logout</a>
-            </div>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="@Url.Action("Index","Home")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Painel
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Cadastros</div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-globe-americas"></i></div>
-                            Localização
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Index","Pais")">País</a>
-                                <a class="nav-link" href="@Url.Action("Index","Home")">Cidade</a>
-                                <a class="nav-link" href="@Url.Action("Index","Home")">Estado</a>
-                            </nav>
-                        </div>                      
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                            Financeiro
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Index","Home")">Conta a receber</a>
-                                <a class="nav-link" href="@Url.Action("Index","Home")">Conta a pagar</a>
-                                @*<a class="nav-link" href="@Url.Action("Index","Home")">Estado</a>*@
-                            </nav>
-                        </div>
-                        @*<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-            Pages
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                    Authentication
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="login.html">Login</a>
-                        <a class="nav-link" href="register.html">Register</a>
-                        <a class="nav-link" href="password.html">Forgot Password</a>
-                    </nav>
-                </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                    Error
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="401.html">401 Page</a>
-                        <a class="nav-link" href="404.html">404 Page</a>
-                        <a class="nav-link" href="500.html">500 Page</a>
-                    </nav>
-                </div>
+<body>
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    <div class="sl-logo"><a href="@Url.Action("Index","Home")"><img src="~/assets/img/favicon-32x32.png" /> BUDGET</a></div>
+    <div class="sl-sideleft">
+        @*<div class="input-group input-group-search">
+                <input type="search" name="search" class="form-control" placeholder="Buscar">
+                <span class="input-group-btn">
+                    <button class="btn"><i class="fa fa-search"></i></button>
+                </span><!-- input-group-btn -->
+            </div><!-- input-group -->*@
+
+        <label class="sidebar-label">Navegação</label>
+        <div class="sl-sideleft-menu">
+            <a href="@Url.Action("Index","Home")" class="sl-menu-link active">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+                    <span class="menu-item-label">Painel</span>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            @*@if (User.IsInRole(@PROJETO.SCHOOLAR.MODEL.Entities.Usuario.PERFIL_ADMIN))
+                {*@
+            @*<a href="@Url.Action("Index","Usuario")" class="sl-menu-link">
+                    <div class="sl-menu-item">
+                        <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
+                        <span class="menu-item-label">Usuários</span>
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->*@
+
+
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon fa fa-users tx-15"></i>
+                    <span class="menu-item-label">Usuários</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","Usuario")" class="nav-link">Cadastros</a></li>
+                <li class="nav-item"><a href="@Url.Action("RelUsuario","Report")" class="nav-link">Relatório</a></li>
+            </ul>
+            @*}*@
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon fa fa-file-text tx-15"></i>
+                    <span class="menu-item-label">Cadastros</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","Pais")" class="nav-link">País</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Estado")" class="nav-link">Estado</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Cidade")" class="nav-link">Cidade</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Logradouro")" class="nav-link">Logradouro</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Empresa")" class="nav-link">Empresa</a></li>
+            </ul>
+            <!--<a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon fa fa-graduation-cap tx-15"></i>
+                    <span class="menu-item-label">Alunos</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div>--><!-- menu-item -->
+            <!--</a>--><!-- sl-menu-link -->
+            <!--<ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","Aluno")" class="nav-link">Cadastro</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Matrícula</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
+            </ul>
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon fa fa-book tx-15"></i>
+                    <span class="menu-item-label">Cursos</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div>--><!-- menu-item -->
+            <!--</a>--><!-- sl-menu-link -->
+            <!--<ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","Curso")" class="nav-link">Cadastro de cursos</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Materia")" class="nav-link">Cadastro de matérias</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
+            </ul>
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon ion-android-contacts tx-22"></i>
+                    <span class="menu-item-label">Instrutores</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div>--><!-- menu-item -->
+            <!--</a>--><!-- sl-menu-link -->
+            <!--<ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","Instrutor")" class="nav-link">Cadastro</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
+            </ul>-->
+        </div><!-- sl-sideleft-menu -->
+
+        <br>
+    </div><!-- sl-sideleft -->
+    <!-- ########## END: LEFT PANEL ########## -->
+    <!-- ########## START: HEAD PANEL ########## -->
+    <div class="sl-header">
+        <div class="sl-header-left">
+            <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
+            <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
+        </div><!-- sl-header-left -->
+        <div class="sl-header-right">
+            <nav class="nav">
+                <div class="dropdown">
+                    <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+                        <span class="logged-name">@User.Identity.Name<span class="caret"></span></span>
+                        @*@if (!string.IsNullOrEmpty(Model.dsImagem))
+                            {
+                                <img src="@Url.Content(Model.dsImagem)" alt="Image" class="avatar" />
+                            }
+                            else
+                            {
+                                <img src="~/Assets/img/img11.jpg" class="avatar" alt="">
+                            }*@
+                        <img src="~/Assets/img/img28.jpg" class="wd-32 rounded-circle" alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-header wd-200">
+                        <ul class="list-unstyled user-profile-nav">
+                            <li><a href="@Url.Action("PerfilUsuario", "Usuario")"><i class="icon ion-ios-person-outline"></i> Perfil</a></li>
+                            @*<li><a href="@Url.Action("PerfilUsuario", "Usuario", new { id = User.Identity.() })"><i class="icon ion-ios-person-outline"></i> Perfil</a></li>*@
+                            <li><a href="@Url.Action("Logout", "Account")"><i class="icon ion-power"></i> Sair</a></li>
+                        </ul>
+                    </div><!-- dropdown-menu -->
+                </div><!-- dropdown -->
             </nav>
-        </div>*@
-                        <div class="sb-sidenav-menu-heading">Relatórios</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Financeiro
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Serviços
-                        </a>
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Conectado como:</div>
-                    Administrador
-                </div>
-            </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            @RenderBody()
-            @*<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+        </div><!-- sl-header-right -->
+    </div><!-- sl-header -->
+    <!-- ########## END: HEAD PANEL ########## -->
+    <!-- ########## START: MAIN PANEL ########## -->
+    <div class="sl-mainpanel">
 
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; BUDGET - Sistema administrativo 2021</div>
-                        @*<div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>*@
-                    </div>
-                </div>
-            </footer>
-        </div>
+        @RenderBody()
+
+        <footer class="sl-footer">
+
+            <div class="footer-left">
+                <div class="mg-b-2">Copyright &copy; @DateTime.Now.Year. Budget Web. Todos os direitos reservedos.</div>
+                <div>Made by Régis Abegg.</div>
+            </div>
+        </footer>
+    </div><!-- sl-mainpanel -->
+    <!-- ########## END: MAIN PANEL ########## -->
 
 
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="~/Scripts/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="~/assets/demo/chart-area-demo.js"></script>
-    <script src="~/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="~/assets/demo/datatables-demo.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+    <script src="~/Assets/lib/jquery/jquery.js"></script>
+    <script src="~/Assets/lib/popper/popper.js"></script>
+    <script src="~/Assets/lib/bootstrap/bootstrap.js"></script>
+    <script src="~/Assets/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="~/Assets/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
+    <script src="~/Assets/lib/d3/d3.js"></script>
+    <script src="~/Assets/lib/rickshaw/rickshaw.min.js"></script>
+    <script src="~/Assets/lib/chart.js/Chart.js"></script>
+    <script src="~/Assets/lib/Flot/jquery.flot.js"></script>
+    <script src="~/Assets/lib/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Assets/lib/Flot/jquery.flot.resize.js"></script>
+    <script src="~/Assets/lib/flot-spline/jquery.flot.spline.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="~/Assets/lib/spectrum/spectrum.js"></script>
+
+    <script src="~/Assets/lib/parsleyjs/parsley.js"></script>
+
+    <script src="~/Assets/js/starlight.js"></script>
+    <script src="~/Assets/js/ResizeSensor.js"></script>
+    @*<script src="~/Assets/js/dashboard.js"></script>
+        <script src="~/Assets/js/chart.rickshaw.js"></script>*@
+
+    <script src="~/Assets/lib/highlightjs/highlight.pack.js"></script>
+    <script src="~/Assets/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Assets/lib/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!--BEGIN Select2 JS -->
+    <script src="~/Scripts/select/jquery.maskedinput-1.3.js"></script>
+    <script src="~/Scripts/select/select2.full.js"></script>
+    <script src="~/Scripts/select/sSelect.js"></script>
+    <!--END Select2 JS -->
+
+    <script src="~/Scripts/jquery.tmpl.js"></script>
+    <script src="~/Scripts/LocalStorage.js"></script>
+    <script src="~/Scripts/select/functions.js"></script>
+    <script src="~/Scripts/select/functionsb3.js"></script>
+    <script src="~/Scripts/tmpl.js"></script>
+    <script src="~/Scripts/datatable-extensions.js"></script>
+    <script src="~/Scripts/tDataTable.js"></script>
+    <script src="~/Scripts/jquery.maskedinput-1.3.js"></script>
+    <script src="~/Scripts/Common.js"></script>
+
+
+
+    @RenderSection("scripts", required: false)
+    @Html.RenderScriptBlocks()
+
+
+
+
+    <script>
+        var Configuration = {
+            defaultPageSize: '25',
+        };
+        $(function () {
+
+            'use strict';
+
+            //$('.select2').select2({
+            //    minimumResultsForSearch: Infinity
+            //});
+
+
+            // Select2 by showing the search
+            $('.select2-show-search').select2({
+                minimumResultsForSearch: ''
+            });
+
+            // Select2 with tagging support
+            $('.select2-tag').select2({
+                tags: true,
+                tokenSeparators: [',', ' ']
+            });
+
+            // Datepicker
+            $('.fc-datepicker').datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true
+            });
+
+            $('#datepickerNoOfMonths').datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                numberOfMonths: 2
+            });
+
+            // Color picker
+            $('#colorpicker').spectrum({
+                color: '#17A2B8'
+            });
+
+            $('#showAlpha').spectrum({
+                color: 'rgba(23,162,184,0.5)',
+                showAlpha: true
+            });
+
+            $('#showPaletteOnly').spectrum({
+                showPaletteOnly: true,
+                showPalette: true,
+                color: '#DC3545',
+                palette: [
+                    ['#1D2939', '#fff', '#0866C6', '#23BF08', '#F49917'],
+                    ['#DC3545', '#17A2B8', '#6610F2', '#fa1e81', '#72e7a6']
+                ]
+            });
+
+        });
+    </script>
 </body>
 </html>
-
