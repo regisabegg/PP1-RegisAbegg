@@ -15,30 +15,17 @@ namespace PP1.CONTRATO.WEB.Controllers
 {
     public class EstadoController : Controller
     {
-        //EstadoBLL objEstadoBLL;
-        //public EstadoController()
-        //{
-        //    objEstadoBLL = new EstadoBLL();
-        //}
+        EstadoBLL objEstadoBLL;
+        public EstadoController()
+        {
+            objEstadoBLL = new EstadoBLL();
+        }
         //// GET: Clube
         public ActionResult Index()
         {
-           
+
             return View();
         }
-
-
-        //EstadoDAO daoEstadoes = new EstadoDAO();
-
-        //public ActionResult Index()
-        //{
-        //    var daoEstadoes = new EstadoDAO();
-        //    List<Estado> list = daoEstadoes.findAllEstado();
-        //    return View(list);
-        //}
-
-
-
 
         // GET: Estado/Details/5
         public ActionResult Details(int id)
@@ -138,69 +125,69 @@ namespace PP1.CONTRATO.WEB.Controllers
 
 
 
-        //public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
-        //{
-        //    try
-        //    {
-        //        //var query = context.Empresa.AsQueryable();
-        //        //var filter = requestModel.Search.Value;
-        //        //if (!string.IsNullOrEmpty(filter))
-        //        //{
-        //        //    int id;
-        //        //    if (int.TryParse(filter, out id))
-        //        //    {
-        //        //        query = query.Where(u => u.id == id);
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        query = query.Where(u => u.Nome.ToLower().Contains(filter.ToLower()) || u.Estado.nmEstado.ToLower().Contains(filter.ToLower()));
-        //        //    }
-        //        //}
-        //        //var select = query.Select(u => new
-        //        //{
-        //        //    u.id,
-        //        //    u.Nome,
-        //        //    u.RazaoSocial,
-        //        //    u.CNPJ
+        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
+                //        //var query = context.Empresa.AsQueryable();
+                //        //var filter = requestModel.Search.Value;
+                //        //if (!string.IsNullOrEmpty(filter))
+                //        //{
+                //        //    int id;
+                //        //    if (int.TryParse(filter, out id))
+                //        //    {
+                //        //        query = query.Where(u => u.id == id);
+                //        //    }
+                //        //    else
+                //        //    {
+                //        //        query = query.Where(u => u.Nome.ToLower().Contains(filter.ToLower()) || u.Estado.nmEstado.ToLower().Contains(filter.ToLower()));
+                //        //    }
+                //        //}
+                //        //var select = query.Select(u => new
+                //        //{
+                //        //    u.id,
+                //        //    u.Nome,
+                //        //    u.RazaoSocial,
+                //        //    u.CNPJ
 
-        //        //});
+                //        //});
 
-        //        //return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
+                //        //return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
 
-        //        var select = this.Find();
+                var select = this.Find();
 
-        //        var totalResult = select.Count();
+                var totalResult = select.Count();
 
-        //        var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+                var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
 
-        //        return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Response.StatusCode = 500;
+                return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
 
-        //        return Json(ex.Message, JsonRequestBehavior.AllowGet);
-        //    }
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
 
 
-        //}
+        }
 
-        //private IQueryable<dynamic> Find()
-        //{
-        //    var daoEstadoes = new EstadoBLL();
-        //    var list = daoEstadoes.findAll();
-        //    var select = list.Select(u => new
-        //    {
-        //        u.idEstado,
-        //        u.nmEstado,
-        //        u.nrDDI,
-        //        u.dsSigla
-        //        //u.dtCadastro,
-        //        //u.dtAtualizacao
+        private IQueryable<dynamic> Find()
+        {
+            var daoEstadoes = new EstadoBLL();
+            var list = daoEstadoes.findAll();
+            var select = list.Select(u => new
+            {
+                u.idEstado,
+                u.nmEstado,
+                u.dsUF,
+                u.nrDDD,
+                u.dtCadastro,
+                u.dtAtualizacao
 
-        //    }).OrderBy(u => u.idEstado).ToList();
-        //    return select.AsQueryable();
-        //}
+            }).OrderBy(u => u.idEstado).ToList();
+            return select.AsQueryable();
+        }
         #endregion
 
     }
