@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Conexao.cs" />
     <Compile Include="Inter.cs" />
+    <Compile Include="EstadoDAO.cs" />
     <Compile Include="PaisDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

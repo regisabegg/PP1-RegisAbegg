@@ -28,18 +28,6 @@ namespace PP1.CONTRATO.WEB.Controllers
         }
 
 
-        //PaisDAO daoPaises = new PaisDAO();
-
-        //public ActionResult Index()
-        //{
-        //    var daoPaises = new PaisDAO();
-        //    List<Pais> list = daoPaises.findAllPais();
-        //    return View(list);
-        //}
-
-
-
-
         // GET: Pais/Details/5
         public ActionResult Details(int id)
         {

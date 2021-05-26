@@ -7,3 +7,12 @@ C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.D
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.csproj.CopyComplete
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.dll
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.pdb
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\bin\Debug\PP1.CONTRATO.DAO.dll
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\bin\Debug\PP1.CONTRATO.DAO.pdb
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\bin\Debug\PP1.CONTRATO.Entity.dll
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\bin\Debug\PP1.CONTRATO.Entity.pdb
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.csprojAssemblyReference.cache
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.csproj.CoreCompileInputs.cache
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.csproj.CopyComplete
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.dll
+C:\Projetos_Regis\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.DAO\obj\Debug\PP1.CONTRATO.DAO.pdb
