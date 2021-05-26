@@ -93,7 +93,8 @@ namespace PP1.CONTRATO.DAO
                     objPais.nmPais = reader[1].ToString();
                     objPais.dsSigla = reader[2].ToString();
                     objPais.nrDDI = reader[3].ToString();
-                    //objPais.DtNascimento.ToString = reader[4].ToString();
+                    objPais.dtCadastro = Convert.ToDateTime(reader[4].ToString());
+                    objPais.dtAtualizacao = Convert.ToDateTime(reader[5].ToString());
 
                 }
                 else
@@ -133,8 +134,8 @@ namespace PP1.CONTRATO.DAO
                     objPais.nmPais = reader[1].ToString();
                     objPais.dsSigla = reader[2].ToString();
                     objPais.nrDDI = reader[3].ToString();
-                    //objPais.dtCadastro = reader[4].ToString();
-                    //objPais.dtAtualizacao = reader[5].ToString();
+                    objPais.dtCadastro = Convert.ToDateTime(reader[4].ToString());
+                    objPais.dtAtualizacao = Convert.ToDateTime(reader[5].ToString());
                     listaPaiss.Add(objPais);
                 }
 
@@ -170,8 +171,8 @@ namespace PP1.CONTRATO.DAO
                     objPais.nmPais = reader[1].ToString();
                     objPais.dsSigla = reader[2].ToString();
                     objPais.nrDDI = reader[3].ToString();
-                    //objPais.dtCadastro = reader[4].ToString();
-                    //objPais.dtAtualizacao = reader[5].ToString();
+                    objPais.dtCadastro = Convert.ToDateTime(reader[4].ToString());
+                    objPais.dtAtualizacao = Convert.ToDateTime(reader[5].ToString());
                     listaPaiss.Add(objPais);
 
                 }

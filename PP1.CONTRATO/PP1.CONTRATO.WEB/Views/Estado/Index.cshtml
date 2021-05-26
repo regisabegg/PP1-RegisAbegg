@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PP1.CONTRATO.WEB.Models.Pais.PaisVM>
+﻿@model IEnumerable<PP1.CONTRATO.WEB.Models.Estado.EstadoVM>
 @using PP1.CONTRATO.WEB.Util
 
 @{
@@ -7,7 +7,7 @@
 
 <nav class="breadcrumb sl-breadcrumb">
     <a class="breadcrumb-item" href="@Url.Action("Index","Home")">Painel</a>
-    <span class="breadcrumb-item active">País</span>
+    <span class="breadcrumb-item active">Estado</span>
 </nav>
 
 <div class="sl-pagebody">
@@ -56,46 +56,47 @@
             <table id="lista" class=" table display responsive nowrap" style="width:100%" data-url="@Url.Action("JsSearch")">
                 <thead>
                     <tr>
-                        <th class="wd-10p" style="text-align:left">Código</th>
-                        <th class="wd-50p">País</th>
-                        <th class="wd-10p">Sigla</th>
-                        <th class="wd-10p">DDI</th>
-                        <th class="wd-10p">Cadastro</th>
-                        <th class="wd-10p">Atualização</th>
+
+                        <th class="wd-10p">Código</th>
+                        <th class="wd-50p">Estado</th>
+                        <th class="wd-10p">UF</th>
+                        <th class="wd-10p">DDD</th>
+                        @*<th class="wd-10p">Cadastro</th>
+                        <th class="wd-10p">Atualização</th>*@
                         <th class="note-icon-orderedlist"></th>
                     </tr>
                 </thead>               
             </table>
             <script type="text/x-tmpl" id="lista-actions">
                 <div class="hidden-xs-down hidden-sm-down" style="width:100px">
-                    <a title="Visualizar" class="btn btn-success btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.idPais%}" }))"><i class="fa fa-eye"></i></a>
-                    <a title="Editar" class="btn btn-info btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.idPais%}" }))"><i class="fa fa-edit"></i></a>
-                    <a title="Excluir" class="btn btn-danger btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id= "{%=o.idPais%}" }))"><i class="fa fa-trash "></i></a>
+                    <a title="Visualizar" class="btn btn-success btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.idEstado%}" }))"><i class="fa fa-eye"></i></a>
+                    <a title="Editar" class="btn btn-info btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.idEstado%}" }))"><i class="fa fa-edit"></i></a>
+                    <a title="Excluir" class="btn btn-danger btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id= "{%=o.idEstado%}" }))"><i class="fa fa-trash "></i></a>
                 </div>
-                @*<div class=" hidden-md-up hidden-lg-up hidden-xl-up ">
+                <div class=" hidden-md-up hidden-lg-up hidden-xl-up ">
                     <div class="btn-group">
                         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">
                             <i class="fa fa-cog"></i> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-black">
                             <li>
-                                <a href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.idEstado%}" }))" tabindex="-1" role="menuitem">
                                     <i class="fa fa-eye"></i> Visualizar
                                 </a>
                             </li>
                             <li>
-                                <a href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.idEstado%}" }))" tabindex="-1" role="menuitem">
                                     <i class="fa fa-edit"></i> Editar
                                 </a>
                             </li>
                             <li>
-                                <a href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id = "{%=o.id%}" }))" tabindex="-1" role="menuitem">
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id = "{%=o.idEstado%}" }))" tabindex="-1" role="menuitem">
                                     <i class="fa fa-trash"></i> Excluir
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </div>*@
+                </div>
             </script>
 
 
@@ -103,6 +104,6 @@
         </div><!-- card -->
     </div>
 </div><!-- sl-pagebody -->
-@section scripts{
-    @Scripts.Render("~/Scripts/Pais/Index.js?v=" + DateTime.Now.Ticks)
-}
+@*@section scripts{
+    @Scripts.Render("~/Scripts/Estado/Index.js?v=" + DateTime.Now.Ticks)
+}*@

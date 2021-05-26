@@ -194,9 +194,9 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.idPais,
                 u.nmPais,
                 u.nrDDI,
-                u.dsSigla
-                //u.dtCadastro,
-                //u.dtAtualizacao
+                u.dsSigla,
+                u.dtCadastro,
+                u.dtAtualizacao
 
             }).OrderBy(u => u.idPais).ToList();
             return select.AsQueryable();

@@ -1,0 +1,84 @@
+﻿@model PROJETO.SCHOOLAR.WEB.Models.Estado.ConsultaVM
+@using PROJETO.SCHOOLAR.UTIL;
+@{
+    bool Disabled = Convert.ToBoolean(ViewData["Disabled"]);
+    bool Required = Convert.ToBoolean(ViewData["Required"] ?? true);
+    bool LabelVertical = Convert.ToBoolean(ViewData["LabelVertical"]);
+    string Label = Convert.ToString(ViewData["Label"] ?? "Estado");
+    string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
+    string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.InputLG);
+    var Prefix = Html.ClientPrefixName().ToString();
+}
+@Html.HiddenFor(model => model.id)
+@if (Disabled)
+{
+
+    if (!LabelVertical)
+    {
+        @Html.LabelFor(e => e.text, Label, new { @class = classLabel })
+    }
+    <div class="@classForm">
+        @if (LabelVertical)
+        {
+            @Html.LabelFor(e => e.text, Label, new { @class = "form-control-label" })
+        }
+        @Html.TextBoxFor(model => model.text, new { @class = "form-control", @readonly = "readonly" })
+
+    </div>
+
+}
+else
+{
+
+    if (LabelVertical)
+    {
+        @Html.LabelFor(e => e.text, Label, new { @class = classLabel })
+    }
+    <div class="col-lg-12">
+        <div class="form-group">
+            @Html.LabelFor(e => e.text, Label, new { @class = "form-control-label" })
+            @Html.DropDownList("select", new List<SelectListItem>(), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id, null, new { @class = "help-block" }.AppendIf(!Required, "class", "no-required"))
+        </div>
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.text)
+    </div>
+
+
+    @Html.AddScriptBlock(
+                                        @<script type="text/javascript">
+        $(function () {
+
+
+            shared_function["@Prefix"] = new sSelect({
+                prefix: "@Prefix",
+                select: {
+                    url: '@Url.Action("JsSelect", "Estado")',
+                },
+                details:{
+                    url: '@Url.Action("JsDetails", "Estado")',
+                },
+                placeholder: "Buscar @Label".toString(),
+                elements: {
+                    $id: $('#@Html.ClientIdFor(e => e.id)'),
+                    $text: $('#@Html.ClientIdFor(e => e.text)'),
+                },
+                templateResult: function (data) {
+                    if (data.loading) return data.text;
+                    return '<div class="row no-margin">' +
+                        '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">' + data.id + '</div>' +
+                        '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">' + data.text + '</div>' +
+                        '</div>';
+                },
+                templateHeader: '<div class="row no-margin select2-header">' +
+                    '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">Id</div>' +
+                    '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">Nome</div>' +
+                    '</div>'
+
+            });
+           shared_function["@Prefix"].init();
+        });
+
+                                        </script>
+                                                                                                                                                     )
+}
