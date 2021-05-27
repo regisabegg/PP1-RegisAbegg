@@ -68,23 +68,34 @@ namespace PP1.CONTRATO.WEB.Controllers
         // GET: Pais/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return this.GetView(id);
         }
 
         // POST: Pais/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PaisVM model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                try
+                {
+                    // TODO: Add update logic here
+                    var bean = model.VM2E(new Pais());
+                    var bll = new BLL.PaisBLL();
+                    bll.update(bean);
 
-                return RedirectToAction("Index");
+                    this.AddFlashMessage("Registro alterado com sucesso!");
+                    return RedirectToAction("index");
+                }
+                catch (Exception ex)
+                {
+                    this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+                    return View(model);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
+
+
         }
 
         // GET: Pais/Delete/5
@@ -109,20 +120,37 @@ namespace PP1.CONTRATO.WEB.Controllers
             }
         }
 
+        #region MethodPrivate
+        private ActionResult GetView(int id)
+        {
+
+           
+
+            Pais objPais = new Pais(id);
+          
+            var daoPaises = new PaisBLL();
+            var list = daoPaises.find(objPais);
+            return View(list);
+
+        }
+        #endregion
+
+
         #region JsonResult
 
-        //public JsonResult JsSelect(string q, int? page, int? pageSize)
-        //{
-        //    var query = db..Where(u => u.Nome.Contains(q));
-
-        //    var select = query.Select(s => new
-        //    {
-        //        id = s.id,
-        //        text = s.Nome
-        //    }).OrderBy(u => u.text);
-
-        //    return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult JsSelect(string q, int? page, int? pageSize)
+        {
+            try
+            {
+                var select = this.Find();
+                return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                throw new Exception(ex.Message);
+            }
+        }
 
 
 

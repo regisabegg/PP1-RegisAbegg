@@ -8,7 +8,7 @@ namespace PP1.CONTRATO.Entity
 {
     public class Pais
     {
-
+       
 
         public int idPais { get; set; }
        
@@ -23,6 +23,16 @@ namespace PP1.CONTRATO.Entity
         public DateTime dtAtualizacao { get; set; }
 
 
+        public Pais()
+        {
+
+        }
+
+
+        public Pais(int idPais)
+        {
+            this.idPais = idPais;
+        }
 
     }
 }
