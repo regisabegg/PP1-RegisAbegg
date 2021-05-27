@@ -2,9 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\PP1.CONTRATO",
-    "\\PP1.CONTRATO\\PP1.CONTRATO.DAO",
-    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB"
+    "\\PP1.CONTRATO\\PP1.CONTRATO.BLL",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.Entity",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Controllers",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Models",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Models\\Estado",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Views",
+    "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Views\\Pais"
   ],
-  "SelectedNode": "\\PP1.CONTRATO\\PP1.CONTRATO.DAO\\PaisDAO.cs",
+  "SelectedNode": "\\PP1.CONTRATO\\PP1.CONTRATO.WEB\\Models\\Estado\\EstadoVM.cs",
   "PreviewInSolutionExplorer": false
 }
