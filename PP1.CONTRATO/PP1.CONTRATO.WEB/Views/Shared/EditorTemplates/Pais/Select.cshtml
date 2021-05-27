@@ -1,54 +1,182 @@
-﻿@model PP1.CONTRATO.WEB.Models.Pais.ConsultaVM
+﻿@*@model PP1.CONTRATO.WEB.Models.Pais.ConsultaVM
+    @using PP1.CONTRATO.WEB.Util;
+    @{
+        bool Disabled = Convert.ToBoolean(ViewData["Disabled"]);
+        bool Required = Convert.ToBoolean(ViewData["Required"] ?? true);
+        bool LabelVertical = Convert.ToBoolean(ViewData["LabelVertical"]);
+        string Label = Convert.ToString(ViewData["Label"] ?? "País");
+        string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
+        string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.InputLG);
+        var Prefix = Html.ClientPrefixName().ToString();
+    }
+    @Html.HiddenFor(model => model.idPais)
+    @if (Disabled)
+    {
+
+        if (!LabelVertical)
+        {
+            @Html.LabelFor(e => e.nmPais, Label, new { @class = classLabel })
+        }
+        <div class="@classForm">
+            @if (LabelVertical)
+            {
+                @Html.LabelFor(e => e.nmPais, Label, new { @class = "form-control-label" })
+            }
+            @Html.TextBoxFor(model => model.nmPais, new { @class = "form-control", @readonly = "readonly" })
+
+        </div>
+
+    }
+    else
+    {
+
+        if (LabelVertical)
+        {
+            @Html.LabelFor(e => e.nmPais, Label, new { @class = classLabel })
+        }
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmPais, Label, new { @class = "form-control-label" })
+                @Html.DropDownList("select", new List<SelectListItem>(), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idPais, null, new { @class = "help-block" }.AppendIf(!Required, "class", "no-required"))
+            </div>
+            @Html.HiddenFor(model => model.idPais)
+            @Html.HiddenFor(model => model.nmPais)
+        </div>
+
+
+        @Html.AddScriptBlock(
+            @<script type="text/javascript">
+            $(function () {
+
+
+                shared_function["@Prefix"] = new sSelect({
+                    prefix: "@Prefix",
+                    select: {
+                        url: '@Url.Action("JsSelect", "Pais")',
+                    },
+                    details:{
+                        url: '@Url.Action("JsDetails", "Pais")',
+                    },
+                    placeholder: "Buscar @Label".toString(),
+                    elements: {
+                        $id: $('#@Html.ClientIdFor(e => e.idPais)'),
+                        $text: $('#@Html.ClientIdFor(e => e.nmPais)'),
+                    },
+                    templateResult: function (data) {
+                        if (data.loading) return data.nmPais;
+                        return '<div class="row no-margin">' +
+                            '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">' + data.idPais + '</div>' +
+                            '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">' + data.nmPais + '</div>' +
+                            '</div>';
+                    },
+                    templateHeader: '<div class="row no-margin select2-header">' +
+                        '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">Código</div>' +
+                        '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">País</div>' +
+                        '</div>'
+
+                });
+               shared_function["@Prefix"].init();
+            });
+            </script>
+    )
+    }*@
+
+
+
+@model PP1.CONTRATO.WEB.Models.Pais.ConsultaVM
 @using PP1.CONTRATO.WEB.Util;
 @{
     bool Disabled = Convert.ToBoolean(ViewData["Disabled"]);
     bool Required = Convert.ToBoolean(ViewData["Required"] ?? true);
+    bool OnlySelect = Convert.ToBoolean(ViewData["onlySelect"] ?? false);
     bool LabelVertical = Convert.ToBoolean(ViewData["LabelVertical"]);
     string Label = Convert.ToString(ViewData["Label"] ?? "País");
     string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
     string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.InputLG);
     var Prefix = Html.ClientPrefixName().ToString();
 }
-@Html.HiddenFor(model => model.id)
+@*@Html.HiddenFor(model => model.cdPais)
+    @Html.HiddenFor(model => model.dsSigla)*@
 @if (Disabled)
 {
-
-    if (!LabelVertical)
+    using (Html.BeginFormContainer(Prefix + ".idPais"))
     {
-        @Html.LabelFor(e => e.text, Label, new { @class = classLabel })
-    }
-    <div class="@classForm">
-        @if (LabelVertical)
+        if (!LabelVertical)
         {
-            @Html.LabelFor(e => e.text, Label, new { @class = "form-control-label" })
+            @Html.LabelFor(e => e.nmPais, Label, new { @class = classLabel })
         }
-        @Html.TextBoxFor(model => model.text, new { @class = "form-control", @readonly = "readonly" })
-
-    </div>
-
+        <div class="@classForm">
+            @if (LabelVertical)
+            {
+                @Html.LabelFor(e => e.nmPais, Label, new { @class = "control-label" })
+            }
+            <div class="input-group">
+                <div class="input-group-btn" style="width:25%">
+                    @Html.TextBoxFor(model => model.idPais, new { @style = "border-radius: 4px 0px 0px 4px;", @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="input-group-btn">
+                    <a disabled style="border-radius:0" title="Localizar país" class="btn btn-default" data-toggle="modal"><i class="fa fa-search"></i></a>
+                </div>
+                @Html.TextBoxFor(model => model.nmPais, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+    }
 }
 else
 {
-
-    if (LabelVertical)
+    using (Html.BeginFormContainer(Prefix + ".idPais"))
     {
-        @Html.LabelFor(e => e.text, Label, new { @class = classLabel })
-    }
-    <div class="col-lg-12">
-        <div class="form-group">
-            @Html.LabelFor(e => e.text, Label, new { @class = "form-control-label" })
-            @Html.DropDownList("select", new List<SelectListItem>(), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id, null, new { @class = "help-block" }.AppendIf(!Required, "class", "no-required"))
+        if (!LabelVertical)
+        {
+            @Html.LabelFor(e => e.nmPais, Label, new { @class = classLabel })
+        }
+        <div class="@classForm">
+            @if (LabelVertical)
+            {
+                @Html.LabelFor(e => e.nmPais, Label, new { @class = "control-label" })
+            }
+            @if (OnlySelect)
+            {
+                @Html.DropDownList("select", new List<SelectListItem>(), new { @class = "form-control" })
+                @Html.HiddenFor(model => model.idPais)
+                @Html.HiddenFor(model => model.nmPais)
+            }
+            else
+            {
+                <div class="input-group">
+                    <div class="input-group-btn" style="width:25%">
+                        @Html.TextBoxFor(model => model.idPais, new { @style = "border-radius: 4px 0px 0px 4px;", @class = "form-control", @autocomplete = "off" })
+                    </div>
+                    <div class="input-group-btn">
+                        <a style="border-radius:0" data-target="#@Helper.getInputId("Modal", Prefix)" href="#@Helper.getInputId("Modal", Prefix)" id="@Helper.getInputId("btn-localizar", Prefix)" title="Localizar @Label" class="btn btn-default" data-toggle="modal"><i class="glyphicon glyphicon-search"></i></a>
+                    </div>
+                    @Html.HiddenFor(model => model.nmPais)
+                    @Html.DropDownList("select", new List<SelectListItem>(), new { @class = "form-control" })
+                </div>
+            }
+            @Html.ValidationMessageFor(model => model.idPais, null, new { @class = "help-block" }.AppendIf(Required == false, "class", "no-required"))
         </div>
-        @Html.HiddenFor(model => model.id)
-        @Html.HiddenFor(model => model.text)
+    }
+    <div id="@Helper.getInputId("Modal", Prefix)" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Consultar país</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Editor("Modal", "Pais/Query")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-
     @Html.AddScriptBlock(
-                                    @<script type="text/javascript">
+                    @<script type="text/javascript">
         $(function () {
-
 
             shared_function["@Prefix"] = new sSelect({
                 prefix: "@Prefix",
@@ -58,27 +186,29 @@ else
                 details:{
                     url: '@Url.Action("JsDetails", "Pais")',
                 },
-                placeholder: "Buscar @Label".toString(),
+                placeholder: "Buscar @Label".toLowerCase(),
                 elements: {
-                    $id: $('#@Html.ClientIdFor(e => e.id)'),
-                    $text: $('#@Html.ClientIdFor(e => e.text)'),
+                    $id: $('#@Html.ClientIdFor(e => e.idPais)'),
+                    $text: $('#@Html.ClientIdFor(e => e.nmPais)'),
+                    @*$cdPais: $('#@Html.ClientIdFor(e => e.cdPais)'),
+                    $dsSigla: $('#@Html.ClientIdFor(e => e.dsSigla)'),*@
                 },
                 templateResult: function (data) {
-                    if (data.loading) return data.text;
+                    if (data.loading) return data.nmPais;
                     return '<div class="row no-margin">' +
-                        '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">' + data.id + '</div>' +
-                        '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">' + data.text + '</div>' +
+                        '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">' + data.idPais + '</div>' +
+                        '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">' + data.nmPais + '</div>' +
                         '</div>';
                 },
                 templateHeader: '<div class="row no-margin select2-header">' +
-                    '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">Id</div>' +
-                    '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">Nome</div>' +
-                    '</div>'
-
+                '<div class="col-lg-2  col-md-2  col-sm-3 col-xs-3">Código</div>' +
+                '<div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">País</div>' +
+                '</div>'
             });
            shared_function["@Prefix"].init();
         });
 
-                                    </script>
-                                                                                                                                     )
+                    </script>
+)
 }
+

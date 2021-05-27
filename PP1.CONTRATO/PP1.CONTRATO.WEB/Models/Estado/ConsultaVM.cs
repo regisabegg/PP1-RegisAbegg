@@ -8,8 +8,8 @@ namespace PP1.CONTRATO.WEB.Models.Estado
 {
     public class ConsultaVM
     {
-        public int? id { get; set; }
-        public string text { get; set; }
+        public int? idEstado { get; set; }
+        public string nmEstado { get; set; }
 
     
     }

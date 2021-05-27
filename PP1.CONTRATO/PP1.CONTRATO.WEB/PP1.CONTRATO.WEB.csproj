@@ -2219,6 +2219,7 @@
     <Content Include="Views\Shared\EditorTemplates\Estado\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Pais\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Usuario\Select.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Pais\Query.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
