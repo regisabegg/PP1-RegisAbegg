@@ -225,16 +225,20 @@ namespace PP1.CONTRATO.WEB.Controllers
             var list = daoEstadoes.findAll();
             var select = list.Select(u => new
             {
+                id = u.idEstado,
+                text = u.nmEstado,
                 u.idEstado,
-                u.nmEstado,
                 u.dsUF,
                 u.dtCadastro,
                 u.dtAtualizacao,
                 u.idPais
 
+
             }).OrderBy(u => u.idEstado).ToList();
             return select.AsQueryable();
         }
+
+
         #endregion
 
     }

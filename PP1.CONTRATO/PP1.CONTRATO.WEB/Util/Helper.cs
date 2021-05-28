@@ -27,6 +27,18 @@ namespace PP1.CONTRATO.WEB.Util
         public const string InputSMMD = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
         public const string InputSM = "col-lg-3 col-md-3 col-sm-3 col-xs-12";
         public const string InputXS = "col-lg-2 col-md-2 col-sm-2 col-xs-12";
+
+        public const string Input1 = "col-lg-1 col-md-1 col-sm-1 col-xs-12";
+        public const string Input2 = "col-lg-2 col-md-2 col-sm-2 col-xs-12";
+        public const string Input3 = "col-lg-3 col-md-3 col-sm-3 col-xs-12";
+        public const string Input4 = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+       
+        public const string Input6 = "col-lg-6 col-md-6 col-sm-6 col-xs-12";
+        public const string Input7 = "col-lg-7 col-md-7 col-sm-7 col-xs-12";
+        public const string Input9 = "col-lg-9 col-md-9 col-sm-9 col-xs-12";
+        public const string Input10 = "col-lg-10 col-md-10 col-sm-10 col-xs-12";
+        public const string Input11 = "col-lg-11 col-md-11 col-sm-11 col-xs-12";
+        public const string Input12 = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
         private static string ToQueryString(NameValueCollection nvc)
         {
             return "?" + string.Join("&", Array.ConvertAll(nvc.AllKeys, key => string.Format("{0}={1}", HttpUtility.UrlEncode(key), HttpUtility.UrlEncode(nvc[key]))));

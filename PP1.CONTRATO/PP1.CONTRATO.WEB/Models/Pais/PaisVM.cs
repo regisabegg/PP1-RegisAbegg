@@ -29,9 +29,6 @@ namespace PP1.CONTRATO.WEB.Models.Pais
             bean.nmPais = this.nmPais;
             bean.dsSigla = this.dsSigla;
             bean.nrDDI = this.nrDDI;
-            bean.dtAtualizacao = this.dtAtualizacao;
-            bean.dtCadastro = this.dtCadastro;
-
             return bean;
         }
 

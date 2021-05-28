@@ -15,7 +15,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 {
     public class PaisController : Controller
     {
-        
+
 
         PaisBLL objPaisBLL;
         public PaisController()
@@ -117,11 +117,11 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-               
-                
+
+
                 //objPaisBLL = new PaisBLL();
                 //var obj = objPaisBLL.delete(id);
-               
+
 
                 return RedirectToAction("Index");
             }
@@ -134,11 +134,8 @@ namespace PP1.CONTRATO.WEB.Controllers
         #region MethodPrivate
         private ActionResult GetView(int id)
         {
-
-            
-
             PaisDAO objPais = new PaisDAO();
-            var  obj = objPais.FindID(id);
+            var obj = objPais.FindID(id);
             var result = new PaisVM
             {
                 idPais = obj.idPais,
@@ -154,6 +151,40 @@ namespace PP1.CONTRATO.WEB.Controllers
 
 
         #region JsonResult
+        public JsonResult JsCreate(PaisVM model)
+        {
+         
+            try
+            {
+                var bean = model.VM2E(new Pais());
+                var bll = new BLL.PaisBLL();
+                bean.dtCadastro = DateTime.Now;
+                bean.dtAtualizacao = DateTime.Now;
+                bll.create(bean);
+
+                var result = new
+                {
+                    type = "success",
+                    message = "Registro salvo com sucesso"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+
+                var result = new
+                {
+                    type = "error",
+                    message = ex.Message
+                };
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
 
         public JsonResult JsSelect(string q, int? page, int? pageSize)
         {
@@ -170,36 +201,75 @@ namespace PP1.CONTRATO.WEB.Controllers
         }
 
 
+        public JsonResult JsQuery([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
 
+                var select = this.Find();
+                return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public JsonResult jsDetails(int id)
+        {
+            try
+            {
+                var daoPaises = new PaisBLL();
+                var select = daoPaises.find(id);
+                return Json(select, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public JsonResult JsEdit(PaisVM model)
+        {               
+            try
+            {
+                var bll = new BLL.PaisBLL();
+                var bean = bll.find(model.idPais);              
+                bean = model.VM2E(bean);
+                bean.dtAtualizacao = DateTime.Now;
+                bll.update(bean);            
+
+                var result = new
+                {
+                    type = "success",
+                    message = "Registro editado com sucesso"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+
+                var result = new
+                {
+                    type = "error",
+                    message = ex.Message
+                };
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
         public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             try
             {
-                //var query = context.Empresa.AsQueryable();
-                //var filter = requestModel.Search.Value;
-                //if (!string.IsNullOrEmpty(filter))
-                //{
-                //    int id;
-                //    if (int.TryParse(filter, out id))
-                //    {
-                //        query = query.Where(u => u.id == id);
-                //    }
-                //    else
-                //    {
-                //        query = query.Where(u => u.Nome.ToLower().Contains(filter.ToLower()) || u.Estado.nmEstado.ToLower().Contains(filter.ToLower()));
-                //    }
-                //}
-                //var select = query.Select(u => new
-                //{
-                //    u.id,
-                //    u.Nome,
-                //    u.RazaoSocial,
-                //    u.CNPJ
-
-                //});
-
-                //return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
-
                 var select = this.Find();
 
                 var totalResult = select.Count();
@@ -224,6 +294,8 @@ namespace PP1.CONTRATO.WEB.Controllers
             var list = daoPaises.findAll();
             var select = list.Select(u => new
             {
+                id = u.idPais,
+                text = u.nmPais,
                 u.idPais,
                 u.nmPais,
                 u.nrDDI,

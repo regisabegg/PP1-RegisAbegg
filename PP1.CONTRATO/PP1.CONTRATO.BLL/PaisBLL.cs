@@ -99,10 +99,10 @@ namespace PP1.CONTRATO.BLL
         //    return;
         //}
 
-        //public void find(int id)
-        //{
-        //    return objPaisDAO.FindID(obj);
-        //}
+        public Pais find(int id)
+        {
+            return objPaisDAO.FindID(id);
+        }
 
         public List<Pais> findAll()
         {

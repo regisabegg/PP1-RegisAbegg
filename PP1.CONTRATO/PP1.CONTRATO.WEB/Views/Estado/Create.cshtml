@@ -22,7 +22,7 @@
         @using (Html.BeginForm("Create", "Estado", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2>Criar país</h2>
+                <h2>Criar estado</h2>
                 <div class="form-horizontal">
                     @Html.RenderFlashMessage()
                     @Html.CustomValidationSummary(true, true, "Ocorreram alguns erros, por favor verifique!!", new { @class = "alert alert-danger", role = "alert" })

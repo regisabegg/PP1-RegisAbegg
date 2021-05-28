@@ -45,7 +45,7 @@ namespace PP1.CONTRATO.DAO
                 try
                 {
                     OpenConection();
-                    Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4 , dtpais=@v5 where idestado = @v6", Con);
+                    Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4 , idpais=@v5 where idestado = @v6", Con);
 
                     Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
                     Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
