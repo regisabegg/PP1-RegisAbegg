@@ -7,37 +7,37 @@ namespace PP1.CONTRATO.BLL
     public class EstadoBLL
     {
 
-        private EstadoDAO objEstadoDAO;
+        //private EstadoDAO objEstadoDAO;
 
-        public EstadoBLL()
-        {
-            objEstadoDAO = new EstadoDAO();
+        //public EstadoBLL()
+        //{
+        //    objEstadoDAO = new EstadoDAO();
 
-        }
+        //}
 
-        public void create(Estado objEstado)
-        {
-            bool verificacao = true;
+        //public void create(Estado objEstado)
+        //{
+        //    bool verificacao = true;
 
-            string nome = objEstado.nmEstado;
-            if (nome == null)
-            {
-                //objEstado.Estado = 20;
-                return;
-            }
-            else
-            {
-                nome = objEstado.nmEstado.Trim();
-                verificacao = nome.Length <= 50 && nome.Length > 0;
-                if (!verificacao)
-                {
-                    //objEstado.Estado = 2;
-                    return;
-                }
+        //    string nome = objEstado.nmEstado;
+        //    if (nome == null)
+        //    {
+        //        //objEstado.Estado = 20;
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        nome = objEstado.nmEstado.Trim();
+        //        verificacao = nome.Length <= 50 && nome.Length > 0;
+        //        if (!verificacao)
+        //        {
+        //            //objEstado.Estado = 2;
+        //            return;
+        //        }
 
 
 
-            }
+        //    }
             //end validar nome
 
             //    //inicio da validação do cpf
@@ -125,9 +125,9 @@ namespace PP1.CONTRATO.BLL
 
             //    //se nao tem erro
             //    objEstado.Estado = 99;
-               objEstadoDAO.create(objEstado);
-               return;
-            }
+            //   objEstadoDAO.create(objEstado);
+            //   return;
+            //}
 
             ////end validar duplicidade cpf
 
@@ -279,18 +279,18 @@ namespace PP1.CONTRATO.BLL
         //    return;
         //}
 
-        public bool find(Estado objEstado)
-        {
-            return objEstadoDAO.find(objEstado);
-        }
+        //public bool find(Estado objEstado)
+        //{
+        //    return objEstadoDAO.find(objEstado);
+        //}
 
-        public List<Estado> findAll()
-        {
-            return objEstadoDAO.findAll();
-        }
-        public List<Estado> findAllEstados(Estado objEstado)
-        {
-            return objEstadoDAO.findAllEstado(objEstado);
-        }
+        //public List<Estado> findAll()
+        //{
+        //    return objEstadoDAO.findAll();
+        //}
+        //public List<Estado> findAllEstados(Estado objEstado)
+        //{
+        //    return objEstadoDAO.findAllEstado(objEstado);
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace PP1.CONTRATO.DAO
@@ -6,33 +7,66 @@ namespace PP1.CONTRATO.DAO
     public class ConexaoDB
     {
 
-        private static ConexaoDB objConexaoDB = null;
-        private SqlConnection con;
+        //Atributos
+        protected SqlConnection Con;
+        protected SqlCommand Cmd;
+        protected SqlDataReader Dr;
 
-        public ConexaoDB()
-        {
-            con = new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
-        }
 
-        public static ConexaoDB saberEstado()
+        //Abrir conexão
+        protected void OpenConection()
         {
-            if (objConexaoDB == null)
+            try
             {
-                objConexaoDB = new ConexaoDB();
+                //Connection String
+                Con = new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+                Con.Open();
             }
-
-            return objConexaoDB;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
 
-        public SqlConnection getCon()
+        //Fechar conexão
+        protected void CloseConection()
         {
-            return con;
+            try
+            {
+                Con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public void CloseDB()
-        {
-            objConexaoDB = null;
-        }
+
+        //public ConexaoDB()
+        //{
+        //    Con = new SqlConnection(ConfigurationManager.ConnectionStrings["Connection"].ConnectionString);
+        //}
+
+        //public static ConexaoDB saberEstado()
+        //{
+        //    if (objConexaoDB == null)
+        //    {
+        //        objConexaoDB = new ConexaoDB();
+        //    }
+
+        //    return objConexaoDB;
+        //}
+
+
+        //public SqlConnection getCon()
+        //{
+        //    return Con;
+        //}
+
+        //public void CloseDB()
+        //{
+        //    objConexaoDB = null;
+        //}
     }
 }

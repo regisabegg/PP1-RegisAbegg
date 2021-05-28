@@ -23,7 +23,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         // GET: Clube
         public ActionResult Index()
         {
-           
+
             return View();
         }
 
@@ -31,7 +31,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         // GET: Pais/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return this.GetView(id);
         }
 
         // GET: Pais/Create
@@ -75,8 +75,10 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Edit(PaisVM model)
         {
+
             if (ModelState.IsValid)
             {
+                model.dtAtualizacao = DateTime.Now;
                 try
                 {
                     // TODO: Add update logic here
@@ -101,7 +103,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         // GET: Pais/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return this.GetView(id);
         }
 
         // POST: Pais/Delete/5
@@ -124,14 +126,20 @@ namespace PP1.CONTRATO.WEB.Controllers
         private ActionResult GetView(int id)
         {
 
-           
+            
 
-            Pais objPais = new Pais(id);
-          
-            var daoPaises = new PaisBLL();
-            var list = daoPaises.find(objPais);
-            return View(list);
-
+            PaisDAO objPais = new PaisDAO();
+            var  obj = objPais.FindID(id);
+            var result = new PaisVM
+            {
+                idPais = obj.idPais,
+                nmPais = obj.nmPais,
+                dsSigla = obj.dsSigla,
+                nrDDI = obj.nrDDI,
+                dtCadastro = obj.dtCadastro,
+                dtAtualizacao = obj.dtAtualizacao,
+            };
+            return View(result);
         }
         #endregion
 

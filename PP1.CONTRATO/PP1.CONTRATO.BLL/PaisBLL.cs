@@ -126,7 +126,7 @@ namespace PP1.CONTRATO.BLL
 
             //    //se nao tem erro
             //    objPais.Estado = 99;
-               objPaisDAO.create(objPais);
+               objPaisDAO.Insert(objPais);
                return;
             }
 
@@ -157,7 +157,7 @@ namespace PP1.CONTRATO.BLL
                         return;
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //objPais.Estado = 100;
                     return;
@@ -257,7 +257,7 @@ namespace PP1.CONTRATO.BLL
 
             //se nao tem erro
             //objPais.Estado = 99;
-            objPaisDAO.update(objPais);
+            objPaisDAO.Update(objPais);
             return;
         }
 
@@ -280,18 +280,18 @@ namespace PP1.CONTRATO.BLL
         //    return;
         //}
 
-        public bool find(Pais objPais)
-        {
-            return objPaisDAO.find(objPais);
-        }
+        //public void find(int id)
+        //{
+        //    return objPaisDAO.FindID(obj);
+        //}
 
         public List<Pais> findAll()
         {
-            return objPaisDAO.findAll();
+            return objPaisDAO.FindAll();
         }
-        public List<Pais> findAllPaiss(Pais objPais)
-        {
-            return objPaisDAO.findAllPais(objPais);
-        }
+        //public List<Pais> findAllPaiss(Pais objPais)
+        //{
+        //    return objPaisDAO.findAllPais(objPais);
+        //}
     }
 }
