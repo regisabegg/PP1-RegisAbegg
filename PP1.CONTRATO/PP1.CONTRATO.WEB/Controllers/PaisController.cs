@@ -15,6 +15,8 @@ namespace PP1.CONTRATO.WEB.Controllers
 {
     public class PaisController : Controller
     {
+        
+
         PaisBLL objPaisBLL;
         public PaisController()
         {
@@ -73,7 +75,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         // POST: Pais/Edit/5
         [HttpPost]
-        public ActionResult Edit(PaisVM model)
+        public ActionResult Edit(int id, PaisVM model)
         {
 
             if (ModelState.IsValid)
@@ -82,7 +84,10 @@ namespace PP1.CONTRATO.WEB.Controllers
                 try
                 {
                     // TODO: Add update logic here
-                    var bean = model.VM2E(new Pais());
+                    PaisDAO objPais = new PaisDAO();
+                    var obj = objPais.FindID(id);
+
+                    var bean = model.VM2E(obj);
                     var bll = new BLL.PaisBLL();
                     bll.update(bean);
 
@@ -108,11 +113,15 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         // POST: Pais/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+               
+                
+                //objPaisBLL = new PaisBLL();
+                //var obj = objPaisBLL.delete(id);
+               
 
                 return RedirectToAction("Index");
             }

@@ -56,13 +56,11 @@
             <table id="lista" class=" table display responsive nowrap" style="width:100%" data-url="@Url.Action("JsSearch")">
                 <thead>
                     <tr>
-
-                        <th class="wd-10p">Código</th>
-                        <th class="wd-50p">Estado</th>
+                        <th class="wd-10p" style="text-align:left">Código</th>
+                        <th class="wd-60p">Estado</th>
                         <th class="wd-10p">UF</th>
-                        <th class="wd-10p">DDD</th>
-                        @*<th class="wd-10p">Cadastro</th>
-                        <th class="wd-10p">Atualização</th>*@
+                        <th class="wd-10p">Cadastro</th>
+                        <th class="wd-10p">Atualização</th>
                         <th class="note-icon-orderedlist"></th>
                     </tr>
                 </thead>               
@@ -104,6 +102,6 @@
         </div><!-- card -->
     </div>
 </div><!-- sl-pagebody -->
-@*@section scripts{
+@section scripts{
     @Scripts.Render("~/Scripts/Estado/Index.js?v=" + DateTime.Now.Ticks)
-}*@
+}
