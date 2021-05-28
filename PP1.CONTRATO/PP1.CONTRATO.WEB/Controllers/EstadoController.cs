@@ -228,6 +228,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 id = u.idEstado,
                 text = u.nmEstado,
                 u.idEstado,
+                u.nmEstado,
                 u.dsUF,
                 u.dtCadastro,
                 u.dtAtualizacao,

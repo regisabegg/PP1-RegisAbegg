@@ -133,7 +133,7 @@ var getDatatablePathName = function (path) {
 var getDatatableConfig = function () {
     var name = "datatables_" + getDatatablePathName().toLowerCase();
     var displayLength = Configuration.defaultPageSize == undefined ? 25 : parseInt(Configuration.defaultPageSize)
-    var table = { displayStart: 0, displayLength: displayLength, order: [[1, 'desc']] };
+    var table = { displayStart: 0, displayLength: displayLength, order: [[0, 'desc']] };
 
     if (location.search.toLocaleLowerCase().indexOf('clear=true') < 0) {
 

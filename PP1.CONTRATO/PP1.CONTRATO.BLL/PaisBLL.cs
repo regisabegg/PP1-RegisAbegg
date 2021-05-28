@@ -80,23 +80,12 @@ namespace PP1.CONTRATO.BLL
             return;
         }
 
-        //public void delete(int id)
+        //public Pais delete(int id)
         //{
-        //    bool verificacao = true;
-
-        //    Pais objPaisAux = new Pais();
-        //    objPaisAux.idPais = objPais.idPais;
-        //    verificacao = objPaisDAO.FindID(objPaisAux);
-        //    if (!verificacao)
-        //    {
-
-        //        return;
-        //    }
 
 
-        //    //objPais.Estado = 99;
-        //    objPaisDAO.Delete(objPais);
-        //    return;
+        //    return objPaisDAO.Delete(id);
+
         //}
 
         public Pais find(int id)

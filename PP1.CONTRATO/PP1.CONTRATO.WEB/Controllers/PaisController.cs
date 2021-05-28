@@ -115,20 +115,19 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
+            //try
+            //{
+            //    var daoPaises = new PaisBLL();
+            //    var select = daoPaises.delete(id);
+            //    return Json(select, JsonRequestBehavior.AllowGet);
 
-
-                //objPaisBLL = new PaisBLL();
-                //var obj = objPaisBLL.delete(id);
-
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.StatusCode = 500;
+            //    throw new Exception(ex.Message);
+            //}
+            return View();
         }
 
         #region MethodPrivate
@@ -266,7 +265,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
-        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, string filter)
         {
             try
             {
