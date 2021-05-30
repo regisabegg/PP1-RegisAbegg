@@ -15,7 +15,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 {
     public class PaisController : Controller
     {
-
+        PaisDAO daoPaises = new PaisDAO();
 
         PaisBLL objPaisBLL;
         public PaisController()
@@ -46,14 +46,16 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Create(PaisVM model)
         {
-            model.dtCadastro = DateTime.Now;
-            model.dtAtualizacao = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 try
                 {
+
                     var bean = model.VM2E(new Pais());
-                    var bll = new BLL.PaisBLL();
+                    var bll = new PaisBLL();
+                    bean.dtCadastro = DateTime.Now;
+                    bean.dtAtualizacao = DateTime.Now;
                     bll.create(bean);
 
                     this.AddFlashMessage("Registro salvo com sucesso!");
@@ -80,7 +82,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
             if (ModelState.IsValid)
             {
-                model.dtAtualizacao = DateTime.Now;
+                
                 try
                 {
                     // TODO: Add update logic here
@@ -88,7 +90,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                     var obj = objPais.FindID(id);
 
                     var bean = model.VM2E(obj);
-                    var bll = new BLL.PaisBLL();
+                    var bll = new PaisBLL();
+                    bean.dtAtualizacao = DateTime.Now;
                     bll.update(bean);
 
                     this.AddFlashMessage("Registro alterado com sucesso!");
@@ -111,23 +114,32 @@ namespace PP1.CONTRATO.WEB.Controllers
             return this.GetView(id);
         }
 
-        // POST: Pais/Delete/5
-        [HttpPost]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            //try
-            //{
-            //    var daoPaises = new PaisBLL();
-            //    var select = daoPaises.delete(id);
-            //    return Json(select, JsonRequestBehavior.AllowGet);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.StatusCode = 500;
-            //    throw new Exception(ex.Message);
-            //}
-            return View();
+        [HttpPost]
+        public ActionResult Delete(PaisVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    
+
+                    // TODO: Add update logic here
+                    var bean = model.VM2E(new Pais());
+                    var daoPais = new PaisDAO();
+                    daoPais.Delete(model.idPais);
+
+                    this.AddFlashMessage("Registro excluído com sucesso!");
+                    return RedirectToAction("index");
+                }
+                catch (Exception ex)
+                {
+                    this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+                    return View(model);
+                }
+            }
+            return View(model);
+
         }
 
         #region MethodPrivate
@@ -152,11 +164,11 @@ namespace PP1.CONTRATO.WEB.Controllers
         #region JsonResult
         public JsonResult JsCreate(PaisVM model)
         {
-         
+
             try
             {
                 var bean = model.VM2E(new Pais());
-                var bll = new BLL.PaisBLL();
+                var bll = new PaisBLL();
                 bean.dtCadastro = DateTime.Now;
                 bean.dtAtualizacao = DateTime.Now;
                 bll.create(bean);
@@ -235,14 +247,14 @@ namespace PP1.CONTRATO.WEB.Controllers
 
 
         public JsonResult JsEdit(PaisVM model)
-        {               
+        {
             try
             {
                 var bll = new BLL.PaisBLL();
-                var bean = bll.find(model.idPais);              
+                var bean = bll.find(model.idPais);
                 bean = model.VM2E(bean);
                 bean.dtAtualizacao = DateTime.Now;
-                bll.update(bean);            
+                bll.update(bean);
 
                 var result = new
                 {

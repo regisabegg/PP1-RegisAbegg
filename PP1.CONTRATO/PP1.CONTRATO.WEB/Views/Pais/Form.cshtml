@@ -57,13 +57,13 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtCadastro, new { @class = "form-control", readOnly = "readonly" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtAtualizacao, new { @class = "form-control", readOnly = "readonly" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
                 </div>
             </div>
         </div>

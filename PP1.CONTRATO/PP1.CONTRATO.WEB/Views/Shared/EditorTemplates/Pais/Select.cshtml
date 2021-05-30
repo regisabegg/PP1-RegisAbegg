@@ -9,6 +9,11 @@
     string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
     string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.Input12);
     var Prefix = Html.ClientPrefixName().ToString();
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+
+
+
 }
 
 @Html.Hidden("flEdit")
@@ -73,65 +78,53 @@
                         </ul>
                     </div>
                     <hr />
-                    <div id="body" class="modal-body" style="padding: 33px 0px 0px 0px;">
+                    <div id="body" class="modal-body" style="padding: 0px 0px 0px 0px">
                         <div class="container-fluid">
 
                             <div class="form-row">
-                                <div class="@Helper.InputXS">
+                                <div class="@Helper.InputSM">
                                     @Html.Label("idPais", "Código")
-                                    @Html.TextBox("idPais", null, new { @class = "form-control", disabled = true })
+                                    @Html.TextBox("idPais", null, new { @class = "form-control", disabled = true, })
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <div class="@Helper.InputSM">
+                                <div class="@Helper.Input12">
                                     @Html.Label("nmPais", "País", new { @class = "required" })
-                                    <div class="@Helper.Input12">
-                                        @Html.TextBox("nmPais", null, new { @class = "form-control", maxlength = "50", style = "text-transform:uppercase" })
-                                    </div>
+                                    @Html.TextBox("nmPais", null, new { @class = "form-control", maxlength = "50", style = "text-transform:uppercase" })
                                     @Html.ValidationMessage("nmPais", null, new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <div class="@Helper.InputSM">
+                                <div class="@Helper.InputMD">
                                     @Html.Label("nrDDI", "DDI", new { @class = "required" })
-                                    <div class="@Helper.InputLG">
-                                        @Html.TextBox("nrDDI", null, new { @class = "form-control", maxlength = "5", style = "text-transform:uppercase" })
-                                    </div>
+                                    @Html.TextBox("nrDDI", null, new { @class = "form-control", maxlength = "5", style = "text-transform:uppercase" })
                                 </div>
 
-                                <div class="@Helper.InputSM">
+                                <div class="@Helper.InputMD">
                                     @Html.Label("dsSigla", "Sigla", new { @class = "required" })
-                                    <div class="@Helper.InputLG">
-                                        @Html.TextBox("dsSigla", null, new { @class = "form-control", maxlength = "2", style = "text-transform:uppercase" })
-                                    </div>
+                                    @Html.TextBox("dsSigla", null, new { @class = "form-control", maxlength = "2", style = "text-transform:uppercase" })
+
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            @*<div class="form-row">
                                 <div class="@Helper.InputSM">
                                     @Html.Label("dtCadastro", "Data de cadastro", new { @class = "required" })
-                                    <div class="input-group-append">
-                                        @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
-                                        <span class="input-group-addon input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
+                                    @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
                                 </div>
 
                                 <div class="@Helper.InputSM ">
                                     @Html.Label("dtultalteracao", "Data de cadastro", new { @class = "required" })
-                                    <div class="input-group">
-                                        @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
-                                        <div class="input-group-addon input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
+                                    @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
                                 </div>
-                            </div>
+                             </div>*@   
 
                         </div>
-
-
                     </div>
-                    <div class="modal-footer">
+                    <hr style="margin-top: 2rem" />
+                    <div class="modal-footer" >
                         <div style="text-align:right">
                             <button id="@Helper.getInputId("btnSave", Prefix)" type="button" class="btn btn-success"><i class="fa fa-save"></i>  Salvar</button>
                             <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreate()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
@@ -285,11 +278,11 @@
         });
     }
 
-    function InitModalPaises() {         
+    function InitModalPaises() {
         RecarregarModalPais();
         $("#@Helper.getInputId("ModalLista", Prefix)").modal("show");
 
-        
+
       }
     function getTablePaises() {
         let tmp = `<table id="lista" class="table table-striped table-bordered" style="width:100%" data-url="@Url.Action("JsQuery", "Pais")">
@@ -386,5 +379,7 @@
             });
         }
     };
+
+ 
 </script>
 )

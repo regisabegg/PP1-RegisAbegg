@@ -82,9 +82,9 @@ namespace PP1.CONTRATO.BLL
 
         //public Pais delete(int id)
         //{
+        //    objPaisDAO.Delete(id);
 
-
-        //    return objPaisDAO.Delete(id);
+        //    return ();
 
         //}
 
