@@ -29,7 +29,7 @@
 
                     @Html.Partial("Form", Model)
 
-                    <div class="form-group" style="float:right; margin-bottom:2px" >
+                    <div class="form-group" style="float:right; margin-bottom:2px">
                         <label class="control-label col-xs-12">AÇÕES</label><div class="col-xs-12">
                             <a class="btn btn-secondary" style="min-width:120px; margin-bottom:5px" href="@Url.Action("Index")" title="Voltar"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a>
                             <a class="btn btn-warning" style="min-width:120px; margin-bottom:5px" href="@Url.Action("Create")" title="Limpar o formulário"><i class="glyphicon glyphicon-refresh"></i> Limpar</a>
@@ -48,4 +48,15 @@
 
 @section scripts {
     <script src="~/Scripts/Common.js"></script>
+
+    <script>
+        $(function () {
+            'use strict';
+            $('.select2').select2({
+                minimumResultsForSearch: Infinity
+            });
+
+            $('#selectForm').parsley();
+        })
+    </script>
 }

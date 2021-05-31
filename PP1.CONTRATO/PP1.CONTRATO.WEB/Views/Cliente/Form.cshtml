@@ -1,0 +1,147 @@
+﻿@model PP1.CONTRATO.WEB.Models.Cliente.ClienteVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+
+}
+
+<hr />
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.idCliente, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idCliente, new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmCliente, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmCliente, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmCliente, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmApelido, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmApelido, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmApelido, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4><i class="fa fa-map-marker"></i> Endereço</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="form-group">
+                @using (Html.BeginFormContainer(e => e.nrCEP))
+                {
+                    @Html.LabelFor(e => e.nrCEP, new { @class = "control-label" })
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999", maxlength = "10" }.ReadOnlyIf(readOnly))
+                        <div class="input-group-addon">
+                            <i class="fa fa-search" onclick="getCep()"></i>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmLogradouro, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmLogradouro, new { @class = "form-control", maxlength = "3" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmLogradouro, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrNumero, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrNumero, new { @class = "form-control", maxlength = "3" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrNumero, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsComplemento, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsComplemento, new { @class = "form-control", maxlength = "3" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsComplemento, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmBairro, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmBairro, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmBairro, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.EditorFor(model => model.Estado, "Estado/Select", new { @Required = true, Disable = readOnly })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.EditorFor(model => model.Estado, "Estado/Select", new { @Required = true, Disable = readOnly })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    @Html.EditorFor(model => model.Estado, "Estado/Select", new { @class = "col-lg-4", @Required = true, Disable = readOnly })
+</div>
+<div class="row">
+    @Html.EditorFor(model => model.Estado, "Estado/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr />

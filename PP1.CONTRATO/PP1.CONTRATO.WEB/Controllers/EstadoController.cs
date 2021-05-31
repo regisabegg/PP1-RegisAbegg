@@ -54,7 +54,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 try
                 {
                     var bean = model.VM2E(new Estado());
-                    var bll = new BLL.EstadoBLL();
+                    var bll = new EstadoBLL();
                     bll.create(bean);
 
                     this.AddFlashMessage("Registro salvo com sucesso!");
@@ -89,7 +89,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     var obj = objEstado.FindID(id);
 
                     var bean = model.VM2E(obj);
-                    var bll = new BLL.EstadoBLL();
+                    var bll = new EstadoBLL();
                     bll.update(bean);
 
                     this.AddFlashMessage("Registro alterado com sucesso!");
@@ -113,23 +113,30 @@ namespace PP1.CONTRATO.WEB.Controllers
         }
 
         // POST: Estado/Delete/5
+
         [HttpPost]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(EstadoVM model)
         {
-            try
+            if (ModelState.IsValid)
             {
+                try
+                {
+                    // TODO: Add update logic here
+                    var bean = model.VM2E(new Estado());
+                    var daoEstado = new EstadoDAO();
+                    daoEstado.Delete(model.idEstado);
 
-
-                //objEstadoBLL = new EstadoBLL();
-                //var obj = objEstadoBLL.delete(id);
-
-
-                return RedirectToAction("Index");
+                    this.AddFlashMessage("Registro excluído com sucesso!");
+                    return RedirectToAction("index");
+                }
+                catch (Exception ex)
+                {
+                    this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+                    return View(model);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
+
         }
 
         #region MethodPrivate
@@ -147,6 +154,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                 dsUF = obj.dsUF,
                 dtCadastro = obj.dtCadastro,
                 dtAtualizacao = obj.dtAtualizacao,
+                nrIBGE = obj.nrIBGE,
+                flRegiao = obj.flRegiao,
                 idPais = obj.idPais,
             };
             return View(result);
@@ -176,31 +185,6 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-                //var query = context.Empresa.AsQueryable();
-                //var filter = requestModel.Search.Value;
-                //if (!string.IsNullOrEmpty(filter))
-                //{
-                //    int id;
-                //    if (int.TryParse(filter, out id))
-                //    {
-                //        query = query.Where(u => u.id == id);
-                //    }
-                //    else
-                //    {
-                //        query = query.Where(u => u.Nome.ToLower().Contains(filter.ToLower()) || u.Estado.nmEstado.ToLower().Contains(filter.ToLower()));
-                //    }
-                //}
-                //var select = query.Select(u => new
-                //{
-                //    u.id,
-                //    u.Nome,
-                //    u.RazaoSocial,
-                //    u.CNPJ
-
-                //});
-
-                //return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
-
                 var select = this.Find();
 
                 var totalResult = select.Count();
@@ -232,6 +216,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.dsUF,
                 u.dtCadastro,
                 u.dtAtualizacao,
+                u.nrIBGE,
+                u.flRegiao,
                 u.idPais
 
 

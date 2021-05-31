@@ -11,7 +11,8 @@ namespace PP1.CONTRATO.WEB.Models.Estado
         public int? idEstado { get; set; }
         public string nmEstado { get; set; }
 
-    
+        public int? id { get; set; }
+        public string text { get; set; }
     }
 }
 

@@ -20,10 +20,16 @@
             <div class="card-body bd bd-t-0">
 
                 <div class="form-group">
-                    <div class="row row-xs align=" right"">
-                        @Html.Label("filter", "Filtrar", new { @class = "col-sm-1 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBox("filter", null, new { @class = "form-control", @id = "filter", maxlength = "100", @placeholder = "Pesquisar...", @autofocus = "autofocus" })
+                    <div class="row row-xs">
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                @Html.Label("filter", "Filtrar", new { @class = "control-label" })
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                @Html.TextBox("filter", null, new { @class = "form-control", @id = "filter", maxlength = "100", @placeholder = "Pesquisar...", @autofocus = "autofocus" })
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,12 +37,12 @@
                     <div class="row row-xs">
                         @Html.Label("btnFilter", " ", new { @class = "col-sm-1 control-label" })
                         <div class="col-md-7">
-                            <div class="visible-md visible-lg visible-sm hidden-xs">
+                            <div class=" visible-md hi visible-lg hidden-xs">
                                 @Html.CustomButton("Localizar", "submit", new { @class = "btn btn-info btn-form", id = "btnFilter" }, new { @left = "ion-search" }, false)
                                 @Html.CustomActionLink("Limpar", "Index", new { @clear = true }, new { @class = "btn btn-secondary btn-form" }, new { @left = "ion-close" }, false)
                                 @Html.CustomActionLink(" Adicionar", "Create", new { @class = "btn btn-success btn-form", @title = "Novo registro" }, new { @left = "ion-plus" }, false)
                             </div>
-                            <div class="hidden-sm-up hidden-md-up hidden-lg-up hidden-xl-up">
+                            <div class="hidden-sm-up hidden-md-up  hidden-xl-up">
                                 <div class="btn-group">
                                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" title="Mais ações"><i class="glyphicon glyphicon-cog"></i> Ações <span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-black">
@@ -57,13 +63,14 @@
                 <thead>
                     <tr>
                         <th class="wd-10p" style="text-align:left">Código</th>
-                        <th class="wd-60p">Estado</th>
+                        <th class="wd-50p">Estado</th>
                         <th class="wd-10p">UF</th>
+                        <th class="wd-10p">Região</th>
                         <th class="wd-10p">Cadastro</th>
                         <th class="wd-10p">Atualização</th>
                         <th class="note-icon-orderedlist"></th>
                     </tr>
-                </thead>               
+                </thead>
             </table>
             <script type="text/x-tmpl" id="lista-actions">
                 <div class="hidden-xs-down hidden-sm-down" style="width:100px">
@@ -104,4 +111,23 @@
 </div><!-- sl-pagebody -->
 @section scripts{
     @Scripts.Render("~/Scripts/Estado/Index.js?v=" + DateTime.Now.Ticks)
+
+<script type="text/javascript">
+        var RegiaoTipo = function (flRegiao) {
+            if (flRegiao == "@PP1.CONTRATO.Entity.Estado.REGIAO_COESTE")
+                    return "@PP1.CONTRATO.BLL.EstadoBLL.RegioTipo(PP1.CONTRATO.Entity.Estado.REGIAO_COESTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Estado.REGIAO_NORDESTE")
+                    return "@PP1.CONTRATO.BLL.EstadoBLL.RegioTipo(PP1.CONTRATO.Entity.Estado.REGIAO_NORDESTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Estado.REGIAO_NORTE")
+                    return "@PP1.CONTRATO.BLL.EstadoBLL.RegioTipo(PP1.CONTRATO.Entity.Estado.REGIAO_NORTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Estado.REGIAO_SUL")
+                    return "@PP1.CONTRATO.BLL.EstadoBLL.RegioTipo(PP1.CONTRATO.Entity.Estado.REGIAO_SUL)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Estado.REGIAO_SULDESTE")
+                    return "@PP1.CONTRATO.BLL.EstadoBLL.RegioTipo(PP1.CONTRATO.Entity.Estado.REGIAO_SULDESTE)";
+
+            return flRegiao;
+            }
+
+
+</script>
 }

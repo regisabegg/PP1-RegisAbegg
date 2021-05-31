@@ -22,10 +22,11 @@ namespace PP1.CONTRATO.Entity
        
         public DateTime dtAtualizacao { get; set; }
 
+        public List<Estado> Estados { get; set; }
 
         public Pais()
         {
-
+            Estados = new List<Estado>();
         }
 
 

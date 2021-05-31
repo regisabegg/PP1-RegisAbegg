@@ -16,13 +16,22 @@ namespace PP1.CONTRATO.Entity
 
         public string dsUF { get; set; }
 
-        public string nrDDD { get; set; }
+        public string nrIBGE { get; set; }
+
+        public string flRegiao { get; set; }
  
         public DateTime dtCadastro { get; set; }
        
         public DateTime dtAtualizacao { get; set; }
 
         public int idPais { get; set; }
+
+
+        public const string REGIAO_SUL = "S";
+        public const string REGIAO_NORTE = "N";
+        public const string REGIAO_NORDESTE = "R";
+        public const string REGIAO_COESTE = "O";
+        public const string REGIAO_SULDESTE = "L";
 
     }
 }

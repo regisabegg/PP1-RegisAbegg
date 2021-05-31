@@ -112,5 +112,22 @@ namespace PP1.CONTRATO.BLL
         //{
         //    return objEstadoDAO.findAllEstado(objEstado);
         //}
+
+
+        public static string RegioTipo(string flRegiao)
+        {
+            if (flRegiao == Estado.REGIAO_COESTE)
+                return "Centro Oeste";
+            if (flRegiao == Estado.REGIAO_NORDESTE)
+                return "Nordeste";
+            if (flRegiao == Estado.REGIAO_NORTE)
+                return "Norte";
+            if (flRegiao == Estado.REGIAO_SUL)
+                return "Sul";
+            if (flRegiao == Estado.REGIAO_SULDESTE)
+                return "Suldeste";
+
+            return flRegiao;
+        }
     }
 }

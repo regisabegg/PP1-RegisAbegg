@@ -17,13 +17,15 @@ namespace PP1.CONTRATO.DAO
                 try
                 {
                     OpenConection();
-                    Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais ) values (@v1, @v2, @v3, @v4, @v5)", Con);
+                    Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7)", Con);
 
                     Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
                     Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
                     Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
                     Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
                     Cmd.Parameters.AddWithValue("@v5", obj.idPais);
+                    Cmd.Parameters.AddWithValue("@v6", obj.nrIBGE);
+                    Cmd.Parameters.AddWithValue("@v7", obj.flRegiao);
 
                 Cmd.ExecuteNonQuery();
 
@@ -45,16 +47,18 @@ namespace PP1.CONTRATO.DAO
                 try
                 {
                     OpenConection();
-                    Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4 , idpais=@v5 where idestado = @v6", Con);
+                    Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4,  nribge=@v5,  flregiao=@v6, idpais=@v7 where idestado = @v8", Con);
 
                     Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
                     Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
                     Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
                     Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
-                    Cmd.Parameters.AddWithValue("@v5", obj.idPais);
-                    Cmd.Parameters.AddWithValue("@v6", obj.idEstado);
+                    Cmd.Parameters.AddWithValue("@v5", obj.nrIBGE);
+                    Cmd.Parameters.AddWithValue("@v6", obj.flRegiao);
+                    Cmd.Parameters.AddWithValue("@v7", obj.idPais);
+                    Cmd.Parameters.AddWithValue("@v8", obj.idEstado);
 
-                    Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
                 }
                 catch (Exception ex)
@@ -112,6 +116,8 @@ namespace PP1.CONTRATO.DAO
                         obj.dsUF = Convert.ToString(Dr["dsuf"]);
                         obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
                         obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
+                        obj.nrIBGE = Convert.ToString(Dr["nrIBGE"]);
+                        obj.flRegiao = Convert.ToString(Dr["flRegiao"]);
                         obj.idPais = Convert.ToInt32(Dr["idpais"]);
                 }
                     return obj;
@@ -148,6 +154,8 @@ namespace PP1.CONTRATO.DAO
                         obj.dsUF = Convert.ToString(Dr["dsuf"]);
                         obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
                         obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
+                        obj.nrIBGE = Convert.ToString(Dr["nrIBGE"]);
+                        obj.flRegiao = Convert.ToString(Dr["flRegiao"]);
                         obj.idPais = Convert.ToInt32(Dr["idpais"]);
 
                     list.Add(obj);
