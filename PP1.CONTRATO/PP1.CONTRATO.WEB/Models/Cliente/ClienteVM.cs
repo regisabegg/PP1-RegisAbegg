@@ -16,9 +16,10 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         [Required]
         public string nmCliente { get; set; }
        
-        public string nmApelido { get; set; }
+        public string nmSobre { get; set; }
 
         public string nrDocumento { get; set; }
+
         public string nrRegistro { get; set; }
 
         [Display(Name = "Telefone")]
@@ -39,11 +40,18 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         [Display(Name = "Contato")]
         public string nmContato { get; set; }
 
+        [Display(Name = "Tipo Contato")]
+        public string flContato { get; set; }
+
         [Display(Name = "Observações")]
         public string dsObservacao { get; set; }
 
         [Display(Name = "Tipo Cliente")]
         public string flTipo { get; set; }
+
+
+        [Display(Name = "Situação")]
+        public string flSituacao { get; set; }
 
         [Display(Name = "CEP")]
         public string nrCEP { get; set; }
@@ -63,6 +71,7 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         [Display(Name = "Cadastro")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtCadastro { get; set; }
+
         [Display(Name = "Atualização")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtAtualizacao { get; set; }
@@ -83,6 +92,59 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
 
         //    return bean;
         //}
+
+        public static SelectListItem[] Situacao
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "A", Text = "ATIVA" },
+                    new SelectListItem { Value = "I", Text = "INATIVA" }
+                };
+            }
+        }
+
+        public static SelectListItem[] Tipo
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "F", Text = "FÍSICA" },
+                    new SelectListItem { Value = "J", Text = "JURÍDICA" }
+                };
+            }
+        }
+
+        public static SelectListItem[] Sexo
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "M", Text = "MASCULINO" },
+                    new SelectListItem { Value = "F", Text = "FEMININO" }
+                };
+            }
+        }
+
+
+        public static SelectListItem[] Contato
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "D", Text = "DIRETOR" },
+                    new SelectListItem { Value = "G", Text = "GERENTE" },
+                    new SelectListItem { Value = "V", Text = "VENDEDOR" },
+                    new SelectListItem { Value = "O", Text = "OUTROS" },
+                };
+            }
+        }
+
+
 
     }
 }

@@ -1,0 +1,515 @@
+﻿@model PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+
+}
+
+<hr />
+
+
+<div class="form-layout">
+
+    <div class="row">
+        @if (action != "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.idFuncionario, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idFuncionario, new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        }
+        @if (action != "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Situacao, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row tx-roboto">
+        <div class="col-lg-10">
+            <div class="form-row ">
+                <div class="col-lg-8">
+                    @Html.LabelFor(e => e.nmFuncionario, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.nmFuncionario, new { @class = "form-control", maxlength = "70", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.nmFuncionario, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(e => e.nmSobreNome, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.nmSobreNome, new { @class = "form-control", maxlength = "30" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.nmSobreNome, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+            <div class="form-row ">
+                <div class="col-lg-4">
+                    @Html.LabelFor(e => e.dtNascimento, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.flInstrucao, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flInstrucao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Instrucao, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flInstrucao, null, new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.LabelFor(model => model.flCivil, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.flCivil, new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.flCivil, null, new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm offset-sm-0">
+            @*@if (action != "Create" || action != "Edit")
+                {
+                    <div class="form-layout">
+                        <div class="row mg-b-5">
+                            <div class="col-lg-10">
+                                @if (!string.IsNullOrEmpty(Model.dsImagem))
+                                {
+                                    <img src="@Url.Content(Model.dsImagem)" id='img-upload' alt="Image" class="avatar" />
+                                }
+                                else
+                                {
+                                    <img src="~/Assets/img/img11.jpg" id='img-upload' class="avatar" alt="">
+                                }
+                                @Html.TextBoxFor(model => model.ImageUpload, new { id = "ImageUpload", type = "file", @class = "form-control", maxlength = "100" }.ReadOnlyIf(readOnly))
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {*@
+            <div class="form-layout">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <img src="~/Assets/img/img11.jpg" id='img-upload' class="avatar" alt="">
+                        @Html.TextBoxFor(model => model.ImageUpload, new { id = "ImageUpload", type = "file", @class = "form-control", maxlength = "100" }.ReadOnlyIf(readOnly))
+
+                    </div>
+
+                </div>
+            </div>
+            @*  }*@
+        </div>
+    </div>
+</div>
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmFuncao, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmFuncao, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmFuncao, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmDepartamento, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmDepartamento, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmDepartamento, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.flExperiencia, new { @class = "form-control-label" })
+                @Html.DropDownListFor(model => model.flExperiencia, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Experiencia, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.flExperiencia, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dtAdmissao, new { @class = "form-control-label" })
+                @Html.TextBoxFor(e => e.dtAdmissao, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+            </div>
+        </div>
+        @if (action != "create")
+        {
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtDemissao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtDemissao, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<h4 style="margin-top: 1rem"><i class="ion ion-person-stalker"></i> Filiação</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmMae, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmMae, new { @class = "form-control", maxlength = "70" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmMae, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-layout">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmPai, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmPai, new { @class = "form-control", maxlength = "70" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmPai, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 style="margin-top: 1rem"><i class="fa fa-map-marker"></i> Endereço</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="form-group ">
+                @using (Html.BeginFormContainer(e => e.nrCEP))
+                {
+                    @Html.LabelFor(e => e.nrCEP, new { @class = "control-label " })
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999"}.ReadOnlyIf(readOnly))
+                        <div class="input-group-addon">
+                            <i class="fa fa-search" onclick="getCep()"></i>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmLogradouro, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmLogradouro, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmLogradouro, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrNumero, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrNumero, new { @class = "form-control", maxlength = "10" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrNumero, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsComplemento, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsComplemento, new { @class = "form-control", maxlength = "200" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsComplemento, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmBairro, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmBairro, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmBairro, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.EditorFor(model => model.Estado, "Estado/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+<h4 style="margin-top: 1rem"><i class="fa fa-phone-square"></i> Contato</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrTelefone, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrTelefone, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrCelular, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", maxlength = "12" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrCelular, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsEmail, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsEmail, new { @class = "form-control", maxlength = "30" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsEmail, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsSite, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsSite, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsSite, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsLinkedin, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsLinkedin, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsLinkedin, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsFacebook, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsFacebook, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsFacebook, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsInstagram, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.dsInstagram, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsInstagram, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 style="margin-top: 1rem"><i class="fa fa-h-square"></i> Chamado de emergência</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmContato, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmContato, new { @class = "form-control", maxlength = "70" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmContato, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.flContato, new { @class = "required" })
+                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Contato, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.flContato, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrFoneEmergecia, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrFoneEmergecia, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrFoneEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrCelularEmergecia, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrCelularEmergecia, new { @class = "form-control", maxlength = "12" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrCelularEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h4 style="margin-top: 1rem"><i class="fa fa-id-card"></i> Dados legais</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrCPF, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrCPF, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrCPF, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrRG, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrRG, new { @class = "form-control", maxlength = "10" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrRG, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmOrgaoRG, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmOrgaoRG, new { @class = "form-control", maxlength = "20" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmOrgaoRG, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrCTPS, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrCTPS, new { @class = "form-control", maxlength = "25" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrCTPS, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrPIS, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrPIS, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrPIS, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmOrgaoCTPS, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmOrgaoCTPS, new { @class = "form-control", maxlength = "25" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmOrgaoCTPS, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrTitulo, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrTitulo, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrTitulo, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrZona, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrZona, new { @class = "form-control", maxlength = "4" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrZona, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrSecao, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrSecao, new { @class = "form-control", maxlength = "4" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrSecao, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 style="margin-top: 1rem"><i class="fa fa-bank"></i> Dados Bancários</h4>
+<hr />
+
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nmBanco, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmBanco, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmBanco, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.flTipoConta, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.flTipoConta, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.flTipoConta, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrAgencia, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrAgencia, new { @class = "form-control", maxlength = "4" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrAgencia, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrConta, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrConta, new { @class = "form-control", maxlength = "8" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrConta, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrDigito, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrDigito, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrDigito, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h4 style="margin-top: 1rem"><i class="fa fa-info"></i> Informações</h4>
+<hr />
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsObservacao, new { @class = "form-control-label" })
+                @Html.TextAreaFor(model => model.dsObservacao, new { @class = "form-control", maxlength = "200" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsObservacao, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr />

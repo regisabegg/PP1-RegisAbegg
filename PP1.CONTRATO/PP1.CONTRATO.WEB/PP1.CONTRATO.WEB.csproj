@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
@@ -136,6 +137,8 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
+    <Compile Include="Models\Funcionario\FucionarioVM.cs" />
+    <Compile Include="Models\Funcionario\ConsultaVM.cs" />
     <Compile Include="Models\Cliente\ClienteVM.cs" />
     <Compile Include="Models\Cliente\ConsultaVM.cs" />
     <Compile Include="Models\Estado\ConsultaVM.cs" />
@@ -2072,6 +2075,8 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Funcionario\Create.js" />
+    <Content Include="Scripts\Cliente\Create.js" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\datatable-extensions.js" />
     <Content Include="Scripts\date.js" />
@@ -2239,6 +2244,12 @@
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Form.cshtml" />
+    <Content Include="Views\Funcionario\Create.cshtml" />
+    <Content Include="Views\Funcionario\Delete.cshtml" />
+    <Content Include="Views\Funcionario\Details.cshtml" />
+    <Content Include="Views\Funcionario\Edit.cshtml" />
+    <Content Include="Views\Funcionario\Form.cshtml" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
