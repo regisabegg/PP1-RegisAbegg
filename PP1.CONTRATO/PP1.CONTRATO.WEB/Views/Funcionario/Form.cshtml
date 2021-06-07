@@ -53,7 +53,7 @@
             <div class="form-row ">
                 <div class="col-lg-4">
                     @Html.LabelFor(e => e.dtNascimento, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                    @Html.TextBoxFor(e => e.dtNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control", @mask = "99/99/9999" }.ReadOnlyIf(readOnly))
                 </div>
                 <div class="col-lg-4">
                     @Html.LabelFor(model => model.flInstrucao, new { @class = "form-control-label" })
@@ -136,7 +136,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.dtAdmissao, new { @class = "form-control-label" })
-                @Html.TextBoxFor(e => e.dtAdmissao, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(e => e.dtAdmissao, "{0:dd/MM/yyyy}", new { @class = "form-control", @mask = "99/99/9999" }.ReadOnlyIf(readOnly))
             </div>
         </div>
         @if (action != "create")
@@ -144,7 +144,7 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     @Html.LabelFor(e => e.dtDemissao, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtDemissao, "{0:dd/MM/yyyy}", new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                    @Html.TextBoxFor(e => e.dtDemissao, "{0:dd/MM/yyyy}", new { @class = "form-control", @mask = "99/99/9999" }.ReadOnlyIf(readOnly))
                 </div>
             </div>
         }
@@ -246,14 +246,14 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrTelefone, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrTelefone, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCelular, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", maxlength = "12" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCelular, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -327,14 +327,14 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrFoneEmergecia, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrFoneEmergecia, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrFoneEmergecia, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrFoneEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCelularEmergecia, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCelularEmergecia, new { @class = "form-control", maxlength = "12" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCelularEmergecia, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCelularEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -350,7 +350,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCPF, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCPF, new { @class = "form-control", maxlength = "11" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCPF, new { @class = "form-control", maxlength = "11", @mask = "999.999.999-99" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCPF, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -376,14 +376,14 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCTPS, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCTPS, new { @class = "form-control", maxlength = "25" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCTPS, new { @class = "form-control", maxlength = "25", @mask = "9999999/999-9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCTPS, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrPIS, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrPIS, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrPIS, new { @class = "form-control", maxlength = "15", @mask = "999.99999.99-9" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrPIS, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

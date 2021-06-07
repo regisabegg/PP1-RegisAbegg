@@ -16,7 +16,7 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         [Required]
         public string nmCliente { get; set; }
        
-        public string nmSobre { get; set; }
+        public string nmApelido { get; set; }
 
         public string nrDocumento { get; set; }
 
