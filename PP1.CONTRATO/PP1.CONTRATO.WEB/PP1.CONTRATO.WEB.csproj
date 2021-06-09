@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -137,6 +138,8 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
+    <Compile Include="Models\Fornecedor\FornecedorVM.cs" />
+    <Compile Include="Models\Fornecedor\ConsultaVM.cs" />
     <Compile Include="Models\Funcionario\FucionarioVM.cs" />
     <Compile Include="Models\Funcionario\ConsultaVM.cs" />
     <Compile Include="Models\Cliente\ClienteVM.cs" />
@@ -2075,6 +2078,7 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Fornecedor\Create.js" />
     <Content Include="Scripts\Funcionario\Create.js" />
     <Content Include="Scripts\Cliente\Create.js" />
     <Content Include="Scripts\Common.js" />
@@ -2250,6 +2254,12 @@
     <Content Include="Views\Funcionario\Edit.cshtml" />
     <Content Include="Views\Funcionario\Form.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
+    <Content Include="Views\Fornecedor\Create.cshtml" />
+    <Content Include="Views\Fornecedor\Delete.cshtml" />
+    <Content Include="Views\Fornecedor\Details.cshtml" />
+    <Content Include="Views\Fornecedor\Edit.cshtml" />
+    <Content Include="Views\Fornecedor\Form.cshtml" />
+    <Content Include="Views\Fornecedor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

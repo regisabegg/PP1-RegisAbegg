@@ -12,11 +12,11 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         [Display(Name = "Código")]
         public int idFuncionario { get; set; }
 
-        [Display(Name = "Nome")]
+        [Display(Name = "Funcionário")]
         [Required]
         public string nmFuncionario { get; set; }
 
-        [Display(Name = "Sobre Nome")]
+        [Display(Name = "Apelido/Crachá")]
         [Required]
         public string nmSobreNome { get; set; }
 
