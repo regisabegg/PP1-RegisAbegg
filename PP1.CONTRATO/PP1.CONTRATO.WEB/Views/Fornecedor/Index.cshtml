@@ -1,0 +1,132 @@
+﻿@model IEnumerable<PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM>
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<nav class="breadcrumb sl-breadcrumb">
+    <a class="breadcrumb-item" href="@Url.Action("Index","Home")">Painel</a>
+    <span class="breadcrumb-item active">Fornecedor</span>
+</nav>
+
+<div class="sl-pagebody">
+    <div class="card pd-20 pd-sm-40">
+        @Html.RenderFlashMessage()
+        <div class="card bd-0 mg-b-20">
+            <div class="card-header card-header-default bg-info">
+                Filtro
+            </div><!-- card-header -->
+            <div class="card-body bd bd-t-0">
+
+                <div class="form-group">
+                    <div class="row row-xs">
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                @Html.Label("filter", "Filtrar", new { @class = "control-label" })
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                @Html.TextBox("filter", null, new { @class = "form-control", @id = "filter", maxlength = "100", @placeholder = "Pesquisar...", @autofocus = "autofocus" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-xs">
+                        @Html.Label("btnFilter", " ", new { @class = "col-sm-1 control-label" })
+                        <div class="col-md-7">
+                            <div class=" visible-md hi visible-lg hidden-xs">
+                                @Html.CustomButton("Localizar", "submit", new { @class = "btn btn-info btn-form", id = "btnFilter" }, new { @left = "ion-search" }, false)
+                                @Html.CustomActionLink("Limpar", "Index", new { @clear = true }, new { @class = "btn btn-secondary btn-form" }, new { @left = "ion-close" }, false)
+                                @Html.CustomActionLink(" Adicionar", "Create", new { @class = "btn btn-success btn-form", @title = "Novo registro" }, new { @left = "ion-plus" }, false)
+                            </div>
+                            <div class="hidden-sm-up hidden-md-up  hidden-xl-up">
+                                <div class="btn-group">
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" title="Mais ações"><i class="glyphicon glyphicon-cog"></i> Ações <span class="caret"></span></a>
+                                    <ul class="dropdown-menu dropdown-black">
+                                        <li><a href="#" data-form-type="submit"><i class="ion-search"></i> Localizar</a></li>
+                                        <li><a href="@Url.Action("Index", new { clear = true })"><i class="ion-close"></i> Limpar</a></li>
+                                        <li><a href="@Url.Action("Create")"><i class="ion-plus"></i> Adicionar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- card-body -->
+        </div><!-- card -->
+        <div class="table-wrapper">
+            <table id="lista" class=" table display responsive nowrap" style="width:100%" data-url="@Url.Action("JsSearch")">
+                <thead>
+                    <tr>
+                        <th class="wd-10p" style="text-align:left">Código</th>
+                        <th class="wd-50p">Fornecedor</th>
+                        <th class="wd-10p">DDD</th>
+                        <th class="wd-10p">Cadastro</th>
+                        <th class="wd-10p">Atualização</th>
+                        <th class="note-icon-orderedlist"></th>
+                    </tr>
+                </thead>
+            </table>
+            <script type="text/x-tmpl" id="lista-actions">
+                <div class="hidden-xs-down hidden-sm-down" style="width:100px">
+                    <a title="Visualizar" class="btn btn-success btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.idFornecedor%}" }))"><i class="fa fa-eye"></i></a>
+                    <a title="Editar" class="btn btn-info btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.idFornecedor%}" }))"><i class="fa fa-edit"></i></a>
+                    <a title="Excluir" class="btn btn-danger btn-sm" href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id= "{%=o.idFornecedor%}" }))"><i class="fa fa-trash "></i></a>
+                </div>
+                <div class=" hidden-md-up hidden-lg-up hidden-xl-up ">
+                    <div class="btn-group">
+                        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">
+                            <i class="fa fa-cog"></i> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-black">
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Details", new { id = "{%=o.idFornecedor%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-eye"></i> Visualizar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Edit", new { id = "{%=o.idFornecedor%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@HttpUtility.UrlDecode(Url.Action("Delete", new { id = "{%=o.idFornecedor%}" }))" tabindex="-1" role="menuitem">
+                                    <i class="fa fa-trash"></i> Excluir
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </script>
+
+
+
+        </div><!-- card -->
+    </div>
+</div><!-- sl-pagebody -->
+@section scripts{
+    @Scripts.Render("~/Scripts/Fornecedor/Index.js?v=" + DateTime.Now.Ticks)
+
+<script type="text/javascript">
+        @*var RegiaoTipo = function (flRegiao) {
+            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_COESTE")
+                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_COESTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORDESTE")
+                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORDESTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORTE")
+                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORTE)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_SUL")
+                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_SUL)";
+            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_SULDESTE")
+                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_SULDESTE)";
+
+            return flRegiao;
+            }*@
+
+
+</script>
+}

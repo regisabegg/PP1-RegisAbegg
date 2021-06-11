@@ -1,4 +1,4 @@
-﻿@model PP1.CONTRATO.WEB.Models.Cliente.ClienteVM
+﻿@model PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM
 @using PP1.CONTRATO.WEB.Util
 
 @{
@@ -17,15 +17,15 @@
             {
                 <div class="col-lg-2">
                     <div class="form-group">
-                        @Html.LabelFor(e => e.idCliente, new { @class = "form-control-label" })
-                        @Html.TextBoxFor(e => e.idCliente, new { @class = "form-control", readOnly = "readonly" })
+                        @Html.LabelFor(e => e.idFornecedor, new { @class = "form-control-label" })
+                        @Html.TextBoxFor(e => e.idFornecedor, new { @class = "form-control", readOnly = "readonly" })
                     </div>
                 </div>
             }
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Tipo, new { @class = "form-control select2" })
+                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Tipo, new { @class = "form-control select2" })
                     @Html.ValidationMessageFor(model => model.flTipo, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
-                        @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Situacao, new { @class = "form-control select2" })
+                        @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Situacao, new { @class = "form-control select2" })
                         @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
                     </div>
                 </div>
@@ -46,9 +46,9 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group ">
-                @Html.LabelFor(e => e.nmCliente, "Razão Social", new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmCliente, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.nmCliente, null, new { @class = "text-danger" }.HideIf(readOnly))
+                @Html.LabelFor(e => e.nmFornecedor, "Razão Social", new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmFornecedor, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmFornecedor, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-6">
@@ -65,9 +65,9 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                @Html.LabelFor(e => e.nmCliente, "Cliente", new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmCliente, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.nmCliente, null, new { @class = "text-danger" }.HideIf(readOnly))
+                @Html.LabelFor(e => e.nmFornecedor, "Fornecedor", new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmFornecedor, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmFornecedor, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-6">
@@ -197,7 +197,7 @@
         @*<div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.flContato, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" })
+                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Contato, new { @class = "form-control select2" })
 
             </div>
         </div>*@
@@ -205,7 +205,7 @@
         <div class="col-lg-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.flContato, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Contato, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.flContato, null, new { @class = "text-danger" })
             </div>
         </div>
