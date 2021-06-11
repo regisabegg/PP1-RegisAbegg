@@ -93,6 +93,11 @@ namespace PP1.CONTRATO.BLL
             return objPaisDAO.FindID(id);
         }
 
+        public List<Pais> findFilter(int? id, string filter)
+        {
+            return objPaisDAO.FindFilter1(id, filter);
+        }
+
         public List<Pais> findAll()
         {
             return objPaisDAO.FindAll();

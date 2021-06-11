@@ -201,7 +201,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-                var select = this.Find();
+                var select = this.Find(null, q);
                 return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             try
             {
 
-                var select = this.Find();
+                var select = this.Find(null, null);
                 return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
 
             }
@@ -277,11 +277,11 @@ namespace PP1.CONTRATO.WEB.Controllers
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
-        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel, string filter)
+        public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             try
             {
-                var select = this.Find();
+                var select = this.Find(null,null);
 
                 var totalResult = select.Count();
 
@@ -299,7 +299,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         }
 
-        private IQueryable<dynamic> Find()
+        private IQueryable<dynamic> Find(int? id, string filter)
         {
             var daoPaises = new PaisBLL();
             var list = daoPaises.findAll();

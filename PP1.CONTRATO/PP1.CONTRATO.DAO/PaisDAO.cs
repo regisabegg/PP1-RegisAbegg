@@ -92,7 +92,7 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar pelo Código
-        public Pais FindID(int id)
+        public Pais FindID(int? id)
         {
             try
             {
@@ -100,6 +100,7 @@ namespace PP1.CONTRATO.DAO
                 Cmd = new SqlCommand("select * from pais where idpais=@v1", Con);
                 Cmd.Parameters.AddWithValue("@v1", id);
                 Dr = Cmd.ExecuteReader();
+
 
                 Pais obj = null;
                 if (Dr.Read())
@@ -125,6 +126,83 @@ namespace PP1.CONTRATO.DAO
                 CloseConection();
             }
         }
+
+        public Pais FindFilter(int? id, string filter)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from pais where idpais=@v1 or nmpais like (%@v2%) " , Con);
+                Cmd.Parameters.AddWithValue("@v1", id);
+                Cmd.Parameters.AddWithValue("@v2", filter);
+                Dr = Cmd.ExecuteReader();
+                var list = new List<Pais>();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                    obj.nmPais = Convert.ToString(Dr["nmPais"]);
+                    obj.dsSigla = Convert.ToString(Dr["dsSigla"]);
+                    obj.nrDDI = Convert.ToString(Dr["nrDDI"]);
+                    obj.dtCadastro = Convert.ToDateTime(Dr["dtCadastro"]);
+                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtAtualizacao"]);
+                }
+                return obj;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar o País: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        //Método para localizar todos os dados
+        public List<Pais> FindFilter1(int? id, string filter)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from pais where idpais=@v1 or nmpais like (%@v2%) ", Con);
+                Cmd.Parameters.AddWithValue("@v1", id);
+                Cmd.Parameters.AddWithValue("@v2", filter);
+                Dr = Cmd.ExecuteReader();
+
+                List<Pais> list = new List<Pais>();
+
+
+                while (Dr.Read())
+                {
+                    Pais obj = new Pais();
+
+                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                    obj.nmPais = Convert.ToString(Dr["nmPais"]);
+                    obj.dsSigla = Convert.ToString(Dr["dsSigla"]);
+                    obj.nrDDI = Convert.ToString(Dr["nrDDI"]);
+                    obj.dtCadastro = Convert.ToDateTime(Dr["dtCadastro"]);
+                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtAtualizacao"]);
+
+                    list.Add(obj);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar o País: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
 
         //Método para localizar todos os dados
         public List<Pais> FindAll()
