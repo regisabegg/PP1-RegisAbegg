@@ -164,14 +164,13 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar todos os dados
-        public List<Pais> FindFilter1(int? id, string filter)
+        public List<Pais> FindFilter1(string filter)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from pais where idpais=@v1 or nmpais like (%@v2%) ", Con);
-                Cmd.Parameters.AddWithValue("@v1", id);
-                Cmd.Parameters.AddWithValue("@v2", filter);
+                Cmd = new SqlCommand("select * from pais where idpais=@v1  ", Con);
+                Cmd.Parameters.AddWithValue("@v1", Convert.ToInt32(filter));
                 Dr = Cmd.ExecuteReader();
 
                 List<Pais> list = new List<Pais>();
@@ -190,7 +189,9 @@ namespace PP1.CONTRATO.DAO
 
                     list.Add(obj);
                 }
+
                 return list;
+                
 
             }
             catch (Exception ex)
