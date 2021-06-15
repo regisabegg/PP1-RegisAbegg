@@ -26,7 +26,7 @@ namespace PP1.CONTRATO.Entity
 
         public int idPais { get; set; }
 
-
+ 
         public const string REGIAO_SUL = "S";
         public const string REGIAO_NORTE = "N";
         public const string REGIAO_NORDESTE = "R";

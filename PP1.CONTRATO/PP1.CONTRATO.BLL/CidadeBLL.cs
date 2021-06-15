@@ -80,40 +80,21 @@ namespace PP1.CONTRATO.BLL
             return;
         }
 
-        //public void delete(int id)
-        //{
-        //    bool verificacao = true;
 
-        //    Cidade objCidadeAux = new Cidade();
-        //    objCidadeAux.idCidade = objCidade.idCidade;
-        //    verificacao = objCidadeDAO.FindID(objCidadeAux);
-        //    if (!verificacao)
-        //    {
+        public Cidade find(int id)
+        {
+            return objCidadeDAO.FindID(id);
+        }
 
-        //        return;
-        //    }
-
-
-        //    //objCidade.Cidade = 99;
-        //    objCidadeDAO.Delete(objCidade);
-        //    return;
-        //}
-
-        //public void find(int id)
-        //{
-        //    return objCidadeDAO.FindID(obj);
-        //}
+        public List<Cidade> findFilter(string filter)
+        {
+            return objCidadeDAO.FindFilter(filter);
+        }
 
         public List<Cidade> findAll()
         {
             return objCidadeDAO.FindAll();
         }
-        //public List<Cidade> findAllCidades(Cidade objCidade)
-        //{
-        //    return objCidadeDAO.findAllCidade(objCidade);
-        //}
 
-
-        
     }
 }

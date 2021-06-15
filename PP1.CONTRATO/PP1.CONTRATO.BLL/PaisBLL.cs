@@ -84,7 +84,7 @@ namespace PP1.CONTRATO.BLL
         //{
         //    objPaisDAO.Delete(id);
 
-        //    return ();
+        //    return (d);
 
         //}
 
@@ -95,16 +95,13 @@ namespace PP1.CONTRATO.BLL
 
         public List<Pais> findFilter(string filter)
         {
-            return objPaisDAO.FindFilter1(filter);
+            return objPaisDAO.FindFilter(filter);
         }
 
         public List<Pais> findAll()
         {
             return objPaisDAO.FindAll();
         }
-        //public List<Pais> findAllPaiss(Pais objPais)
-        //{
-        //    return objPaisDAO.findAllPais(objPais);
-        //}
+       
     }
 }

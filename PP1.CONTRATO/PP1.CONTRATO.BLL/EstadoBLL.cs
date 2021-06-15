@@ -80,39 +80,21 @@ namespace PP1.CONTRATO.BLL
             return;
         }
 
-        //public void delete(int id)
-        //{
-        //    bool verificacao = true;
 
-        //    Estado objEstadoAux = new Estado();
-        //    objEstadoAux.idEstado = objEstado.idEstado;
-        //    verificacao = objEstadoDAO.FindID(objEstadoAux);
-        //    if (!verificacao)
-        //    {
+        public Estado find(int id)
+        {
+            return objEstadoDAO.FindID(id);
+        }
 
-        //        return;
-        //    }
-
-
-        //    //objEstado.Estado = 99;
-        //    objEstadoDAO.Delete(objEstado);
-        //    return;
-        //}
-
-        //public void find(int id)
-        //{
-        //    return objEstadoDAO.FindID(obj);
-        //}
+        public List<Estado> findFilter(string filter)
+        {
+            return objEstadoDAO.FindFilter(filter);
+        }
 
         public List<Estado> findAll()
         {
             return objEstadoDAO.FindAll();
         }
-        //public List<Estado> findAllEstados(Estado objEstado)
-        //{
-        //    return objEstadoDAO.findAllEstado(objEstado);
-        //}
-
 
         public static string RegioTipo(string flRegiao)
         {

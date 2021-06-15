@@ -201,7 +201,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-                var select = this.Find( q);
+                var select = this.Find( );
                 return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             try
             {
 
-                var select = this.Find(null);
+                var select = this.Find();
                 return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
 
             }
@@ -282,14 +282,28 @@ namespace PP1.CONTRATO.WEB.Controllers
             try
             {
                 string filter = requestModel.Search.Value;
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    var select1 = this.Filter(filter);
+                    var totalResult1 = select1.Count();
 
-                var select = this.Find(filter);
+                    var result1 = select1.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
 
-                var totalResult = select.Count();
+                    return Json(new DataTablesResponse(requestModel.Draw, result1, totalResult1, result1.Count), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var select = this.Find();
 
-                var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+                    var totalResult = select.Count();
 
-                return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+                    var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+
+                    return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+                }
+
+
+              
             }
             catch (Exception ex)
             {
@@ -301,7 +315,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         }
 
-        private IQueryable<dynamic> Find(string filter)
+        private IQueryable<dynamic> Find()
         {
             var daoPaises = new PaisBLL();
             var list = daoPaises.findAll();
@@ -319,6 +333,30 @@ namespace PP1.CONTRATO.WEB.Controllers
             }).OrderBy(u => u.idPais).ToList();
             return select.AsQueryable();
         }
+
+       
+
+        private IQueryable<dynamic> Filter(string filter)
+        {
+            var daoPaises = new PaisBLL();
+            var list = daoPaises.findFilter(filter);
+            var select = list.Select(u => new
+            {
+                id = u.idPais,
+                text = u.nmPais,
+                u.idPais,
+                u.nmPais,
+                u.nrDDI,
+                u.dsSigla,
+                u.dtCadastro,
+                u.dtAtualizacao
+
+            }).OrderBy(u => u.idPais).ToList();
+            return select.AsQueryable();
+        }
+
+
+
         #endregion
 
     }

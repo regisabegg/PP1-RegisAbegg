@@ -45,7 +45,7 @@ namespace PP1.CONTRATO.WEB.Models.Estado
             bean.dtCadastro = this.dtCadastro;
             bean.nrIBGE = this.nrIBGE;
             bean.flRegiao = this.flRegiao;
-            bean.idPais = this.idPais;
+            bean.idPais = this.Pais.id ?? 0;
 
             return bean;
         }
@@ -56,6 +56,7 @@ namespace PP1.CONTRATO.WEB.Models.Estado
             {
                 return new[]
                 {
+                    new SelectListItem { Text = "", Value = "" },
                     new SelectListItem { Text = "Centro Oeste", Value = Entity.Estado.REGIAO_COESTE },
                     new SelectListItem { Text = "Nordeste", Value = Entity.Estado.REGIAO_NORDESTE },
                     new SelectListItem { Text = "Norte", Value = Entity.Estado.REGIAO_NORTE },

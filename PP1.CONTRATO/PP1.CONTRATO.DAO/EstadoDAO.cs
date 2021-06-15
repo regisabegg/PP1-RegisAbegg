@@ -7,171 +7,216 @@ namespace PP1.CONTRATO.DAO
 {
     public class EstadoDAO : ConexaoDB
     {
-        
-            //Atributos
-            //idEstado, nmEstado, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
 
-            //Método para gravar dados
-            public void Insert(Estado obj)
+        //Atributos
+        //idEstado, nmEstado, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
+
+        //Método para gravar dados
+        public void Insert(Estado obj)
+        {
+            try
             {
-                try
-                {
-                    OpenConection();
-                    Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7)", Con);
+                OpenConection();
+                Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7)", Con);
 
-                    Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
-                    Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
-                    Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
-                    Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
-                    Cmd.Parameters.AddWithValue("@v5", obj.idPais);
-                    Cmd.Parameters.AddWithValue("@v6", obj.nrIBGE);
-                    Cmd.Parameters.AddWithValue("@v7", obj.flRegiao);
+                Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
+                Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
+                Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
+                Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
+                Cmd.Parameters.AddWithValue("@v5", obj.idPais);
+                Cmd.Parameters.AddWithValue("@v6", obj.nrIBGE);
+                Cmd.Parameters.AddWithValue("@v7", obj.flRegiao);
 
                 Cmd.ExecuteNonQuery();
 
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception("Erro ao inserir o Estado: " + ex.Message);
-                }
-                finally
-                {
-                    CloseConection();
-                }
             }
-
-            //Método para atualizar dados
-            public void Update(Estado obj)
+            catch (Exception ex)
             {
-                try
-                {
-                    OpenConection();
-                    Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4,  nribge=@v5,  flregiao=@v6, idpais=@v7 where idestado = @v8", Con);
 
-                    Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
-                    Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
-                    Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
-                    Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
-                    Cmd.Parameters.AddWithValue("@v5", obj.nrIBGE);
-                    Cmd.Parameters.AddWithValue("@v6", obj.flRegiao);
-                    Cmd.Parameters.AddWithValue("@v7", obj.idPais);
-                    Cmd.Parameters.AddWithValue("@v8", obj.idEstado);
+                throw new Exception("Erro ao inserir o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        //Método para atualizar dados
+        public void Update(Estado obj)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4,  nribge=@v5,  flregiao=@v6, idpais=@v7 where idestado = @v8", Con);
+
+                Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
+                Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
+                Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
+                Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
+                Cmd.Parameters.AddWithValue("@v5", obj.nrIBGE);
+                Cmd.Parameters.AddWithValue("@v6", obj.flRegiao);
+                Cmd.Parameters.AddWithValue("@v7", obj.idPais);
+                Cmd.Parameters.AddWithValue("@v8", obj.idEstado);
 
                 Cmd.ExecuteNonQuery();
 
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception("Erro ao atualizar o Estado: " + ex.Message);
-                }
-                finally
-                {
-                    CloseConection();
-                }
             }
-
-            //Método para ecluir dados
-            public void Delete(int id)
+            catch (Exception ex)
             {
-                try
-                {
-                    OpenConection();
-                    Cmd = new SqlCommand("delete from estado where idestado = @v1", Con);
 
-                    Cmd.Parameters.AddWithValue("@v1", id);
-
-                    Cmd.ExecuteNonQuery();
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception("Erro ao excluir o Estado: " + ex.Message);
-                }
-                finally
-                {
-                    CloseConection();
-                }
+                throw new Exception("Erro ao atualizar o Estado: " + ex.Message);
             }
-
-            //Método para localizar pelo Código
-            public Estado FindID(int id)
+            finally
             {
-                try
-                {
-                    OpenConection();
-                    Cmd = new SqlCommand("select * from estado where idestado=@v1", Con);
-                    Cmd.Parameters.AddWithValue("@v1", id);
-                    Dr = Cmd.ExecuteReader();
-
-                    Estado obj = null;
-                    if (Dr.Read())
-                    {
-                        obj = new Estado();
-
-                        obj.idEstado = Convert.ToInt32(Dr["idestado"]);
-                        obj.nmEstado = Convert.ToString(Dr["nmestado"]);
-                        obj.dsUF = Convert.ToString(Dr["dsuf"]);
-                        obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
-                        obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
-                        obj.nrIBGE = Convert.ToString(Dr["nrIBGE"]);
-                        obj.flRegiao = Convert.ToString(Dr["flRegiao"]);
-                        obj.idPais = Convert.ToInt32(Dr["idpais"]);
-                }
-                    return obj;
-
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
-                }
-                finally
-                {
-                    CloseConection();
-                }
+                CloseConection();
             }
+        }
 
-            //Método para localizar todos os dados
-            public List<Estado> FindAll()
+        //Método para ecluir dados
+        public void Delete(int id)
+        {
+            try
             {
-                try
+                OpenConection();
+                Cmd = new SqlCommand("delete from estado where idestado = @v1", Con);
+
+                Cmd.Parameters.AddWithValue("@v1", id);
+
+                Cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao excluir o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        //Método para localizar pelo Código
+        public Estado FindID(int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from estado where idestado=@v1", Con);
+                Cmd.Parameters.AddWithValue("@v1", id);
+                Dr = Cmd.ExecuteReader();
+
+                Estado obj = null;
+                if (Dr.Read())
                 {
-                    OpenConection();
-                    Cmd = new SqlCommand("select * from estado", Con);
-                    Dr = Cmd.ExecuteReader();
+                    obj = new Estado();
 
-                    List<Estado> list = new List<Estado>();
+                    obj.idEstado = Convert.ToInt32(Dr["idestado"]);
+                    obj.nmEstado = Convert.ToString(Dr["nmestado"]);
+                    obj.dsUF = Convert.ToString(Dr["dsuf"]);
+                    obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
+                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
+                    obj.nrIBGE = Convert.ToString(Dr["nribge"]);
+                    obj.flRegiao = Convert.ToString(Dr["flregiao"]);
+                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                }
+                return obj;
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
 
-                    while (Dr.Read())
-                    {
-                        Estado obj = new Estado();
+        public List<Estado> FindFilter(string filter)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from estado where nmestado like @v1 or  dsuf like @v2 or flregiao like @v3", Con);
+                Cmd.Parameters.AddWithValue("@v1", "%" + filter + "%");
+                Cmd.Parameters.AddWithValue("@v2", "%" + filter + "%");
+                Cmd.Parameters.AddWithValue("@v3", "%" + filter + "%");
+                Dr = Cmd.ExecuteReader();
 
-                        obj.idEstado = Convert.ToInt32(Dr["idestado"]);
-                        obj.nmEstado = Convert.ToString(Dr["nmestado"]);
-                        obj.dsUF = Convert.ToString(Dr["dsuf"]);
-                        obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
-                        obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
-                        obj.nrIBGE = Convert.ToString(Dr["nrIBGE"]);
-                        obj.flRegiao = Convert.ToString(Dr["flRegiao"]);
-                        obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                List<Estado> list = new List<Estado>();
+
+                while (Dr.Read())
+                {
+                    Estado obj = new Estado();
+
+                    obj.idEstado = Convert.ToInt32(Dr["idestado"]);
+                    obj.nmEstado = Convert.ToString(Dr["nmestado"]);
+                    obj.dsUF = Convert.ToString(Dr["dsuf"]);
+                    obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
+                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
+                    obj.nrIBGE = Convert.ToString(Dr["nribge"]);
+                    obj.flRegiao = Convert.ToString(Dr["flregiao"]);
+                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                 
+
 
                     list.Add(obj);
-                    }
-                    return list;
+                }
+                return list;
 
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
-                }
-                finally
-                {
-                    CloseConection();
-                }
             }
-        
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        //Método para localizar todos os dados
+        public List<Estado> FindAll()
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from estado", Con);
+                Dr = Cmd.ExecuteReader();
+
+                List<Estado> list = new List<Estado>();
+
+
+                while (Dr.Read())
+                {
+                    Estado obj = new Estado();
+
+                    obj.idEstado = Convert.ToInt32(Dr["idestado"]);
+                    obj.nmEstado = Convert.ToString(Dr["nmestado"]);
+                    obj.dsUF = Convert.ToString(Dr["dsuf"]);
+                    obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
+                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
+                    obj.nrIBGE = Convert.ToString(Dr["nribge"]);
+                    obj.flRegiao = Convert.ToString(Dr["flregiao"]);
+                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
+                    
+
+
+                    list.Add(obj);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
     }
 }

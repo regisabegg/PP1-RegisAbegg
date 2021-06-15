@@ -68,7 +68,7 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para ecluir dados
-        public void Delete(int id)
+        public int Delete(int id)
         {
             try
             {
@@ -77,7 +77,9 @@ namespace PP1.CONTRATO.DAO
 
                 Cmd.Parameters.AddWithValue("@v1", id);
 
-                Cmd.ExecuteNonQuery();
+                
+              
+                return Cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -127,50 +129,16 @@ namespace PP1.CONTRATO.DAO
             }
         }
 
-        public Pais FindFilter(int? id, string filter)
-        {
-            try
-            {
-                OpenConection();
-                Cmd = new SqlCommand("select * from pais where idpais=@v1 or nmpais like (%@v2%) " , Con);
-                Cmd.Parameters.AddWithValue("@v1", id);
-                Cmd.Parameters.AddWithValue("@v2", filter);
-                Dr = Cmd.ExecuteReader();
-                var list = new List<Pais>();
-
-                Pais obj = null;
-                if (Dr.Read())
-                {
-                    obj = new Pais();
-
-                    obj.idPais = Convert.ToInt32(Dr["idpais"]);
-                    obj.nmPais = Convert.ToString(Dr["nmPais"]);
-                    obj.dsSigla = Convert.ToString(Dr["dsSigla"]);
-                    obj.nrDDI = Convert.ToString(Dr["nrDDI"]);
-                    obj.dtCadastro = Convert.ToDateTime(Dr["dtCadastro"]);
-                    obj.dtAtualizacao = Convert.ToDateTime(Dr["dtAtualizacao"]);
-                }
-                return obj;
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao pesquisar o País: " + ex.Message);
-            }
-            finally
-            {
-                CloseConection();
-            }
-        }
-
         //Método para localizar todos os dados
-        public List<Pais> FindFilter1(string filter)
+        public List<Pais> FindFilter(string filter)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from pais where idpais=@v1  ", Con);
-                Cmd.Parameters.AddWithValue("@v1", Convert.ToInt32(filter));
+                Cmd = new SqlCommand("select * from pais where nmpais like @v1 or dssigla like @v2 or  nrddi like @v3", Con);
+                Cmd.Parameters.AddWithValue("@v1", "%" + filter + "%");
+                Cmd.Parameters.AddWithValue("@v2", "%" + filter + "%");
+                Cmd.Parameters.AddWithValue("@v3", "%" + filter + "%");
                 Dr = Cmd.ExecuteReader();
 
                 List<Pais> list = new List<Pais>();

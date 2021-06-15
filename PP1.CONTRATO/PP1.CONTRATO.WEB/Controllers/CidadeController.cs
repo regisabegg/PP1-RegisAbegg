@@ -82,7 +82,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
             if (ModelState.IsValid)
             {
-                model.dtAtualizacao = DateTime.Now;
+                
                 try
                 {
                     // TODO: Add update logic here
@@ -91,6 +91,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
                     var bean = model.VM2E(obj);
                     var bll = new CidadeBLL();
+                    bean.dtAtualizacao = DateTime.Now;
                     bll.update(bean);
 
                     this.AddFlashMessage("Registro alterado com sucesso!");
@@ -143,10 +144,8 @@ namespace PP1.CONTRATO.WEB.Controllers
         #region MethodPrivate
         private ActionResult GetView(int id)
         {
-
-
-
             CidadeDAO objCidade = new CidadeDAO();
+            EstadoDAO DAOEstado = new EstadoDAO();
             var obj = objCidade.FindID(id);
             var result = new CidadeVM
             {
@@ -156,8 +155,10 @@ namespace PP1.CONTRATO.WEB.Controllers
                 nrIBGE = obj.nrIBGE,
                 dtCadastro = obj.dtCadastro,
                 dtAtualizacao = obj.dtAtualizacao,
-                idEstado = obj.idEstado,
+                idEstado = obj.idEstado
             };
+            var objEstado = DAOEstado.FindID(result.idEstado);
+            result.Estado = new Models.Estado.ConsultaVM { id = objEstado.idEstado, text = objEstado.nmEstado };
             return View(result);
         }
         #endregion
@@ -185,13 +186,26 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-                var select = this.Find();
+                string filter = requestModel.Search.Value;
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    var select1 = this.Filter(filter);
+                    var totalResult1 = select1.Count();
 
-                var totalResult = select.Count();
+                    var result1 = select1.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
 
-                var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+                    return Json(new DataTablesResponse(requestModel.Draw, result1, totalResult1, result1.Count), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var select = this.Find();
 
-                return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+                    var totalResult = select.Count();
+
+                    var result = select.OrderBy(requestModel.Columns, requestModel.Start, requestModel.Length).ToList();
+
+                    return Json(new DataTablesResponse(requestModel.Draw, result, totalResult, result.Count), JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception ex)
             {
@@ -205,8 +219,29 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         private IQueryable<dynamic> Find()
         {
-            var daoCidadees = new CidadeBLL();
-            var list = daoCidadees.findAll();
+            var daoCidade = new CidadeBLL();
+            var list = daoCidade.findAll();
+            var select = list.Select(u => new
+            {
+                id = u.idCidade,
+                text = u.nmCidade,
+                u.idCidade,
+                u.nmCidade,
+                u.nrDDD,
+                u.nrIBGE,
+                u.dtCadastro,
+                u.dtAtualizacao,
+                u.idEstado
+
+
+            }).OrderBy(u => u.idCidade).ToList();
+            return select.AsQueryable();
+        }
+
+        private IQueryable<dynamic> Filter(string filter)
+        {
+            var daoCidade = new CidadeBLL();
+            var list = daoCidade.findFilter(filter);
             var select = list.Select(u => new
             {
                 id = u.idCidade,

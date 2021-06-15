@@ -41,7 +41,7 @@ namespace PP1.CONTRATO.WEB.Models.Cidade
             bean.nrIBGE = this.nrIBGE;
             bean.dtAtualizacao = this.dtAtualizacao;
             bean.dtCadastro = this.dtCadastro;
-            bean.idEstado = this.idEstado;
+            bean.idEstado = this.Estado.id ?? 0;
 
             return bean;
         }
