@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="@Helper.InputMD">
                                     @Html.Label("flRegiao", "Região", new { @class = "required" })
-                                    @Html.DropDownList("flRegiao", PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control",  style = "text-transform:uppercase" })
+                                    @Html.DropDownList("flRegiao", PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control", style = "text-transform:uppercase" })
                                 </div>
                                 <div class="@Helper.InputMD">
                                     @Html.Label("nrIBGE", "Cód. IBGE", new { @class = "required" })
@@ -114,21 +114,21 @@
                             </div>
 
                             @*<div class="form-row">
-                                <div class="@Helper.InputSM">
-                                    @Html.Label("dtCadastro", "Data de cadastro", new { @class = "required" })
-                                    @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
-                                </div>
+                                   <div class="@Helper.InputSM">
+                                       @Html.Label("dtCadastro", "Data de cadastro", new { @class = "required" })
+                                       @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
+                                   </div>
 
-                                <div class="@Helper.InputSM ">
-                                    @Html.Label("dtultalteracao", "Data de cadastro", new { @class = "required" })
-                                    @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
-                                </div>
-                             </div>*@   
+                                   <div class="@Helper.InputSM ">
+                                       @Html.Label("dtultalteracao", "Data de cadastro", new { @class = "required" })
+                                       @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
+                                   </div>
+                                </div>*@
 
                         </div>
                     </div>
                     <hr style="margin-top: 2rem" />
-                    <div class="modal-footer" >
+                    <div class="modal-footer">
                         <div style="text-align:right">
                             <button id="@Helper.getInputId("btnSave", Prefix)" type="button" class="btn btn-success"><i class="fa fa-save"></i>  Salvar</button>
                             <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreate()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
@@ -151,7 +151,29 @@
         $('#@Helper.getInputId("btnSave", Prefix)').on('click', function () {
             self.save();
          });
+     $('#@Helper.getInputId("id", Prefix)').change(function () {
+            var id = $('#@Helper.getInputId("id", Prefix)').val()
 
+            $.ajax({
+            dataType: 'json',
+            type: 'Get',
+            url: '@Url.Action("jsDetails", "Estado")',
+            data: { 'id' : id },
+                success: function (data) {
+                    console.log(data);
+                    if (data == null) {
+
+                        alert("Registro não encontrado!");
+
+                    }
+
+                    $("#@Helper.getInputId("id", Prefix)").val(data.idEstado);
+                    $("#@Helper.getInputId("text", Prefix)").val(data.nmEstado);
+                },
+            });
+
+
+        })
      });
 
     this.getForm = function() {

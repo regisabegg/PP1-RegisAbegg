@@ -147,8 +147,28 @@
 
         $('#@Helper.getInputId("btnSave", Prefix)').on('click', function () {
             self.save();
-         });
+        });
+        $('#@Helper.getInputId("id", Prefix)').change(function () {
+            var id = $('#@Helper.getInputId("id", Prefix)').val()
+           
+            $.ajax({
+            dataType: 'json',
+            type: 'Get',
+            url: '@Url.Action("jsDetails", "Pais")',
+            data: { 'id' : id },
+                success: function (data) { 
+                    console.log(data);
+                    if (data) {
+                       
+                        alert("Registro não encontrado!");
 
+                    }
+                   
+                    $("#@Helper.getInputId("id", Prefix)").val(data.idPais);
+                    $("#@Helper.getInputId("text", Prefix)").val(data.nmPais);
+                },
+            });
+        })
      });
 
     this.getForm = function() {
@@ -381,6 +401,6 @@
         }
     };
 
- 
+
 </script>
 )
