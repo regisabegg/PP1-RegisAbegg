@@ -127,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\CondicaoPagtoController.cs" />
+    <Compile Include="Controllers\FormaPagtoController.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -138,6 +140,10 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
+    <Compile Include="Models\CondicaoPagto\ConsultaVM.cs" />
+    <Compile Include="Models\CondicaoPagto\CondicaoPagtoVM.cs" />
+    <Compile Include="Models\FormaPagto\FormaPagtoVM.cs" />
+    <Compile Include="Models\FormaPagto\ConsultaVM.cs" />
     <Compile Include="Models\Fornecedor\FornecedorVM.cs" />
     <Compile Include="Models\Fornecedor\ConsultaVM.cs" />
     <Compile Include="Models\Funcionario\FucionarioVM.cs" />
@@ -2260,6 +2266,18 @@
     <Content Include="Views\Fornecedor\Edit.cshtml" />
     <Content Include="Views\Fornecedor\Form.cshtml" />
     <Content Include="Views\Fornecedor\Index.cshtml" />
+    <Content Include="Views\FormaPagto\Create.cshtml" />
+    <Content Include="Views\FormaPagto\Delete.cshtml" />
+    <Content Include="Views\FormaPagto\Details.cshtml" />
+    <Content Include="Views\FormaPagto\Edit.cshtml" />
+    <Content Include="Views\FormaPagto\Form.cshtml" />
+    <Content Include="Views\FormaPagto\Index.cshtml" />
+    <Content Include="Views\CondicaoPagto\Create.cshtml" />
+    <Content Include="Views\CondicaoPagto\Delete.cshtml" />
+    <Content Include="Views\CondicaoPagto\Details.cshtml" />
+    <Content Include="Views\CondicaoPagto\Edit.cshtml" />
+    <Content Include="Views\CondicaoPagto\Form.cshtml" />
+    <Content Include="Views\CondicaoPagto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

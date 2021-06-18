@@ -1,0 +1,67 @@
+﻿@model PP1.CONTRATO.WEB.Models.FormaPagto.FormaPagtoVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+
+}
+
+<hr />
+
+
+<div class="form-layout">
+
+    <div class="row">
+        @if (action != "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.idFormaPagto, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idFormaPagto, new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        }
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
+                @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.FormaPagto.FormaPagtoVM.Situacao, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-layout ">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group ">
+                @Html.LabelFor(e => e.nmFormaPagto, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nmFormaPagto, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nmFormaPagto, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>        
+    </div>
+</div>
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr />

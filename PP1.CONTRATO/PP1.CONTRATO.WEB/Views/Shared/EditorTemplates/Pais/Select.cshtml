@@ -35,13 +35,13 @@
 </div>
 
 <div id="@Helper.getInputId("ModalLista", Prefix)" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+    <div class="modal-dialog modal-content modal-xl">
+        <div class="modal-content bd-0 tx-14">
             <div class="modal-body no-padding">
                 <div class="panel panel-primary" style="margin-bottom: -1px;">
                     <div class="panel-heading" style="height: 41px; padding-left:2px;font-weight: bold;">
                         <h3 class="panel-title pull-right"><button type="button" style="opacity: inherit;color: #fff;" class="close" data-dismiss="modal">&times;</button></h3>
-                        <ul class="nav panel-tabs" style="width:400px">
+                        <ul class="nav panel-tabs" style="width:750px">
                             <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Paises </b></a></li>
                         </ul>
                     </div>
@@ -111,21 +111,21 @@
                             </div>
 
                             @*<div class="form-row">
-                                <div class="@Helper.InputSM">
-                                    @Html.Label("dtCadastro", "Data de cadastro", new { @class = "required" })
-                                    @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
-                                </div>
+                                   <div class="@Helper.InputSM">
+                                       @Html.Label("dtCadastro", "Data de cadastro", new { @class = "required" })
+                                       @Html.TextBox("dtCadastro", null, new { @class = "form-control", disabled = true })
+                                   </div>
 
-                                <div class="@Helper.InputSM ">
-                                    @Html.Label("dtultalteracao", "Data de cadastro", new { @class = "required" })
-                                    @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
-                                </div>
-                             </div>*@   
+                                   <div class="@Helper.InputSM ">
+                                       @Html.Label("dtultalteracao", "Data de cadastro", new { @class = "required" })
+                                       @Html.TextBox("dtultalteracao", null, new { @class = "form-control", disabled = true })
+                                   </div>
+                                </div>*@
 
                         </div>
                     </div>
                     <hr style="margin-top: 2rem" />
-                    <div class="modal-footer" >
+                    <div class="modal-footer">
                         <div style="text-align:right">
                             <button id="@Helper.getInputId("btnSave", Prefix)" type="button" class="btn btn-success"><i class="fa fa-save"></i>  Salvar</button>
                             <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreate()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
@@ -148,27 +148,32 @@
         $('#@Helper.getInputId("btnSave", Prefix)').on('click', function () {
             self.save();
         });
-        $('#@Helper.getInputId("id", Prefix)').change(function () {
-            var id = $('#@Helper.getInputId("id", Prefix)').val()
-           
-            $.ajax({
-            dataType: 'json',
-            type: 'Get',
-            url: '@Url.Action("jsDetails", "Pais")',
-            data: { 'id' : id },
-                success: function (data) { 
-                    console.log(data);
-                    if (data) {
-                       
-                        alert("Registro não encontrado!");
+        $('#@Helper.getInputId("id", Prefix)').change(function (data, e) {
+            var id = $('#@Helper.getInputId("id", Prefix)').val();
 
-                    }
-                   
-                    $("#@Helper.getInputId("id", Prefix)").val(data.idPais);
-                    $("#@Helper.getInputId("text", Prefix)").val(data.nmPais);
-                },
-            });
-        })
+            if (id == "") {
+                $('#@Helper.getInputId("id", Prefix)').val("");
+                $('#@Helper.getInputId("text", Prefix)').val("");
+            } else {
+                $.ajax({
+                    dataType: 'json',
+                    type: 'Get',
+                    url: '@Url.Action("jsDetails", "Pais")',
+                    data: { 'id': id },
+                    success: function (data) {
+                        
+                        if (data == null) {
+
+                            alert("Registro não encontrado!");
+                        }
+
+                        $('#@Helper.getInputId("id", Prefix)').val(data.idPais);
+                        $('#@Helper.getInputId("text", Prefix)').val(data.nmPais);
+                    },
+                    
+                });
+            }
+        });
      });
 
     this.getForm = function() {
