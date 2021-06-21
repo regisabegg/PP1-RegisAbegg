@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Conexao.cs" />
     <Compile Include="CidadeDAO.cs" />
+    <Compile Include="ClienteDAO.cs" />
     <Compile Include="Inter.cs" />
     <Compile Include="EstadoDAO.cs" />
     <Compile Include="PaisDAO.cs" />

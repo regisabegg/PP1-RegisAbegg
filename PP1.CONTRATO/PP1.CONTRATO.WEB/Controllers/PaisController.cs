@@ -127,7 +127,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     // TODO: Add update logic here
                     var bean = model.VM2E(new Pais());
                     var daoPais = new PaisDAO();
-                    daoPais.Delete(model.idPais);
+                    daoPais.Delete(model.idPai);
 
                     this.AddFlashMessage("Registro excluído com sucesso!");
                     return RedirectToAction("index");
@@ -149,7 +149,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             var obj = objPais.FindID(id);
             var result = new PaisVM
             {
-                idPais = obj.idPais,
+                idPai = obj.idPais,
                 nmPais = obj.nmPais,
                 dsSigla = obj.dsSigla,
                 nrDDI = obj.nrDDI,
@@ -251,7 +251,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             try
             {
                 var bll = new BLL.PaisBLL();
-                var bean = bll.find(model.idPais);
+                var bean = bll.find(model.idPai);
                 bean = model.VM2E(bean);
                 bean.dtAtualizacao = DateTime.Now;
                 bll.update(bean);

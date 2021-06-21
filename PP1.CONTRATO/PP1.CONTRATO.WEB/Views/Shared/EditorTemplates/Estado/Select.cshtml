@@ -12,6 +12,7 @@
     var action = Convert.ToString(ViewBag.Action);
     bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
 
+    var Pais = new PP1.CONTRATO.WEB.Models.Pais.ConsultaVM();
 
 
 }
@@ -75,7 +76,7 @@
                     <div class="panel-heading" style="height: 41px; padding-left:2px;font-weight: bold;">
                         <h3 class="panel-title pull-right"><button type="button" style="opacity: inherit;color: #fff;" class="close" data-dismiss="modal">&times;</button></h3>
                         <ul class="nav panel-tabs" style="width:400px">
-                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Cadastrar país</b></a></li>
+                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Cadastrar estado</b></a></li>
                         </ul>
                     </div>
                     <hr />
@@ -111,6 +112,9 @@
                                     @Html.TextBox("nrIBGE", null, new { @class = "form-control", maxlength = "2", style = "text-transform:uppercase" })
 
                                 </div>
+                            </div>
+                            <div class="form-row">
+                                @Html.EditorFor(model => Pais, "Pais/Select", new { @Required = true, Disable = readOnly })
                             </div>
 
                             @*<div class="form-row">
@@ -183,16 +187,19 @@
                 nrUF: $('#@Helper.getInputId("nrUF", Prefix)'),
                 flRegiao: $('#@Helper.getInputId("flRegiao", Prefix)'),
                 nrIBGE: $('#@Helper.getInputId("nrIBGE", Prefix)'),
+                idPais: $('#@Helper.getInputId("idPais", Prefix)'),
         }
         return form;
     };
 
     this.clear = function () {
         var form = self.getForm();
+
         form.nmEstado.val("");
         form.nrUF.val("");
         form.flRegiao.val("");
         form.nrIBGE.val("");
+        form.idPais.val("");
         form.nmEstado.focus();
     };
 
@@ -206,17 +213,17 @@
             valid = false;
         }
 
-        else if (IsNullOrEmpty(form.nrDDI.val())) {
-            form.nrUF.blink({ msg: "Campo UF é obrigatório" });
-            form.nrUF.focus();
-            valid = false;
-        }
+        //else if (IsNullOrEmpty(form.nrDDI.val())) {
+        //    form.nrUF.blink({ msg: "Campo UF é obrigatório" });
+        //    form.nrUF.focus();
+        //    valid = false;
+        //}
 
-        else if (IsNullOrEmpty(form.dsSigla.val())) {
-            form.dsSigla.blink({ msg: "Campo sigla é obrigatório" });
-            form.dsSigla.focus();
-            valid = false;
-        }
+        //else if (IsNullOrEmpty(form.dsSigla.val())) {
+        //    form.dsSigla.blink({ msg: "Campo sigla é obrigatório" });
+        //    form.dsSigla.focus();
+        //    valid = false;
+        //}
         return valid;
     };
 
@@ -226,6 +233,7 @@
             nmEstado: form.nmEstado.val(),
             nrUF: form.nrUF.val(),
             nrIBGE: form.nrIBGE.val(),
+            idPais: form.idPais.val(),
         }
         return model;
     };
@@ -364,6 +372,7 @@
                     form.nmEstado.val(data.nmEstado);
                     form.nrUF.val(data.nrUF);
                     form.nrIBGE.val(data.nrIBGE);
+                    form.idPais.val(data.idPais);
             },
             error: function (request) {
                 @*shared_function["@Prefix"].button('reset');

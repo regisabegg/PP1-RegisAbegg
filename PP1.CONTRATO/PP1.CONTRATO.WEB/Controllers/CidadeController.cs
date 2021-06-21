@@ -126,7 +126,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     // TODO: Add update logic here
                     var bean = model.VM2E(new Cidade());
                     var daoCidade = new CidadeDAO();
-                    daoCidade.Delete(model.idCidade);
+                    daoCidade.Delete(model.idPai);
 
                     this.AddFlashMessage("Registro excluído com sucesso!");
                     return RedirectToAction("index");
@@ -149,7 +149,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             var obj = objCidade.FindID(id);
             var result = new CidadeVM
             {
-                idCidade = obj.idCidade,
+                idPai = obj.idCidade,
                 nmCidade = obj.nmCidade,
                 nrDDD = obj.nrDDD,
                 nrIBGE = obj.nrIBGE,
@@ -166,6 +166,41 @@ namespace PP1.CONTRATO.WEB.Controllers
 
         #region JsonResult
 
+        public JsonResult JsCreate(CidadeVM model)
+        {
+
+            try
+            {
+                var bean = model.VM2E(new Cidade());
+                var bll = new CidadeBLL();
+                bean.dtCadastro = DateTime.Now;
+                bean.dtAtualizacao = DateTime.Now;
+                bll.create(bean);
+
+                var result = new
+                {
+                    type = "success",
+                    message = "Registro salvo com sucesso"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+
+                var result = new
+                {
+                    type = "error",
+                    message = ex.Message
+                };
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
         public JsonResult JsSelect(string q, int? page, int? pageSize)
         {
             try
@@ -181,6 +216,71 @@ namespace PP1.CONTRATO.WEB.Controllers
         }
 
 
+        public JsonResult JsQuery([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
+
+                var select = this.Find();
+                return Json(new DataTablesResponse(requestModel, select), JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public JsonResult jsDetails(int id)
+        {
+            try
+            {
+                var daoCidade = new EstadoBLL();
+                var select = daoCidade.find(id);
+                return Json(select, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public JsonResult JsEdit(CidadeVM model)
+        {
+            try
+            {
+                var bll = new CidadeBLL();
+                var bean = bll.find(model.idPai);
+                bean = model.VM2E(bean);
+                bean.dtAtualizacao = DateTime.Now;
+                bll.update(bean);
+
+                var result = new
+                {
+                    type = "success",
+                    message = "Registro editado com sucesso"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
+
+                var result = new
+                {
+                    type = "error",
+                    message = ex.Message
+                };
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
@@ -238,6 +338,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             return select.AsQueryable();
         }
 
+
         private IQueryable<dynamic> Filter(string filter)
         {
             var daoCidade = new CidadeBLL();
@@ -253,7 +354,6 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.dtCadastro,
                 u.dtAtualizacao,
                 u.idEstado
-
 
             }).OrderBy(u => u.idCidade).ToList();
             return select.AsQueryable();

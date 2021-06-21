@@ -8,8 +8,8 @@ namespace PP1.CONTRATO.WEB.Models.Cidade
 {
     public class ConsultaVM
     {
-        public int? idCidade { get; set; }
-        public string nmCidade { get; set; }
+        //public int? idCidade { get; set; }
+        //public string nmCidade { get; set; }
 
         public int? id { get; set; }
         public string text { get; set; }

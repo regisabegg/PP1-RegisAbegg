@@ -7,25 +7,19 @@ using System.Web.Mvc;
 
 namespace PP1.CONTRATO.WEB.Models.Cidade
 {
-    public class CidadeVM
+    public class CidadeVM : Pai.PaiVM
     {
-        [Display(Name = "Código")]
-        public int idCidade { get; set; }
+        
         [Display(Name = "Cidade")]
         [Required]
         public string nmCidade { get; set; }
+        
         [Display(Name = "DDD")]
         public string nrDDD { get; set; }
 
         [Display(Name = "Cód. IBGE")]
         public string nrIBGE { get; set; }
-        [Display(Name = "Cadastro")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtCadastro { get; set; }
-        [Display(Name = "Atualização")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtAtualizacao { get; set; }
-
+        
         [Display(Name = "Código Estadp")]
         public int idEstado { get; set; }
 

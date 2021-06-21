@@ -93,56 +93,7 @@ namespace PP1.CONTRATO.WEB.Models.Fornecedor
         //    return bean;
         //}
 
-        public static SelectListItem[] Situacao
-        {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "A", Text = "ATIVA" },
-                    new SelectListItem { Value = "I", Text = "INATIVA" }
-                };
-            }
-        }
-
-        public static SelectListItem[] Tipo
-        {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "F", Text = "FÍSICA" },
-                    new SelectListItem { Value = "J", Text = "JURÍDICA" }
-                };
-            }
-        }
-
-        public static SelectListItem[] Sexo
-        {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "M", Text = "MASCULINO" },
-                    new SelectListItem { Value = "F", Text = "FEMININO" }
-                };
-            }
-        }
-
-
-        public static SelectListItem[] Contato
-        {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "D", Text = "DIRETOR" },
-                    new SelectListItem { Value = "G", Text = "GERENTE" },
-                    new SelectListItem { Value = "V", Text = "VENDEDOR" },
-                    new SelectListItem { Value = "O", Text = "OUTROS" },
-                };
-            }
-        }
+        
 
 
 

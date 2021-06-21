@@ -84,8 +84,8 @@
 
                             <div class="form-row">
                                 <div class="@Helper.InputSM">
-                                    @Html.Label("idPais", "Código")
-                                    @Html.TextBox("idPais", null, new { @class = "form-control", disabled = true, })
+                                    @Html.Label("idPai", "Código")
+                                    @Html.TextBox("idPai", null, new { @class = "form-control", disabled = true, })
                                 </div>
                             </div>
 
@@ -178,7 +178,7 @@
 
     this.getForm = function() {
         var form = {
-                idPais : $('#@Helper.getInputId("idPais", Prefix)'),
+                idPais : $('#@Helper.getInputId("idPai", Prefix)'),
                 nmPais: $('#@Helper.getInputId("nmPais", Prefix)'),
                 nrDDI: $('#@Helper.getInputId("nrDDI", Prefix)'),
                 dsSigla: $('#@Helper.getInputId("dsSigla", Prefix)'),

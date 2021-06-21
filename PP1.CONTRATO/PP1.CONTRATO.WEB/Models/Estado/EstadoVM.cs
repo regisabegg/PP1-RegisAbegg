@@ -7,22 +7,15 @@ using System.Web.Mvc;
 
 namespace PP1.CONTRATO.WEB.Models.Estado
 {
-    public class EstadoVM
+    public class EstadoVM : Pai.PaiVM
     {
-        [Display(Name = "Código")]
-        public int idEstado { get; set; }
+      
         [Display(Name = "Estado")]
         [Required]
         public string nmEstado { get; set; }
         [Display(Name = "UF")]
         public string dsUF { get; set; }
-        [Display(Name = "Cadastro")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtCadastro { get; set; }
-        [Display(Name = "Atualização")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtAtualizacao { get; set; }
-
+     
         [Display(Name = "Cód. IBGE")]
         public string nrIBGE { get; set; }
 
@@ -32,7 +25,7 @@ namespace PP1.CONTRATO.WEB.Models.Estado
 
 
 
-        public Models.Pais.ConsultaVM Pais { get; set; }
+        public Pais.ConsultaVM Pais { get; set; }
 
         [Display(Name = "Código País")]
         public int idPais { get; set; }

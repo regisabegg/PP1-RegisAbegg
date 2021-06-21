@@ -152,6 +152,10 @@
     <Compile Include="Models\Cliente\ConsultaVM.cs" />
     <Compile Include="Models\Estado\ConsultaVM.cs" />
     <Compile Include="Models\Estado\EstadoVM.cs" />
+    <Compile Include="Models\Pessoa\ConsultaVM.cs" />
+    <Compile Include="Models\Pessoa\PessoaVM.cs" />
+    <Compile Include="Models\Pai\ConsultaVM.cs" />
+    <Compile Include="Models\Pai\PaiVM.cs" />
     <Compile Include="Models\Pais\ConsultaVM.cs" />
     <Compile Include="Models\Pais\PaisVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2084,6 +2088,7 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Cliente\Index.js" />
     <Content Include="Scripts\Fornecedor\Create.js" />
     <Content Include="Scripts\Funcionario\Create.js" />
     <Content Include="Scripts\Cliente\Create.js" />
@@ -2241,7 +2246,6 @@
     <Content Include="Views\Shared\EditorTemplates\Estado\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Pais\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Usuario\Select.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Pais\Query.cshtml" />
     <Content Include="Views\Cidade\Create.cshtml" />
     <Content Include="Views\Cidade\Delete.cshtml" />
     <Content Include="Views\Cidade\Details.cshtml" />
