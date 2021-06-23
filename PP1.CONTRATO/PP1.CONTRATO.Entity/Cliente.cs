@@ -54,5 +54,10 @@ namespace PP1.CONTRATO.Entity
 
         public int idCidade { get; set; }
 
+
+
+        public const string TIPO_FISICO = "F";
+        public const string TIPO_JURIDICO = "J";
+
     }
 }

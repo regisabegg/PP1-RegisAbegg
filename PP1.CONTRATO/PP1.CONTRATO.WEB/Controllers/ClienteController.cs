@@ -56,6 +56,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     var bll = new ClienteBLL();
                     bean.dtCadastro = DateTime.Now;
                     bean.dtAtualizacao = DateTime.Now;
+                    bean.flSituacao = "A";
                     bll.create(bean);
 
                     this.AddFlashMessage("Registro salvo com sucesso!");

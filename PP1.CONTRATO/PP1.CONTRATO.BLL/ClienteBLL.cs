@@ -96,20 +96,14 @@ namespace PP1.CONTRATO.BLL
             return objClienteDAO.FindAll();
         }
 
-        //public static string RegioTipo(string flRegiao)
-        //{
-        //    if (flRegiao == Cliente.REGIAO_COESTE)
-        //        return "Centro Oeste";
-        //    if (flRegiao == Cliente.REGIAO_NORDESTE)
-        //        return "Nordeste";
-        //    if (flRegiao == Cliente.REGIAO_NORTE)
-        //        return "Norte";
-        //    if (flRegiao == Cliente.REGIAO_SUL)
-        //        return "Sul";
-        //    if (flRegiao == Cliente.REGIAO_SULDESTE)
-        //        return "Suldeste";
+        public static string Tipo(string flTipo)
+        {
+            if (flTipo == Cliente.TIPO_FISICO)
+                return "FÍSICO";
+            if (flTipo == Cliente.TIPO_JURIDICO)
+                return "JURÍRIDICO";
 
-        //    return flRegiao;
-        //}
+            return flTipo;
+        }
     }
 }

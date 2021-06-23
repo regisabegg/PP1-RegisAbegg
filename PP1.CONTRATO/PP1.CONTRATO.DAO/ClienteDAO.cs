@@ -17,34 +17,30 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("insert into cliente (nmcliente, nmapelido, nrdocumento, nrregistro," +
-                    " nrtelefone, nrcelular, dsemail, dssite, nmcontato, flcontato, dsobservacao, fltipo, " +
-                    "flsituacao, nrcep, nmlogradouro, nrnumero, nmbairro, dscomplemento, vllimite, dtcadastro," +
-                    " dtatualizacao, idcidade ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7, @v8, @v9, @v10, @v11, " +
-                    "@v12, @v13, @v14, @v15, @v16, @v17, @v18, @v19, @v20, @v21, @v22)", Con);
+                Cmd = new SqlCommand("insert into cliente (nmcliente, nmapelido, nrdocumento, nrregistro, nrtelefone, nrcelular, dsemail, dssite, nmcontato, flcontato, dsobservacao, fltipo, flsituacao, nrcep, nmlogradouro, nrnumero, nmbairro, dscomplemento, vllimite, dtcadastro, dtatualizacao, idcidade ) values (@nmcliente, @nmapelido, @nrdocumento, @nrregistro, @nrtelefone, @nrcelular, @dsemail, @dssite, @nmcontato, @flcontato, @dsobservacao, @fltipo, @flsituacao, @nrcep, @nmlogradouro, @nrnumero, @nmbairro, @dscomplemento, @vllimite, @dtcadastro, @dtatualizacao, @idcidade )", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmCliente);
-                Cmd.Parameters.AddWithValue("@v2", obj.nmApelido);
-                Cmd.Parameters.AddWithValue("@v3", obj.nrDocumento);
-                Cmd.Parameters.AddWithValue("@v4", obj.nrRegistro);
-                Cmd.Parameters.AddWithValue("@v5", obj.nrTelefone);
-                Cmd.Parameters.AddWithValue("@v6", obj.nrCelular);
-                Cmd.Parameters.AddWithValue("@v7", obj.dsEmail);
-                Cmd.Parameters.AddWithValue("@v8", obj.dsSite);
-                Cmd.Parameters.AddWithValue("@v9", obj.nmContato);
-                Cmd.Parameters.AddWithValue("@v10", obj.flContato);
-                Cmd.Parameters.AddWithValue("@v11", obj.dsObservacao);
-                Cmd.Parameters.AddWithValue("@v12", obj.flTipo);
-                Cmd.Parameters.AddWithValue("@v13", obj.flSituacao);
-                Cmd.Parameters.AddWithValue("@v14", obj.nrCEP);
-                Cmd.Parameters.AddWithValue("@v15", obj.nmLogradouro);
-                Cmd.Parameters.AddWithValue("@v16", obj.nrNumero);
-                Cmd.Parameters.AddWithValue("@v17", obj.nmBairro);
-                Cmd.Parameters.AddWithValue("@v18", obj.dsComplemento);
-                Cmd.Parameters.AddWithValue("@v19", obj.vlLimite);
-                Cmd.Parameters.AddWithValue("@v20", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v21", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v22", obj.idCidade);
+                Cmd.Parameters.AddWithValue("@nmcliente", obj.nmCliente);
+                Cmd.Parameters.AddWithValue("@nmapelido", obj.nmApelido);
+                Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrRegistro);
+                Cmd.Parameters.AddWithValue("@nrtelefone", obj.nrTelefone);
+                Cmd.Parameters.AddWithValue("@nrcelular", obj.nrCelular);
+                Cmd.Parameters.AddWithValue("@dsemail", obj.dsEmail);
+                Cmd.Parameters.AddWithValue("@dssite", obj.dsSite);
+                Cmd.Parameters.AddWithValue("@nmcontato", obj.nmContato);
+                Cmd.Parameters.AddWithValue("@flcontato", obj.flContato);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.dsObservacao);
+                Cmd.Parameters.AddWithValue("@fltipo", obj.flTipo);
+                Cmd.Parameters.AddWithValue("@flsituacao", obj.flSituacao);
+                Cmd.Parameters.AddWithValue("@nrcep", obj.nrCEP);
+                Cmd.Parameters.AddWithValue("@nmlogradouro", obj.nmLogradouro);
+                Cmd.Parameters.AddWithValue("@nrnumero", obj.nrNumero);
+                Cmd.Parameters.AddWithValue("@nmbairro", obj.nmBairro);
+                Cmd.Parameters.AddWithValue("@dscomplemento", obj.dsComplemento);
+                Cmd.Parameters.AddWithValue("@vllimite", obj.vlLimite);
+                Cmd.Parameters.AddWithValue("@dtcadastro", obj.dtCadastro);
+                Cmd.Parameters.AddWithValue("@dtatualizacao", obj.dtAtualizacao);
+                Cmd.Parameters.AddWithValue("@idcidade", obj.idCidade);
 
                 Cmd.ExecuteNonQuery();
 

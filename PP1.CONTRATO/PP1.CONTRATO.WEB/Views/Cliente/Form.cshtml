@@ -11,49 +11,51 @@
 
 
 <div class="form-layout">
-    
-        <div class="row">
-            @if (action != "create")
-            {
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        @Html.LabelFor(e => e.idPai, new { @class = "form-control-label" })
-                        @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
-                    </div>
-                </div>
-            }
+
+    <div class="row">
+        @if (action != "create")
+        {
             <div class="col-lg-2">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Tipo, new { @class = "form-control select2" })
-                    @Html.ValidationMessageFor(model => model.flTipo, null, new { @class = "text-danger" })
+                    @Html.LabelFor(e => e.idPai, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
                 </div>
             </div>
-            @if (action != "create")
-            {
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
-                        @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Situacao, new { @class = "form-control select2" })
-                        @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-            }
+        }
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
+                @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Tipo, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.flTipo, null, new { @class = "text-danger" })
+            </div>
         </div>
-   
+        @if (action != "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Situacao, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
-<div class="form-layout juridica">
+<div class="form-layout">
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group ">
-                @Html.LabelFor(e => e.nmPessoa, "Razão Social", new { @class = "form-control-label" })
+                @Html.LabelFor(e => e.nmPessoa, "Razão Social", new { @class = "form-control-label juridica" })
+                @Html.LabelFor(e => e.nmPessoa, "Nome", new { @class = "form-control-label fisica" })
                 @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmPessoa, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                @Html.LabelFor(e => e.nmApelido, "Fantasia", new { @class = "form-control-label" })
+                @Html.LabelFor(e => e.nmApelido, "Fantasia", new { @class = "form-control-label juridica" })
+                @Html.LabelFor(e => e.nmApelido, "Apelido", new { @class = "form-control-label fisica" })
                 @Html.TextBoxFor(model => model.nmApelido, new { @class = "form-control", maxlength = "30", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmApelido, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
@@ -61,25 +63,25 @@
     </div>
 </div>
 
-<div class="form-layout fisica">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                @Html.LabelFor(e => e.nmPessoa, "Cliente", new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.nmPessoa, null, new { @class = "text-danger" }.HideIf(readOnly))
+@*<div class="form-layout fisica">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.nmPessoa, "Cliente", new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.nmPessoa, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                @Html.LabelFor(e => e.nmApelido, "Apelido", new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmApelido, new { @class = "form-control", maxlength = "30", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.nmApelido, null, new { @class = "text-danger" }.HideIf(readOnly))
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.nmApelido, "Apelido", new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.nmApelido, new { @class = "form-control", maxlength = "30", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.nmApelido, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
             </div>
-        </div>
 
-    </div>
-</div>
+        </div>
+    </div>*@
 
 
 <h4><i class="fa fa-map-marker"></i> Endereço</h4>
@@ -92,10 +94,10 @@
                 @using (Html.BeginFormContainer(e => e.nrCEP))
                 {
                     @Html.LabelFor(e => e.nrCEP, new { @class = "control-label " })
-                    <div class="input-group" >
+                    <div class="input-group">
                         @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999", maxlength = "10" }.ReadOnlyIf(readOnly))
                         <div class="input-group-addon">
-                            <i class="fa fa-search"  onclick="getCep()"></i>
+                            <i class="fa fa-search" onclick="getCep()"></i>
 
                         </div>
                     </div>
@@ -195,12 +197,12 @@
             </div>
         </div>
         @*<div class="col-lg-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.flContato, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flContato, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" })
 
-            </div>
-        </div>*@
+                </div>
+            </div>*@
 
         <div class="col-lg-3">
             <div class="form-group">
@@ -240,7 +242,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrDocumento, "CNPJ", new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrDocumento, new { @class = "form-control", @mask = "999.999.999-99" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrDocumento, new { @class = "form-control", @mask = "99.999.999/9999-99" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrDocumento, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -253,6 +255,7 @@
         </div>
     </div>
 </div>
+
 
 
 <h4 style="margin-top: 1rem"><i class="fa fa-info"></i> Informações</h4>
