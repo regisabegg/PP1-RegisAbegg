@@ -63,8 +63,11 @@
                 <thead>
                     <tr>
                         <th class="wd-10p" style="text-align:left">Código</th>
-                        <th class="wd-50p">Fornecedor</th>
-                        <th class="wd-10p">DDD</th>
+                        <th class="wd-25p">Cliente</th>
+                        @*<th class="wd-10p">Documento</th>*@
+                        <th class="wd-10p">Tipo</th>
+                        <th class="wd-10p">Telefone</th>
+                        <th class="wd-10p">Celular</th>
                         <th class="wd-10p">Cadastro</th>
                         <th class="wd-10p">Atualização</th>
                         <th class="note-icon-orderedlist"></th>
@@ -112,20 +115,14 @@
     @Scripts.Render("~/Scripts/Fornecedor/Index.js?v=" + DateTime.Now.Ticks)
 
 <script type="text/javascript">
-        @*var RegiaoTipo = function (flRegiao) {
-            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_COESTE")
-                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_COESTE)";
-            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORDESTE")
-                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORDESTE)";
-            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORTE")
-                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_NORTE)";
-            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_SUL")
-                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_SUL)";
-            if (flRegiao == "@PP1.CONTRATO.Entity.Fornecedor.REGIAO_SULDESTE")
-                    return "@PP1.CONTRATO.BLL.FornecedorBLL.RegioTipo(PP1.CONTRATO.Entity.Fornecedor.REGIAO_SULDESTE)";
+          var Tipo = function (flTipo) {
+            if (flTipo == "@PP1.CONTRATO.Entity.Cliente.TIPO_FISICA")
+                return "@PP1.CONTRATO.BLL.ClienteBLL.Tipo(PP1.CONTRATO.Entity.Cliente.TIPO_FISICA)";
+            if (flTipo == "@PP1.CONTRATO.Entity.Cliente.TIPO_JURIDICA")
+                        return "@PP1.CONTRATO.BLL.ClienteBLL.Tipo(PP1.CONTRATO.Entity.Cliente.TIPO_JURIDICA)";
+            return flTipo;
+                }
 
-            return flRegiao;
-            }*@
 
 
 </script>

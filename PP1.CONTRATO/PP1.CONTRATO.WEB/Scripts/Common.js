@@ -35,6 +35,7 @@
 });
 
 
+
 var PhoneMask = function (input) {
     input.unmask();
     var fone = input.val().replace(/\D/g, '');
@@ -62,3 +63,97 @@ $('input.mask.fone').each(function () {
         PhoneMask($(this));
     });
 
+$('.currency').each(function () {
+
+    var aSep = $(this).attr('asep');
+    var aDec = $(this).attr('adec');
+    var vMin = $(this).attr('vmin');
+    var vMax = $(this).attr('vmax');
+    var mDec = $(this).attr('mdec');
+    var moeda = $(this).attr('moeda');
+    var metod = $(this).attr('metod');
+
+    vMin = IsNullOrEmpty(vMin) ? '0' : vMin;
+    vMax = IsNullOrEmpty(vMax) ? '9999999999.99999' : vMax;
+    aSep = aSep == null ? '.' : aSep;
+    aDec = IsNullOrEmpty(aDec) ? ',' : aDec;
+    mDec = IsNullOrEmpty(mDec) ? '2' : mDec;
+    metod = IsNullOrEmpty(metod) ? "init" : metod;
+
+    $(this).autoNumeric(metod, {
+        aSep: aSep,
+        aDec: aDec,
+        vMin: vMin,
+        vMax: vMax,
+        mDec: mDec,
+    }).css('text-align', 'right');;
+});
+
+$(".taxa").autoNumeric('init', {
+    aSep: '.',
+    aDec: ',',
+    nBracket: '(,)',
+    vMin: -999.99,
+    vMax: 999.99
+});
+
+$(".peso").autoNumeric('init', {
+    aSep: '.',
+    aDec: ',',
+    nBracket: '(,)',
+    vMin: 0,
+    mDec: 3,
+    vMax: 199.99
+});
+
+$(".integer").autoNumeric('init', {
+    vMin: 0,
+    vMax: 9999999,
+    mDec: 0,
+    aSep: ''
+});
+
+
+
+// exibe funcionalidade de contador de caracteres a todos elementos textarea com o atributo [maxlength]
+$('textarea[maxlength]:not([data-counter=true])').each(function () {
+
+    var defaults = {};
+    defaults.goal = $(this).attr('maxlength');
+    defaults.text = ($(this).attr('data-textarea-label') || true).toString().toLowerCase() === 'true';
+    defaults.type = $(this).attr('data-textarea-type');
+    defaults = $.extend({ type: 'char' }, defaults);
+    $(this).attr('data-counter', true).counter(defaults);
+});
+
+var NumberFormat = function (value, mDec) {
+
+    aSep = '.';
+    aDec = ',';
+    mDec = IsNullOrEmpty(mDec) ? 2 : mDec;
+
+    var n = value;
+    var prec = mDec;
+    n = !isFinite(+n) ? 0 : +n;
+    prec = !isFinite(+prec) ? 0 : Math.abs(prec);
+    var sep = aSep;
+    var dec = aDec;
+
+    var s = (prec > 0) ? n.toFixed(prec) : Math.round(n).toFixed(prec);
+
+    var abs = Math.abs(n).toFixed(prec);
+    var _, i;
+
+    if (abs >= 1000) {
+        _ = abs.split(/\D/);
+        i = _[0].length % 3 || 3;
+
+        _[0] = s.slice(0, i + (n < 0)) +
+            _[0].slice(i).replace(/(\d{3})/g, sep + '$1');
+
+        s = _.join(dec);
+    } else {
+        s = s.replace('.', dec);
+    }
+    return s;
+};

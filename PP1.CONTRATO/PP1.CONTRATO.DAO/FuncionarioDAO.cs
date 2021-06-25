@@ -5,49 +5,83 @@ using System.Data.SqlClient;
 
 namespace PP1.CONTRATO.DAO
 {
-    public class ClienteDAO : ConexaoDB
+    public class FuncionarioDAO : ConexaoDB
     {
 
         //Atributos
-        //idCliente, nmCliente, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
+        //idFuncionario, nmFuncionario, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
 
         //Método para gravar dados
-        public void Insert(Cliente obj)
+        public void Insert(Funcionario obj)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("insert into cliente (nmcliente, nmapelido, nrdocumento, nrregistro, " +
+                Cmd = new SqlCommand("insert into funcionario (nmfuncionario, nmapelido, nrdocumento, nrregistro, " +
                     "nrtelefone, nrcelular, dsemail, dssite, nmcontato, flcontato, dsobservacao, fltipo, " +
                     "flsituacao, nrcep, nmlogradouro, nrnumero, nmbairro, dscomplemento, vllimite, dtcadastro, " +
-                    "dtatualizacao, idcidade, dtnascimento, flsexo ) values (@nmcliente, @nmapelido, @nrdocumento, @nrregistro, @nrtelefone," +
+                    "dtatualizacao, idcidade, dtnascimento, flsexo ) values (@nmfuncionario, @nmapelido, @nrdocumento, @nrregistro, @nrtelefone," +
                     "@nrcelular, @dsemail, @dssite, @nmcontato, @flcontato, @dsobservacao, @fltipo, @flsituacao, @nrcep, " +
                     "@nmlogradouro, @nrnumero, @nmbairro, @dscomplemento, @vllimite, @dtcadastro, @dtatualizacao, @idcidade, @dtnascimento, @flsexo )", Con);
 
-                Cmd.Parameters.AddWithValue("@nmcliente", obj.nmCliente);
+                Cmd.Parameters.AddWithValue("@nmfuncionario", obj.nmFuncionario);
                 Cmd.Parameters.AddWithValue("@nmapelido", obj.nmApelido ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flinstrucao", obj.flInstrucao ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flcivil", obj.flCivil ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flsexo", obj.flSexo ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsimagem", obj.dsImagem ?? (object)DBNull.Value);
+                //Cmd.Parameters.AddWithValue("@nmapelido", obj.imagem ?? (object)DBNull.Value);
+                //Documentos
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrregistro", obj.nrRegistro ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@nrtelefone", obj.nrTelefone ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@nrcelular", obj.nrCelular ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dsemail", obj.dsEmail ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dssite", obj.dsSite ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@nmcontato", obj.nmContato ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@flcontato", obj.flContato ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dsobservacao", obj.dsObservacao ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@fltipo", obj.flTipo ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@flsituacao", obj.flSituacao ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nmOrgaoRG ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrCTPS ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrPIS ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nmOrgaoCTPS ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrTitulo ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrZona ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrregistro", obj.nrSecao ?? (object)DBNull.Value);
+                //Filiação
+                Cmd.Parameters.AddWithValue("@nrtelefone", obj.nmMae ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrtelefone", obj.nmPai ?? (object)DBNull.Value);
+                //Endereço
                 Cmd.Parameters.AddWithValue("@nrcep", obj.nrCEP ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nmlogradouro", obj.nmLogradouro ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrnumero", obj.nrNumero ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nmbairro", obj.nmBairro ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dscomplemento", obj.dsComplemento ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@vllimite", ((object)obj.vlLimite) ?? DBNull.Value );
+                Cmd.Parameters.AddWithValue("@idcidade", ((object)obj.idCidade) ?? DBNull.Value);
+                //Contato
+                Cmd.Parameters.AddWithValue("@nrtelefone", obj.nrTelefone ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrcelular", obj.nrCelular ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsemail", obj.dsEmail ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dssite", obj.dsSite ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dssite", obj.dsLinkedin ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dssite", obj.dsFacebook ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dssite", obj.dsInstagram ?? (object)DBNull.Value);
+                //Emergência
+                Cmd.Parameters.AddWithValue("@nmcontato", obj.nmContato ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flcontato", obj.flContato ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flcontato", obj.nrFoneEmergecia ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flcontato", obj.nrCelularEmergecia ?? (object)DBNull.Value);
+                //Admissão
+                Cmd.Parameters.AddWithValue("@dtcadastro", ((object)obj.dtAdmissao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtatualizacao", ((object)obj.dtDemissao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nmFuncao ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nmDepartamento ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.flExperiencia ?? (object)DBNull.Value);
+                //Bancários
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nmBanco ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.flTipoConta ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nrAgencia ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nrConta ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.nrDigito ?? (object)DBNull.Value);
+                //Geral
+                Cmd.Parameters.AddWithValue("@dsobservacao", obj.dsObservacao ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flsituacao", obj.flSituacao ?? (object)DBNull.Value);               
                 Cmd.Parameters.AddWithValue("@dtcadastro", ((object)obj.dtCadastro) ?? DBNull.Value );
                 Cmd.Parameters.AddWithValue("@dtatualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@flsexo", obj.flSexo ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@idcidade", ((object)obj.idCidade) ?? DBNull.Value);
 
                 //cmd.Parameters.Add("@units", SqlDbType.Int).Value = units ?? (object)DBNull.Value; 
                 //cmd.Parameters.Add("@range", SqlDbType.Int).Value = range ?? (object)DBNull.Value;
@@ -62,7 +96,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao inserir o Cliente: " + ex.Message);
+                throw new Exception("Erro ao inserir o Funcionario: " + ex.Message);
             }
             finally
             {
@@ -71,19 +105,19 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para atualizar dados
-        public void Update(Cliente obj)
+        public void Update(Funcionario obj)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("update cliente set nmcliente=@nmcliente, nmapelido=@nmapelido, nrdocumento=@nrdocumento, " +
+                Cmd = new SqlCommand("update funcionario set nmfuncionario=@nmfuncionario, nmapelido=@nmapelido, nrdocumento=@nrdocumento, " +
                     "nrregistro=@nrregistro, nrtelefone=@nrtelefone, nrcelular=@nrcelular, dsemail=@dsemail, dssite=@dssite," +
                     "nmcontato=@nmcontato, flcontato=@flcontato,  dsobservacao=@dsobservacao,  fltipo=@fltipo,  flsituacao=@flsituacao," +
                     "nrcep=@nrcep,  nmlogradouro=@nmlogradouro,  nrnumero=@nrnumero,  dscomplemento=@dscomplemento,  vllimite=@vllimite, " +
                     "dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao,  idcidade=@idcidade, dtnascimento=@dtnascimento, flsexo=@flsexo " +
-                    "where idcliente = @idcliente", Con);
+                    "where idfuncionario = @idfuncionario", Con);
 
-                Cmd.Parameters.AddWithValue("@nmcliente", obj.nmCliente);
+                Cmd.Parameters.AddWithValue("@nmfuncionario", obj.nmFuncionario);
                 Cmd.Parameters.AddWithValue("@nmapelido", obj.nmApelido ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrregistro", obj.nrRegistro ?? (object)DBNull.Value);
@@ -94,20 +128,20 @@ namespace PP1.CONTRATO.DAO
                 Cmd.Parameters.AddWithValue("@nmcontato", obj.nmContato ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flcontato", obj.flContato ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dsobservacao", obj.dsObservacao ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@fltipo", obj.flTipo ?? (object)DBNull.Value);
+             
                 Cmd.Parameters.AddWithValue("@flsituacao", obj.flSituacao ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrcep", obj.nrCEP ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nmlogradouro", obj.nmLogradouro ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrnumero", obj.nrNumero ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nmbairro", obj.nmBairro ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dscomplemento", obj.dsComplemento ?? (object)DBNull.Value);
-                Cmd.Parameters.AddWithValue("@vllimite", ((object)obj.vlLimite) ?? DBNull.Value);
+          
                 Cmd.Parameters.AddWithValue("@dtcadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtatualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flsexo", ((object)obj.flSexo) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@idcidade", ((object)obj.idCidade) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@idcliente", ((object)obj.idCliente) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idfuncionario", ((object)obj.idFuncionario) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -115,7 +149,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao atualizar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao atualizar o Funcionario: " + ex.Message);
             }
             finally
             {
@@ -129,7 +163,7 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("delete from cliente where idcliente = @v1", Con);
+                Cmd = new SqlCommand("delete from funcionario where idfuncionario = @v1", Con);
 
                 Cmd.Parameters.AddWithValue("@v1", id);
 
@@ -139,7 +173,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao excluir o Cliente: " + ex.Message);
+                throw new Exception("Erro ao excluir o Funcionario: " + ex.Message);
             }
             finally
             {
@@ -148,22 +182,22 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar pelo Código
-        public Cliente FindID(int id)
+        public Funcionario FindID(int id)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente where idcliente=@v1", Con);
+                Cmd = new SqlCommand("select * from funcionario where idfuncionario=@v1", Con);
                 Cmd.Parameters.AddWithValue("@v1", id);
                 Dr = Cmd.ExecuteReader();
 
-                Cliente obj = null;
+                Funcionario obj = null;
                 if (Dr.Read())
                 {
-                    obj = new Cliente();
+                    obj = new Funcionario();
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null);
+                    obj.idFuncionario = Convert.ToInt32(Dr["idfuncionario"]);
+                    obj.nmFuncionario = Convert.ToString(Dr["nmfuncionario"] != DBNull.Value ? Dr["nmfuncionario"] : null);
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -174,14 +208,14 @@ namespace PP1.CONTRATO.DAO
                     obj.nmContato = Convert.ToString(Dr["nmcontato"] != DBNull.Value ? Dr["nmcontato"] : null);
                     obj.flContato = Convert.ToString(Dr["flcontato"] != DBNull.Value ? Dr["flcontato"] : null);
                     obj.dsObservacao = Convert.ToString(Dr["dsobservacao"] != DBNull.Value ? Dr["dsobservacao"] : null);
-                    obj.flTipo = Convert.ToString(Dr["fltipo"] != DBNull.Value ? Dr["fltipo"] : null);
+                
                     obj.flSituacao = Convert.ToString(Dr["flsituacao"] != DBNull.Value ? Dr["flsituacao"] : null);
                     obj.nrCEP = Convert.ToString(Dr["nrcep"] != DBNull.Value ? Dr["nrcep"] : null);
                     obj.nmLogradouro = Convert.ToString(Dr["nmlogradouro"] != DBNull.Value ? Dr["nmlogradouro"] : null);
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
@@ -193,7 +227,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
             }
             finally
             {
@@ -201,26 +235,26 @@ namespace PP1.CONTRATO.DAO
             }
         }
 
-        public List<Cliente> FindFilter(string filter)
+        public List<Funcionario> FindFilter(string filter)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente where nmcliente like @v1 or  nmapelido like @v2 or nrdocumento like @v3", Con);
+                Cmd = new SqlCommand("select * from funcionario where nmfuncionario like @v1 or  nmapelido like @v2 or nrdocumento like @v3", Con);
                 Cmd.Parameters.AddWithValue("@v1", "%" + filter + "%");
                 Cmd.Parameters.AddWithValue("@v2", "%" + filter + "%");
                 Cmd.Parameters.AddWithValue("@v3", "%" + filter + "%");
                 Dr = Cmd.ExecuteReader();
 
-                List<Cliente> list = new List<Cliente>();
+                List<Funcionario> list = new List<Funcionario>();
 
                 while (Dr.Read())
                 {
-                    Cliente obj = new Cliente();
+                    Funcionario obj = new Funcionario();
 
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null);
+                    obj.idFuncionario = Convert.ToInt32(Dr["idfuncionario"]);
+                    obj.nmFuncionario = Convert.ToString(Dr["nmfuncionario"] != DBNull.Value ? Dr["nmfuncionario"] : null);
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -231,14 +265,14 @@ namespace PP1.CONTRATO.DAO
                     obj.nmContato = Convert.ToString(Dr["nmcontato"] != DBNull.Value ? Dr["nmcontato"] : null);
                     obj.flContato = Convert.ToString(Dr["flcontato"] != DBNull.Value ? Dr["flcontato"] : null);
                     obj.dsObservacao = Convert.ToString(Dr["dsobservacao"] != DBNull.Value ? Dr["dsobservacao"] : null);
-                    obj.flTipo = Convert.ToString(Dr["fltipo"] != DBNull.Value ? Dr["fltipo"] : null);
+               
                     obj.flSituacao = Convert.ToString(Dr["flsituacao"] != DBNull.Value ? Dr["flsituacao"] : null);
                     obj.nrCEP = Convert.ToString(Dr["nrcep"] != DBNull.Value ? Dr["nrcep"] : null);
                     obj.nmLogradouro = Convert.ToString(Dr["nmlogradouro"] != DBNull.Value ? Dr["nmlogradouro"] : null);
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                  ;
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
@@ -252,7 +286,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
             }
             finally
             {
@@ -261,23 +295,23 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar todos os dados
-        public List<Cliente> FindAll()
+        public List<Funcionario> FindAll()
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente", Con);
+                Cmd = new SqlCommand("select * from funcionario", Con);
                 Dr = Cmd.ExecuteReader();
 
-                List<Cliente> list = new List<Cliente>();
+                List<Funcionario> list = new List<Funcionario>();
 
 
                 while (Dr.Read())
                 {
-                    Cliente obj = new Cliente();
+                    Funcionario obj = new Funcionario();
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null );
+                    obj.idFuncionario = Convert.ToInt32(Dr["idfuncionario"]);
+                    obj.nmFuncionario = Convert.ToString(Dr["nmfuncionario"] != DBNull.Value ? Dr["nmfuncionario"] : null );
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -288,14 +322,14 @@ namespace PP1.CONTRATO.DAO
                     obj.nmContato = Convert.ToString(Dr["nmcontato"] != DBNull.Value ? Dr["nmcontato"] : null);
                     obj.flContato = Convert.ToString(Dr["flcontato"] != DBNull.Value ? Dr["flcontato"] : null);
                     obj.dsObservacao = Convert.ToString(Dr["dsobservacao"] != DBNull.Value ? Dr["dsobservacao"] : null);
-                    obj.flTipo = Convert.ToString(Dr["fltipo"] != DBNull.Value ? Dr["fltipo"] : null);
+           
                     obj.flSituacao = Convert.ToString(Dr["flsituacao"] != DBNull.Value ? Dr["flsituacao"] : null);
                     obj.nrCEP = Convert.ToString(Dr["nrcep"] != DBNull.Value ? Dr["nrcep"] : null);
                     obj.nmLogradouro = Convert.ToString(Dr["nmlogradouro"] != DBNull.Value ? Dr["nmlogradouro"] : null);
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                  
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
@@ -309,7 +343,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
             }
             finally
             {

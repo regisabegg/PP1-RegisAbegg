@@ -42,11 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FuncionarioDAO.cs" />
+    <Compile Include="ForncedorDAO.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="CidadeDAO.cs" />
     <Compile Include="ClienteDAO.cs" />
     <Compile Include="Inter.cs" />
     <Compile Include="EstadoDAO.cs" />
+    <Compile Include="FormaPagtoDAO.cs" />
     <Compile Include="PaisDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

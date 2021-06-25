@@ -5,26 +5,26 @@ using System.Data.SqlClient;
 
 namespace PP1.CONTRATO.DAO
 {
-    public class ClienteDAO : ConexaoDB
+    public class FornecedorDAO : ConexaoDB
     {
 
         //Atributos
-        //idCliente, nmCliente, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
+        //idFornecedor, nmFornecedor, dsUF, nrDDI, dtCadastro, dtAtualizacao, 
 
         //Método para gravar dados
-        public void Insert(Cliente obj)
+        public void Insert(Fornecedor obj)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("insert into cliente (nmcliente, nmapelido, nrdocumento, nrregistro, " +
+                Cmd = new SqlCommand("insert into fornecedor (nmfornecedor, nmapelido, nrdocumento, nrregistro, " +
                     "nrtelefone, nrcelular, dsemail, dssite, nmcontato, flcontato, dsobservacao, fltipo, " +
                     "flsituacao, nrcep, nmlogradouro, nrnumero, nmbairro, dscomplemento, vllimite, dtcadastro, " +
-                    "dtatualizacao, idcidade, dtnascimento, flsexo ) values (@nmcliente, @nmapelido, @nrdocumento, @nrregistro, @nrtelefone," +
+                    "dtatualizacao, dtnascimento, flsexo, idcidade ) values (@nmfornecedor, @nmapelido, @nrdocumento, @nrregistro, @nrtelefone," +
                     "@nrcelular, @dsemail, @dssite, @nmcontato, @flcontato, @dsobservacao, @fltipo, @flsituacao, @nrcep, " +
-                    "@nmlogradouro, @nrnumero, @nmbairro, @dscomplemento, @vllimite, @dtcadastro, @dtatualizacao, @idcidade, @dtnascimento, @flsexo )", Con);
+                    "@nmlogradouro, @nrnumero, @nmbairro, @dscomplemento, @vllimite, @dtcadastro, @dtatualizacao, @dtnascimento, @flsexo, @idcidade )", Con);
 
-                Cmd.Parameters.AddWithValue("@nmcliente", obj.nmCliente);
+                Cmd.Parameters.AddWithValue("@nmfornecedor", obj.nmFornecedor);
                 Cmd.Parameters.AddWithValue("@nmapelido", obj.nmApelido ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrregistro", obj.nrRegistro ?? (object)DBNull.Value);
@@ -62,7 +62,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao inserir o Cliente: " + ex.Message);
+                throw new Exception("Erro ao inserir o Fornecedor: " + ex.Message);
             }
             finally
             {
@@ -71,19 +71,19 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para atualizar dados
-        public void Update(Cliente obj)
+        public void Update(Fornecedor obj)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("update cliente set nmcliente=@nmcliente, nmapelido=@nmapelido, nrdocumento=@nrdocumento, " +
+                Cmd = new SqlCommand("update fornecedor set nmfornecedor=@nmfornecedor, nmapelido=@nmapelido, nrdocumento=@nrdocumento, " +
                     "nrregistro=@nrregistro, nrtelefone=@nrtelefone, nrcelular=@nrcelular, dsemail=@dsemail, dssite=@dssite," +
                     "nmcontato=@nmcontato, flcontato=@flcontato,  dsobservacao=@dsobservacao,  fltipo=@fltipo,  flsituacao=@flsituacao," +
                     "nrcep=@nrcep,  nmlogradouro=@nmlogradouro,  nrnumero=@nrnumero,  dscomplemento=@dscomplemento,  vllimite=@vllimite, " +
-                    "dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao,  idcidade=@idcidade, dtnascimento=@dtnascimento, flsexo=@flsexo " +
-                    "where idcliente = @idcliente", Con);
+                    "dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao, dtnascimento=@dtnascimento, flsexo=@flsexo,  idcidade=@idcidade " +
+                    "where idfornecedor = @idfornecedor", Con);
 
-                Cmd.Parameters.AddWithValue("@nmcliente", obj.nmCliente);
+                Cmd.Parameters.AddWithValue("@nmfornecedor", obj.nmFornecedor);
                 Cmd.Parameters.AddWithValue("@nmapelido", obj.nmApelido ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrregistro", obj.nrRegistro ?? (object)DBNull.Value);
@@ -107,7 +107,7 @@ namespace PP1.CONTRATO.DAO
                 Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flsexo", ((object)obj.flSexo) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@idcidade", ((object)obj.idCidade) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@idcliente", ((object)obj.idCliente) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idfornecedor", ((object)obj.idFornecedor) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -115,7 +115,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao atualizar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao atualizar o Fornecedor: " + ex.Message);
             }
             finally
             {
@@ -129,7 +129,7 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("delete from cliente where idcliente = @v1", Con);
+                Cmd = new SqlCommand("delete from fornecedor where idfornecedor = @v1", Con);
 
                 Cmd.Parameters.AddWithValue("@v1", id);
 
@@ -139,7 +139,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao excluir o Cliente: " + ex.Message);
+                throw new Exception("Erro ao excluir o Fornecedor: " + ex.Message);
             }
             finally
             {
@@ -148,22 +148,22 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar pelo Código
-        public Cliente FindID(int id)
+        public Fornecedor FindID(int id)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente where idcliente=@v1", Con);
+                Cmd = new SqlCommand("select * from fornecedor where idfornecedor=@v1", Con);
                 Cmd.Parameters.AddWithValue("@v1", id);
                 Dr = Cmd.ExecuteReader();
 
-                Cliente obj = null;
+                Fornecedor obj = null;
                 if (Dr.Read())
                 {
-                    obj = new Cliente();
+                    obj = new Fornecedor();
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null);
+                    obj.idFornecedor = Convert.ToInt32(Dr["idfornecedor"]);
+                    obj.nmFornecedor = Convert.ToString(Dr["nmfornecedor"] != DBNull.Value ? Dr["nmfornecedor"] : null);
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -193,7 +193,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Fornecedor: " + ex.Message);
             }
             finally
             {
@@ -201,26 +201,26 @@ namespace PP1.CONTRATO.DAO
             }
         }
 
-        public List<Cliente> FindFilter(string filter)
+        public List<Fornecedor> FindFilter(string filter)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente where nmcliente like @v1 or  nmapelido like @v2 or nrdocumento like @v3", Con);
+                Cmd = new SqlCommand("select * from fornecedor where nmfornecedor like @v1 or  nmapelido like @v2 or nrdocumento like @v3", Con);
                 Cmd.Parameters.AddWithValue("@v1", "%" + filter + "%");
                 Cmd.Parameters.AddWithValue("@v2", "%" + filter + "%");
                 Cmd.Parameters.AddWithValue("@v3", "%" + filter + "%");
                 Dr = Cmd.ExecuteReader();
 
-                List<Cliente> list = new List<Cliente>();
+                List<Fornecedor> list = new List<Fornecedor>();
 
                 while (Dr.Read())
                 {
-                    Cliente obj = new Cliente();
+                    Fornecedor obj = new Fornecedor();
 
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null);
+                    obj.idFornecedor = Convert.ToInt32(Dr["idfornecedor"]);
+                    obj.nmFornecedor = Convert.ToString(Dr["nmfornecedor"] != DBNull.Value ? Dr["nmfornecedor"] : null);
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -252,7 +252,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Fornecedor: " + ex.Message);
             }
             finally
             {
@@ -261,23 +261,23 @@ namespace PP1.CONTRATO.DAO
         }
 
         //Método para localizar todos os dados
-        public List<Cliente> FindAll()
+        public List<Fornecedor> FindAll()
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from cliente", Con);
+                Cmd = new SqlCommand("select * from fornecedor", Con);
                 Dr = Cmd.ExecuteReader();
 
-                List<Cliente> list = new List<Cliente>();
+                List<Fornecedor> list = new List<Fornecedor>();
 
 
                 while (Dr.Read())
                 {
-                    Cliente obj = new Cliente();
+                    Fornecedor obj = new Fornecedor();
 
-                    obj.idCliente = Convert.ToInt32(Dr["idcliente"]);
-                    obj.nmCliente = Convert.ToString(Dr["nmcliente"] != DBNull.Value ? Dr["nmcliente"] : null );
+                    obj.idFornecedor = Convert.ToInt32(Dr["idfornecedor"]);
+                    obj.nmFornecedor = Convert.ToString(Dr["nmfornecedor"] != DBNull.Value ? Dr["nmfornecedor"] : null );
                     obj.nmApelido = Convert.ToString(Dr["nmapelido"] != DBNull.Value ? Dr["nmapelido"] : null);
                     obj.nrDocumento = Convert.ToString(Dr["nrdocumento"] != DBNull.Value ? Dr["nrdocumento"] : null);
                     obj.nrRegistro = Convert.ToString(Dr["nrregistro"] != DBNull.Value ? Dr["nrregistro"] : null);
@@ -309,7 +309,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Fornecedor: " + ex.Message);
             }
             finally
             {

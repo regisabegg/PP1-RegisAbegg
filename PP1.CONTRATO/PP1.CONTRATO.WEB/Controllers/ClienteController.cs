@@ -152,15 +152,12 @@ namespace PP1.CONTRATO.WEB.Controllers
             {
                 idPai = obj.idCliente,
                 nmPessoa = obj.nmCliente,
-                nmApelido = obj.nmApelido,
-                nrDocumento = obj.nrDocumento,
-                nrRegistro = obj.nrRegistro,
+
+
                 nrTelefone = obj.nrTelefone,
                 nrCelular = obj.nrCelular,
                 dsEmail = obj.dsEmail,
-                dsSite = obj.dsSite,
-                nmContato = obj.nmContato,
-                flContato = obj.flContato,
+
                 dsObservacao = obj.dsObservacao,
                 flTipo = obj.flTipo,
                 flSituacao = obj.flSituacao,
@@ -171,8 +168,26 @@ namespace PP1.CONTRATO.WEB.Controllers
                 dsComplemento = obj.dsComplemento,
                 vlLimite = obj.vlLimite,
                 dtCadastro = obj.dtCadastro,
-                dtAtualizacao = obj.dtAtualizacao,                
-                idCidade = obj.idCidade
+                dtAtualizacao = obj.dtAtualizacao,
+                idCidade = obj.idCidade,
+                Fisica = new ClienteVM.PessoaFisicaVM
+                {
+                    nmApelido = obj.nmApelido,
+                    nrCPF = obj.nrDocumento,
+                    nrRG = obj.nrRegistro,
+                    dtNascimento = obj.dtNascimento,
+                    flSexo = obj.flSexo
+                },
+                Juridica = new ClienteVM.PessoaJuridicaVM
+                {
+                    dsSite = obj.dsSite,
+                    nmContato = obj.nmContato,
+                    flContato = obj.flContato,
+                    nrCNPJ = obj.nrDocumento,
+                    nrIE = obj.nrRegistro,
+                    nmFantasia = obj.nmApelido,
+
+                }
             };
             var objCidade = DAOCidade.FindID(result.idCidade);
             result.Cidade = new Models.Cidade.ConsultaVM { id = objCidade.idCidade, text = objCidade.nmCidade };
@@ -364,6 +379,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.vlLimite,
                 u.dtCadastro,
                 u.dtAtualizacao,
+                u.dtNascimento,
+                u.flSexo,
                 u.idCidade             
 
             }).OrderBy(u => u.idCliente).ToList();
@@ -401,6 +418,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.vlLimite,
                 u.dtCadastro,
                 u.dtAtualizacao,
+                u.dtNascimento,
+                u.flSexo,
                 u.idCidade
 
             }).OrderBy(u => u.idCliente).ToList();

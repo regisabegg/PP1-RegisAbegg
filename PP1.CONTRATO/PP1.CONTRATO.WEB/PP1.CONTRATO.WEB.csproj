@@ -2090,6 +2090,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Cliente\Index.js" />
     <Content Include="Scripts\Fornecedor\Create.js" />
+    <Content Include="Scripts\Fornecedor\Index.js" />
     <Content Include="Scripts\Funcionario\Create.js" />
     <Content Include="Scripts\Cliente\Create.js" />
     <Content Include="Scripts\Common.js" />
@@ -2124,6 +2125,7 @@
     <Content Include="Scripts\LocalStorage.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Estado\Index.js" />
+    <Content Include="Scripts\FormaPagto\Index.js" />
     <Content Include="Scripts\Pais\Index.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\select\functions.js" />

@@ -9,14 +9,9 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
 {
     public class PessoaVM : Pai.PaiVM
     {    
-        
-        public string nmPessoa{ get; set; }
-
-        public string nmApelido { get; set; }
-
-        public string nrDocumento { get; set; }
-
-        public string nrRegistro { get; set; }
+        [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "Por favor, informe o cliente!")]
+        public string nmPessoa { get; set; }
 
         [Display(Name = "Telefone")]
         public string nrTelefone { get; set; }
@@ -27,15 +22,7 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
         [Display(Name = "E-mail")]
         public string dsEmail { get; set; }
 
-        [Display(Name = "Site")]
-        public string dsSite { get; set; }
-
-        [Display(Name = "Contato")]
-        public string nmContato { get; set; }
-
-        [Display(Name = "Tipo Contato")]
-        public string flContato { get; set; }
-
+        
         [Display(Name = "Observações")]
         public string dsObservacao { get; set; }
 
@@ -61,22 +48,12 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
         [Display(Name = "Complemento")]
         public string dsComplemento { get; set; }
 
-        [Display(Name = "Código Estado")]
+        [Display(Name = "Código Cidade")]
         public int idCidade { get; set; }
 
         public Cidade.ConsultaVM Cidade { get; set; }
 
-        //public Entity.Cliente VM2E(Entity.Cliente bean)
-        //{
-        //    bean.nmCliente = this.nmCliente;
-        //    bean.nrDDD = this.nrDDD;
-        //    bean.nrIBGE = this.nrIBGE;
-        //    bean.dtAtualizacao = this.dtAtualizacao;
-        //    bean.dtCadastro = this.dtCadastro;
-        //    bean.idEstado = this.idEstado;
-
-        //    return bean;
-        //}
+       
 
         public static SelectListItem[] Situacao
         {
@@ -107,9 +84,9 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
             get
             {
                 return new[]
-                {
-                    new SelectListItem { Value = "M", Text = "MASCULINO" },
-                    new SelectListItem { Value = "F", Text = "FEMININO" }
+                {                    
+                    new SelectListItem { Value = "F", Text = "FEMININO" },
+                    new SelectListItem { Value = "M", Text = "MASCULINO" }
                 };
             }
         }
@@ -121,6 +98,7 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
             {
                 return new[]
                 {
+                    new SelectListItem { Value = "", Text = "" },
                     new SelectListItem { Value = "D", Text = "DIRETOR" },
                     new SelectListItem { Value = "G", Text = "GERENTE" },
                     new SelectListItem { Value = "V", Text = "VENDEDOR" },

@@ -14,7 +14,7 @@ namespace PP1.CONTRATO.WEB.Models.Pai
 
         public string nrDDI { get; set; }
         [Display(Name = "Cadastro")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+        [DisplayFormat(DataFormatString  = "mm/dd/yyyy")]
         public DateTime dtCadastro { get; set; }
         [Display(Name = "Atualização")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]

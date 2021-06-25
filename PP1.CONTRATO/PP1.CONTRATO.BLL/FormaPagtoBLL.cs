@@ -5,105 +5,103 @@ using System.Collections.Generic;
 
 namespace PP1.CONTRATO.BLL
 {
-    public class ClienteBLL
+    public class FormaPagtoBLL
     {
 
-        private ClienteDAO objClienteDAO;
+        private FormaPagtoDAO objFormaPagtoDAO;
 
-        public ClienteBLL()
+        public FormaPagtoBLL()
         {
-            objClienteDAO = new ClienteDAO();
+            objFormaPagtoDAO = new FormaPagtoDAO();
 
         }
 
-        public void create(Cliente objCliente)
+        public void create(FormaPagto objFormaPagto)
         {
             bool verificacao = true;
 
-            string nome = objCliente.nmCliente;
+            string nome = objFormaPagto.nmFormaPagto;
             if (nome == null)
             {
-
+                
                 return;
             }
             else
             {
-                nome = objCliente.nmCliente.Trim();
+                nome = objFormaPagto.nmFormaPagto.Trim();
                 verificacao = nome.Length <= 50 && nome.Length > 0;
                 if (!verificacao)
                 {
-
+                   
                     return;
                 }
 
             }
-
-            objClienteDAO.Insert(objCliente);
+           
+            objFormaPagtoDAO.Insert(objFormaPagto);
             return;
         }
 
-
-        public void update(Cliente objCliente)
+       
+        public void update(FormaPagto objFormaPagto)
         {
             bool verificacao = true;
-
-            string codigo = objCliente.idCliente.ToString();
+         
+            string codigo = objFormaPagto.idFormaPagto.ToString();
             long id = 0;
             if (codigo == null)
             {
-
+               
                 return;
             }
             else
             {
                 try
                 {
-                    id = Convert.ToInt64(objCliente.idCliente);
+                    id = Convert.ToInt64(objFormaPagto.idFormaPagto);
                     verificacao = codigo.Length > 0 && codigo.Length < 999999;
 
 
                     if (!verificacao)
                     {
-
+                       
                         return;
                     }
                 }
                 catch (Exception)
                 {
-
+                    
                     return;
                 }
 
             }
            ;
-            objClienteDAO.Update(objCliente);
+            objFormaPagtoDAO.Update(objFormaPagto);
             return;
         }
 
+        //public FormaPagto delete(int id)
+        //{
+        //    objFormaPagtoDAO.Delete(id);
 
-        public Cliente find(int id)
+        //    return (d);
+
+        //}
+
+        public FormaPagto find(int id)
         {
-            return objClienteDAO.FindID(id);
+            return objFormaPagtoDAO.FindID(id);
         }
 
-        public List<Cliente> findFilter(string filter)
+        public List<FormaPagto> findFilter(string filter)
         {
-            return objClienteDAO.FindFilter(filter);
+            return objFormaPagtoDAO.FindFilter(filter);
         }
 
-        public List<Cliente> findAll()
+        public List<FormaPagto> findAll()
         {
-            return objClienteDAO.FindAll();
+            return objFormaPagtoDAO.FindAll();
         }
-
-        public static string Tipo(string flTipo)
-        {
-            if (flTipo == Cliente.TIPO_FISICA)
-                return "FÍSICO";
-            if (flTipo == Cliente.TIPO_JURIDICA)
-                return "JURÍRIDICO";
-
-            return flTipo;
-        }
+       
     }
 }

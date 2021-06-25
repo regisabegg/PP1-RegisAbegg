@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CidadeBLL.cs" />
+    <Compile Include="FornecedorBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="EstadoBLL.cs" />
+    <Compile Include="FormaPagtoBLL.cs" />
     <Compile Include="PaisBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

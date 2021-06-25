@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace PP1.CONTRATO.BLL
 {
-    public class ClienteBLL
+    public class FornecedorBLL
     {
 
-        private ClienteDAO objClienteDAO;
+        private FornecedorDAO objFornecedorDAO;
 
-        public ClienteBLL()
+        public FornecedorBLL()
         {
-            objClienteDAO = new ClienteDAO();
+            objFornecedorDAO = new FornecedorDAO();
 
         }
 
-        public void create(Cliente objCliente)
+        public void create(Fornecedor objFornecedor)
         {
             bool verificacao = true;
 
-            string nome = objCliente.nmCliente;
+            string nome = objFornecedor.nmFornecedor;
             if (nome == null)
             {
 
@@ -28,7 +28,7 @@ namespace PP1.CONTRATO.BLL
             }
             else
             {
-                nome = objCliente.nmCliente.Trim();
+                nome = objFornecedor.nmFornecedor.Trim();
                 verificacao = nome.Length <= 50 && nome.Length > 0;
                 if (!verificacao)
                 {
@@ -38,16 +38,16 @@ namespace PP1.CONTRATO.BLL
 
             }
 
-            objClienteDAO.Insert(objCliente);
+            objFornecedorDAO.Insert(objFornecedor);
             return;
         }
 
 
-        public void update(Cliente objCliente)
+        public void update(Fornecedor objFornecedor)
         {
             bool verificacao = true;
 
-            string codigo = objCliente.idCliente.ToString();
+            string codigo = objFornecedor.idFornecedor.ToString();
             long id = 0;
             if (codigo == null)
             {
@@ -58,7 +58,7 @@ namespace PP1.CONTRATO.BLL
             {
                 try
                 {
-                    id = Convert.ToInt64(objCliente.idCliente);
+                    id = Convert.ToInt64(objFornecedor.idFornecedor);
                     verificacao = codigo.Length > 0 && codigo.Length < 999999;
 
 
@@ -76,31 +76,31 @@ namespace PP1.CONTRATO.BLL
 
             }
            ;
-            objClienteDAO.Update(objCliente);
+            objFornecedorDAO.Update(objFornecedor);
             return;
         }
 
 
-        public Cliente find(int id)
+        public Fornecedor find(int id)
         {
-            return objClienteDAO.FindID(id);
+            return objFornecedorDAO.FindID(id);
         }
 
-        public List<Cliente> findFilter(string filter)
+        public List<Fornecedor> findFilter(string filter)
         {
-            return objClienteDAO.FindFilter(filter);
+            return objFornecedorDAO.FindFilter(filter);
         }
 
-        public List<Cliente> findAll()
+        public List<Fornecedor> findAll()
         {
-            return objClienteDAO.FindAll();
+            return objFornecedorDAO.FindAll();
         }
 
         public static string Tipo(string flTipo)
         {
-            if (flTipo == Cliente.TIPO_FISICA)
+            if (flTipo == Fornecedor.TIPO_FISICA)
                 return "FÍSICO";
-            if (flTipo == Cliente.TIPO_JURIDICA)
+            if (flTipo == Fornecedor.TIPO_JURIDICA)
                 return "JURÍRIDICO";
 
             return flTipo;

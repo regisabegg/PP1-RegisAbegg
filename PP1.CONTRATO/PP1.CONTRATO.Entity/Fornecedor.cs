@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PP1.CONTRATO.Entity
 {
-    public class Cliente
+    public class Fornecedor
     {
-        public int idCliente { get; set; }
+        public int idFornecedor { get; set; }
 
-        public string nmCliente { get; set; }
+        public string nmFornecedor { get; set; }
 
         public string nmApelido { get; set; }
 
