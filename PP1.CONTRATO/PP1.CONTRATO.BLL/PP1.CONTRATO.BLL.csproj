@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CidadeBLL.cs" />
+    <Compile Include="FuncionarioBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="EstadoBLL.cs" />

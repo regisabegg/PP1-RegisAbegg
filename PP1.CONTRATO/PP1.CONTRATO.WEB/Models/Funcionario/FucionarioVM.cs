@@ -7,18 +7,10 @@ using System.Web.Mvc;
 
 namespace PP1.CONTRATO.WEB.Models.Funcionario
 {
-    public class FuncionarioVM
+    public class FuncionarioVM : Pessoa.PessoaVM
     {
-        [Display(Name = "Código")]
-        public int idFuncionario { get; set; }
-
-        [Display(Name = "Funcionário")]
-        [Required]
-        public string nmFuncionario { get; set; }
-
         [Display(Name = "Apelido/Crachá")]
-        [Required]
-        public string nmSobreNome { get; set; }
+        public string nmApelido{ get; set; }
 
         [Display(Name = "Grau de instrução")]
         public string flInstrucao { get; set; }
@@ -26,9 +18,12 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         [Display(Name = "Estado civil")]
         public string flCivil { get; set; }
 
+        [Display(Name = "Sexo")]
+        public string flSexo { get; set; }
+
         [Display(Name = "Nascimento")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtNascimento { get; set; }
+        public DateTime? dtNascimento { get; set; }
 
         public string dsImagem { get; set; }
 
@@ -73,36 +68,8 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         [Display(Name = "Nome do pai")]
         public string nmPai { get; set; }
 
-        //Endereço
-
-        [Display(Name = "CEP")]
-        public string nrCEP { get; set; }
-
-        [Display(Name = "Logradouro")]
-        public string nmLogradouro { get; set; }
-
-        [Display(Name = "Número")]
-        public string nrNumero { get; set; }
-
-        [Display(Name = "Bairro")]
-        public string nmBairro { get; set; }
-
-        [Display(Name = "Complemento")]
-        public string dsComplemento { get; set; }
-
-        [Display(Name = "Código Estado")]
-        public int idEstado { get; set; }
 
         //Contato
-
-        [Display(Name = "Telefone")]
-        public string nrTelefone { get; set; }
-
-        [Display(Name = "Celular")]
-        public string nrCelular{ get; set; }
-
-        [Display(Name = "E-mail")]
-        public string dsEmail { get; set; }
 
         [Display(Name = "Site")]
         public string dsSite { get; set; }
@@ -139,7 +106,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 
         [Display(Name = "Demissão")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtDemissao { get; set; }
+        public DateTime? dtDemissao { get; set; }
 
         [Display(Name = "Função")]
         public string nmFuncao { get; set; }
@@ -166,48 +133,72 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 
         [Display(Name = "Dígito")]
         public string nrDigito { get; set; }
-
-        //Geral 
-
-        [Display(Name = "Observações")]
-        public string dsObservacao { get; set; }
-
-        [Display(Name = "Situação")]
-        public string flSituacao { get; set; }
-
-        [Display(Name = "Cadastro")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtCadastro { get; set; }
-
-        [Display(Name = "Atualização")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtAtualizacao { get; set; }
-
-        public Models.Estado.ConsultaVM Estado { get; set; }
-
-        //public Entity.Funcionario VM2E(Entity.Funcionario bean)
-        //{
-        //    bean.nmFuncionario = this.nmFuncionario;
-        //    bean.nrDDD = this.nrDDD;
-        //    bean.nrIBGE = this.nrIBGE;
-        //    bean.dtAtualizacao = this.dtAtualizacao;
-        //    bean.dtCadastro = this.dtCadastro;
-        //    bean.idEstado = this.idEstado;
-
-        //    return bean;
-        //}
-
-        public static SelectListItem[] Situacao
+              
+        public Entity.Funcionario VM2E(Entity.Funcionario bean)
         {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "A", Text = "ATIVA" },
-                    new SelectListItem { Value = "I", Text = "INATIVA" }
-                };
-            }
+            bean.nmFuncionario = this.nmPessoa;                                     
+            bean.flInstrucao = this.flInstrucao;
+            bean.flCivil = this.flCivil;
+            bean.flSexo = this.flSexo;
+            bean.dtNascimento = this.dtNascimento;
+            bean.dsImagem = this.dsImagem;
+            //nmapelido = this.imagem;
+            //Documentos
+            bean.nrDocumento = this.nrCPF;
+            bean.nrRegistro = this.nrRG;
+            bean.nmOrgaoRG = this.nmOrgaoRG;
+            bean.nrCTPS = this.nrCTPS;
+            bean.nrPIS = this.nrPIS;
+            bean.nmOrgaoCTPS = this.nmOrgaoCTPS;
+            bean.nrTitulo = this.nrTitulo;
+            bean.nrZona = this.nrZona;
+            bean.nrSecao = this.nrSecao;
+            //Filiação
+            bean.nmMae = this.nmMae;
+            bean.nmPai = this.nmPai;
+            //Endereço
+            bean.nrCEP = !string.IsNullOrEmpty(this.nrCEP) ? this.nrCEP.Replace("-", "") : this.nrCEP;
+            bean.nmLogradouro = this.nmLogradouro;
+            bean.nrNumero = this.nrNumero;
+            bean.nmBairro = this.nmBairro;
+            bean.dsComplemento = this.dsComplemento;
+            bean.idCidade = this.Cidade.id ?? 0;
+            //Contato
+            bean.nrTelefone = !string.IsNullOrEmpty(this.nrTelefone) ? this.nrTelefone.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrTelefone;
+            bean.nrCelular = !string.IsNullOrEmpty(this.nrCelular) ? this.nrCelular.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrCelular;
+            bean.dsEmail = this.dsEmail;
+            bean.dsSite = this.dsSite;
+            bean.dsLinkedin = this.dsLinkedin;
+            bean.dsFacebook = this.dsFacebook;
+            bean.dsInstagram = this.dsInstagram;
+            //Emergência
+            bean.nmContato = this.nmContato;
+            bean.flContato = this.flContato;          
+            bean.nrFoneEmergecia = !string.IsNullOrEmpty(this.nrFoneEmergecia) ? this.nrFoneEmergecia.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrFoneEmergecia;
+            bean.nrCelularEmergecia = !string.IsNullOrEmpty(this.nrCelularEmergecia) ? this.nrCelularEmergecia.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrCelularEmergecia;
+            //Admissão
+            bean.dtAdmissao = this.dtAdmissao;
+            bean.dtDemissao = this.dtDemissao;
+            bean.nmFuncao = this.nmFuncao;
+            bean.nmDepartamento = this.nmDepartamento;
+            bean.flExperiencia = this.flExperiencia;
+            //Bancários
+            bean.nmBanco = this.nmBanco;
+            bean.flTipoConta = this.flTipoConta;
+            bean.nrAgencia = this.nrAgencia;
+            bean.nrConta = this.nrConta;
+            bean.nrDigito = this.nrDigito;
+            //Geral
+            bean.dsObservacao = this.dsObservacao;
+            bean.flSituacao = this.flSituacao;
+            bean.dtCadastro = this.dtCadastro;
+            bean.dtAtualizacao = this.dtAtualizacao;
+
+
+
+            return bean;
         }
+
 
         public static SelectListItem[] Experiencia
         {
@@ -221,17 +212,6 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
             }
         }
 
-        public static SelectListItem[] Sexo
-        {
-            get
-            {
-                return new[]
-                {
-                    new SelectListItem { Value = "M", Text = "MASCULINO" },
-                    new SelectListItem { Value = "F", Text = "FEMININO" }
-                };
-            }
-        }
 
         public static SelectListItem[] Instrucao
         {
@@ -251,7 +231,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
             }
         }
 
-        public static SelectListItem[] Contato
+        public static SelectListItem[] ContatoFuncionario
         {
             get
             {

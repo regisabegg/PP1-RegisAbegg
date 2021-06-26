@@ -116,6 +116,8 @@ namespace PP1.CONTRATO.Entity
 
         public string nrDigito { get; set; }
 
+        public string nrPix { get; set; }
+
         //Geral 
 
         public string dsObservacao { get; set; }

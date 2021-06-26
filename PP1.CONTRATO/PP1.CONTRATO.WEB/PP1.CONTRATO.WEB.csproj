@@ -2097,6 +2097,7 @@
     <Content Include="Scripts\datatable-extensions.js" />
     <Content Include="Scripts\date.js" />
     <Content Include="Scripts\Cidade\Index.js" />
+    <Content Include="Scripts\Funcionario\Index.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
