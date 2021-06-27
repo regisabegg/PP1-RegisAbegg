@@ -1,4 +1,5 @@
-﻿using PP1.CONTRATO.WEB.Util;
+﻿using Newtonsoft.Json;
+using PP1.CONTRATO.WEB.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,9 +25,6 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
         [Display(Name = "Multa (%)")]
         public decimal? txMulta { get; set; }
 
-        [Display(Name = "Qtd. Parcelas")]
-        public short? qtParcela { get; set; }
-
         [Display(Name = "Dias")]
         public short? qtDias { get; set; }
 
@@ -35,45 +33,30 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
 
         public int idFormaPagto { get; set; }
 
-        public DataTablesList<FormaPagto.ConsultaVM> Itens { get; set; }
-
-
-        public FormaPagto.ConsultaVM FormaPagto { get; set; }
-
-        public CondicaoPagto.ConsultaVM FormasPagto { get; set; }
-
-
-
-        //public class CodicaoFormaVM
-        //{
-        //    public int idFormaPagto { get; set; }
-        //    public string nmFomaPagto { get; set; }
-        //}
-
-        //public DataTablesList<FormaCondicaoVM> Itens { get; set; }
-
-
         public Entity.CondicaoPagto VM2E(Entity.CondicaoPagto bean)
         {
-            bean.idFormaPagto = this.idPai;
+         
             bean.nmCondicaoPagto = this.nmCondicaoPagto;
+            bean.flSituacao = this.flSituacao;
             bean.txJuros = this.txJuros ?? 0;
             bean.txMulta = this.txMulta ?? 0;
-            bean.qtParcela = this.qtParcela;
 
 
-            //foreach (var item in Itens.Get)
-            //{
-            //    bean.Materias.Add(new Entity.CondicaoPagto
-            //    {
-            //        idFormaPagto = item.idFormaPagto
-            //    });
-            //}
+            foreach (var item in Itens.Get)
+            {
+                bean.CondicaoForma.Add(new Entity.CondicaoForma
+                {
+                    idCondicaoPagto = item.idCondicaoPagto ?? 0,
+                    nrParcela = item.nrParcela ?? 0,
+                    qtDias = item.qtDias ?? 0,
+                    txPercentual = item.txPercentual ?? 0,
+                    idFormaPagto = item.idFormaPagto ?? 0,
+                    nmFormaPagto = item.nmFormaPagto
+                }) ;
+            }
 
             return bean;
         }
-
-
 
         public static SelectListItem[] Situacao
         {
@@ -86,6 +69,47 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
                 };
             }
         }
+
+
+        //public DataTablesList<FormaPagto.ConsultaVM> Itens { get; set; }
+
+
+        public FormaPagto.ConsultaVM FormaPagto { get; set; }
+
+        //public CondicaoPagto.ConsultaVM FormasPagto { get; set; }
+
+
+
+        public DataTablesList<CodicaoFormaVM> Itens { get; set; }
+
+
+
+        public class CodicaoFormaVM
+        {
+            public int? idCondicaoPagto { get; set; }
+            public short? nrParcela { get; set; }
+            public short? qtDias { get; set; }
+            public decimal? txPercentual { get; set; }
+            public int? idFormaPagto { get; set; }
+            public string nmFormaPagto { get; set; }
+        }
+
+        //public string jsItens { get; set; }
+
+        //public List<CodicaoFormaVM> ListCondicao
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(jsItens))
+        //            return new List<CodicaoFormaVM>();
+        //        return JsonConvert.DeserializeObject<List<CodicaoFormaVM>>(jsItens);
+        //    }
+        //    set
+        //    {
+        //        jsItens = JsonConvert.SerializeObject(value);
+        //    }
+        //}
+
 
     }
 }

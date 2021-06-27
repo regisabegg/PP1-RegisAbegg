@@ -37,7 +37,8 @@ namespace PP1.CONTRATO.BLL
                 }
 
             }
-           
+
+          
             objCondicaoPagtoDAO.Insert(objCondicaoPagto);
             return;
         }

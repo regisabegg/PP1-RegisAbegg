@@ -8,8 +8,8 @@ namespace PP1.CONTRATO.WEB.Models.FormaPagto
 {
     public class ConsultaVM
     {
-        public int? idFormaPagto { get; set; }
-        public string nmFormaPagto { get; set; }
+        //public int? idFormaPagto { get; set; }
+        //public string nmFormaPagto { get; set; }
 
         public int? id { get; set; }
         public string text { get; set; }

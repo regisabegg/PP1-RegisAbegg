@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PP1.CONTRATO.Entity
 {
@@ -19,5 +20,12 @@ namespace PP1.CONTRATO.Entity
         public const string SITUACAO_ATIVA = "A";
         public const string SITUACAO_INATIVA = "I";
 
+
+        public FormaPagto()
+        {
+            this.CondicaoForma = new List<CondicaoForma>();
+        }
+
+        public ICollection<CondicaoForma> CondicaoForma { get; set; }
     }
 }

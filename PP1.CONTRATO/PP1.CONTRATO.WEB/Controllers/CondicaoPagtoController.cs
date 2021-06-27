@@ -155,7 +155,6 @@ namespace PP1.CONTRATO.WEB.Controllers
                 flSituacao = obj.flSituacao,
                 txJuros = obj.txJuros,
                 txMulta = obj.txMulta,
-                qtParcela = obj.qtParcela,
                 dtCadastro = obj.dtCadastro,
                 dtAtualizacao = obj.dtAtualizacao,
             };
@@ -333,7 +332,6 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.flSituacao,
                 u.txJuros,
                 u.txMulta,
-                u.qtParcela,
                 u.dtCadastro,
                 u.dtAtualizacao
 
@@ -356,7 +354,6 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.flSituacao,
                 u.txJuros,
                 u.txMulta,
-                u.qtParcela,
                 u.dtCadastro,
                 u.dtAtualizacao
 

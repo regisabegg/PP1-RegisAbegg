@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PP1.CONTRATO.Entity
 {
@@ -14,8 +15,6 @@ namespace PP1.CONTRATO.Entity
 
         public decimal? txMulta { get; set; }
 
-        public short? qtParcela { get; set; }
-
         public DateTime dtCadastro { get; set; }
 
         public DateTime dtAtualizacao { get; set; }
@@ -24,6 +23,14 @@ namespace PP1.CONTRATO.Entity
 
         public const string SITUACAO_ATIVA = "A";
         public const string SITUACAO_INATIVA = "I";
+
+
+        public CondicaoPagto()
+        {
+            this.CondicaoForma = new List<CondicaoForma>();
+        }
+
+        public ICollection<CondicaoForma> CondicaoForma { get; set; }
 
     }
 }
