@@ -184,7 +184,7 @@ namespace PP1.CONTRATO.DAO
                     obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
-                    obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
+                    obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);
                     obj.flSexo = Convert.ToString(Dr["flsexo"]);
                     obj.idCidade = Convert.ToInt32(Dr["idcidade"]);
                 }
@@ -241,7 +241,7 @@ namespace PP1.CONTRATO.DAO
                     obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
-                    obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
+                    obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);
                     obj.flSexo = Convert.ToString(Dr["flsexo"]);
                     obj.idCidade = Convert.ToInt32(Dr["idcidade"]);
 
@@ -298,7 +298,7 @@ namespace PP1.CONTRATO.DAO
                     obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
-                    obj.dtNascimento = Convert.ToDateTime(Dr["dtnascimento"] != DBNull.Value ? Dr["dtnascimento"] : null);
+                    obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);
                     obj.flSexo = Convert.ToString(Dr["flsexo"] );
                     obj.idCidade = Convert.ToInt32(Dr["idcidade"]);
 

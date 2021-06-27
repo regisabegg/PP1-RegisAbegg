@@ -9,3 +9,4 @@ C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.Entity\bin\Debug\PP1.CONTRAT
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.Entity\obj\Debug\PP1.CONTRATO.Entity.csproj.CoreCompileInputs.cache
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.Entity\obj\Debug\PP1.CONTRATO.Entity.dll
 C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.Entity\obj\Debug\PP1.CONTRATO.Entity.pdb
+C:\Sistema\PP1-RegisAbegg\PP1.CONTRATO\PP1.CONTRATO.Entity\obj\Debug\PP1.CONTRATO.Entity.csprojAssemblyReference.cache

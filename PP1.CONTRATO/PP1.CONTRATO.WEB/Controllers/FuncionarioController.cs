@@ -151,7 +151,8 @@ namespace PP1.CONTRATO.WEB.Controllers
             var result = new FuncionarioVM
             {
                 idPai = obj.idFuncionario,
-                nmPessoa = obj.nmFuncionario,              
+                nmPessoa = obj.nmFuncionario,
+                nmApelido = obj.nmApelido,
                 flInstrucao = obj.flInstrucao,
                 flCivil = obj.flCivil,
                 flSexo = obj.flSexo,
@@ -203,6 +204,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 nrAgencia = obj.nrAgencia,
                 nrConta = obj.nrConta,
                 nrDigito = obj.nrDigito,
+                nrPIX = obj.nrPix,
                 //Geral
                 dsObservacao = obj.dsObservacao,
                 flSituacao = obj.flSituacao,
@@ -380,6 +382,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 text = u.nmFuncionario,
                 u.idFuncionario,
                 u.nmFuncionario,
+                u.nmApelido,
                 u.flInstrucao,
                 u.flCivil,
                 u.flSexo,
@@ -431,6 +434,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.nrAgencia,
                 u.nrConta,
                 u.nrDigito,
+                u.nrPix,
                 //Geral
                 u.dsObservacao,
                 u.flSituacao,
@@ -452,6 +456,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 text = u.nmFuncionario,
                 u.idFuncionario,
                 u.nmFuncionario,
+                u.nmApelido,
                 u.flInstrucao,
                 u.flCivil,
                 u.flSexo,
@@ -503,6 +508,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.nrAgencia,
                 u.nrConta,
                 u.nrDigito,
+                u.nrPix,
                 //Geral
                 u.dsObservacao,
                 u.flSituacao,

@@ -121,14 +121,14 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("update funcionario set @nmfuncionario=nmfuncionario, @nmapelido=nmapelido, @flinstrucao=flinstrucao, @flcivil=flcivil, @flsexo=flsexo, @dtnascimento=dtnascimento, @dsimagem=dsimagem," +
-                    "@nrdocumento=nrdocumento, @nrregistro=nrregistro, @nmorgaorg=nmorgaorg, @nrctps=nrctps, @nrpis=nrpis, @nmorgaoctps=nmorgaoctps, @nrtitulo=nrtitulo, @nrzona=nrzona, @nrsecao=nrsecao," +
-                    "@nmmae=nmmae, @nmpai=nmpai, @nrcep=nrcep, @nmlogradouro=nmlogradouro, @nrnumero=nrnumero, @nmbairro=nmbairro, @dscomplemento=dscomplemento," +
-                    "@nrtelefone=nrtelefone, @nrcelular=nrcelular, @dsemail=dsemail, @dssite=dssite, @dslinkedin=dslinkedin, @dsfacebook=dsfacebook, @dsinstagram=dsinstagram, " +
-                    "@nmcontato=nmcontato, @flcontato=flcontato, @nrfoneemergecia=nrfoneemergecia, @nrcelularemergecia=nrcelularemergecia, " +
-                    "@dtadmissao=dtadmissao, @dtdemissao=dtdemissao, @nmfuncao=nmfuncao, @nmdepartamento=nmdepartamento, @flexperiencia=flexperiencia," +
-                    "@nmbanco=nmbanco, @fltipoconta=fltipoconta, @nragencia=nragencia, @nrconta=nrconta, @nrdigito=nrdigito, @nrpix=nrpix," +
-                    "@dsobservacao=dsobservacao, @flsituacao=flsituacao, @dtcadastro=dtcadastro, @dtatualizacao=dtatualizacao, @idcidade=idcidade " +
+                Cmd = new SqlCommand("update funcionario set nmfuncionario=@nmfuncionario, nmapelido=@nmapelido, flinstrucao=@flinstrucao, flcivil=@flcivil, flsexo=@flsexo, dtnascimento=@dtnascimento, dsimagem=@dsimagem," +
+                    "nrdocumento=@nrdocumento, nrregistro=@nrregistro, nmorgaorg=@nmorgaorg, nrctps=@nrctps, nrpis=@nrpis, nmorgaoctps=@nmorgaoctps, nrtitulo=@nrtitulo, nrzona=@nrzona, nrsecao=@nrsecao," +
+                    "nmmae=@nmmae, nmpai=@nmpai, nrcep=@nrcep, nmlogradouro=@nmlogradouro, nrnumero=@nrnumero, nmbairro=@nmbairro, dscomplemento=@dscomplemento," +
+                    "nrtelefone=@nrtelefone, nrcelular=@nrcelular, dsemail=@dsemail, dssite=@dssite, dslinkedin=@dslinkedin, dsfacebook=@dsfacebook, dsinstagram=@dsinstagram, " +
+                    "nmcontato=@nmcontato, flcontato=@flcontato, nrfoneemergecia=@nrfoneemergecia, nrcelularemergecia=@nrcelularemergecia, " +
+                    "dtadmissao=@dtadmissao, dtdemissao=@dtdemissao, nmfuncao=@nmfuncao, nmdepartamento=@nmdepartamento, flexperiencia=@flexperiencia," +
+                    "nmbanco=@nmbanco, fltipoconta=@fltipoconta, nragencia=@nragencia, nrconta=@nrconta, nrdigito=@nrdigito, nrpix=@nrpix," +
+                    "dsobservacao=@dsobservacao, flsituacao=@flsituacao, dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao, idcidade=@idcidade " +
                     "where idfuncionario = @idfuncionario", Con);
 
                 Cmd.Parameters.AddWithValue("@nmfuncionario", obj.nmFuncionario);
@@ -198,7 +198,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao atualizar o Funcionario: " + ex.Message);
+                throw new Exception("Erro ao atualizar o Funcionário: " + ex.Message);
             }
             finally
             {
@@ -222,7 +222,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao excluir o Funcionario: " + ex.Message);
+                throw new Exception("Erro ao excluir o Funcionário: " + ex.Message);
             }
             finally
             {
@@ -286,10 +286,10 @@ namespace PP1.CONTRATO.DAO
                     obj.flContato = Convert.ToString(Dr["flcontato"] != DBNull.Value ? Dr["flcontato"] : null);
                     obj.nrFoneEmergecia = Convert.ToString(Dr["nrfoneemergecia"] != DBNull.Value ? Dr["nrfoneemergecia"] : null);
                     obj.nrCelularEmergecia = Convert.ToString(Dr["nrcelularemergecia"] != DBNull.Value ? Dr["nrcelularemergecia"] : null);
-                    //Admissão
+                    //Admissão (object)obj.dtCadastro) ?? DBNull.Value
                     obj.dtAdmissao = Convert.ToDateTime(Dr["dtadmissao"] != DBNull.Value ? Dr["dtadmissao"] : null);
-                    obj.dtDemissao = Convert.ToDateTime(Dr["dtdemissao"] != DBNull.Value ? Dr["dtdemissao"] : null);
-                    obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] != DBNull.Value ? Dr["nmfuncao"] : null);
+                    obj.dtDemissao = (Dr["dtdemissao"] == DBNull.Value) ? (DateTime?)null: ((DateTime?)Dr["dtadmissao"]);
+                    obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] == DBNull.Value ? Dr["nmfuncao"] : null);
                     obj.nmDepartamento = Convert.ToString(Dr["nmdepartamento"] != DBNull.Value ? Dr["nmdepartamento"] : null);
                     obj.flExperiencia = Convert.ToString(Dr["flexperiencia"] != DBNull.Value ? Dr["flexperiencia"] : null);
                     //Bancários
@@ -310,7 +310,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionário: " + ex.Message);
             }
             finally
             {
@@ -378,7 +378,7 @@ namespace PP1.CONTRATO.DAO
                     obj.nrCelularEmergecia = Convert.ToString(Dr["nrcelularemergecia"] != DBNull.Value ? Dr["nrcelularemergecia"] : null);
                     //Admissão
                     obj.dtAdmissao = Convert.ToDateTime(Dr["dtadmissao"] != DBNull.Value ? Dr["dtadmissao"] : null);
-                    obj.dtDemissao = Convert.ToDateTime(Dr["dtdemissao"] != DBNull.Value ? Dr["dtdemissao"] : null);
+                    obj.dtDemissao = (Dr["dtdemissao"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtadmissao"]);
                     obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] != DBNull.Value ? Dr["nmfuncao"] : null);
                     obj.nmDepartamento = Convert.ToString(Dr["nmdepartamento"] != DBNull.Value ? Dr["nmdepartamento"] : null);
                     obj.flExperiencia = Convert.ToString(Dr["flexperiencia"] != DBNull.Value ? Dr["flexperiencia"] : null);
@@ -402,7 +402,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionário: " + ex.Message);
             }
             finally
             {
@@ -469,7 +469,7 @@ namespace PP1.CONTRATO.DAO
                     obj.nrCelularEmergecia = Convert.ToString(Dr["nrcelularemergecia"] != DBNull.Value ? Dr["nrcelularemergecia"] : null);
                     //Admissão
                     obj.dtAdmissao = Convert.ToDateTime(Dr["dtadmissao"] != DBNull.Value ? Dr["dtadmissao"] : null);
-                    obj.dtDemissao = Convert.ToDateTime(Dr["dtdemissao"] != DBNull.Value ? Dr["dtdemissao"] : null);
+                    obj.dtDemissao = (Dr["dtdemissao"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtadmissao"]);
                     obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] != DBNull.Value ? Dr["nmfuncao"] : null);
                     obj.nmDepartamento = Convert.ToString(Dr["nmdepartamento"] != DBNull.Value ? Dr["nmdepartamento"] : null);
                     obj.flExperiencia = Convert.ToString(Dr["flexperiencia"] != DBNull.Value ? Dr["flexperiencia"] : null);
@@ -493,7 +493,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Funcionario: " + ex.Message);
+                throw new Exception("Erro ao pesquisar o Funcionário: " + ex.Message);
             }
             finally
             {

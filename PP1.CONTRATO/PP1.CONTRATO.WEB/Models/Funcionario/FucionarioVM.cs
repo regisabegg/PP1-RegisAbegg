@@ -22,7 +22,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         public string flSexo { get; set; }
 
         [Display(Name = "Nascimento")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+   
         public DateTime? dtNascimento { get; set; }
 
         public string dsImagem { get; set; }
@@ -101,11 +101,11 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         //Admissão
 
         [Display(Name = "Admissão")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+     
         public DateTime dtAdmissao { get; set; }
 
         [Display(Name = "Demissão")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+        [DataType(DataType.Date)]
         public DateTime? dtDemissao { get; set; }
 
         [Display(Name = "Função")]
@@ -133,10 +133,14 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 
         [Display(Name = "Dígito")]
         public string nrDigito { get; set; }
-              
+
+        [Display(Name = "Chave PIX")]
+        public string nrPIX { get; set; }
+
         public Entity.Funcionario VM2E(Entity.Funcionario bean)
         {
-            bean.nmFuncionario = this.nmPessoa;                                     
+            bean.nmFuncionario = this.nmPessoa;
+            bean.nmApelido = this.nmApelido;
             bean.flInstrucao = this.flInstrucao;
             bean.flCivil = this.flCivil;
             bean.flSexo = this.flSexo;
@@ -188,6 +192,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
             bean.nrAgencia = this.nrAgencia;
             bean.nrConta = this.nrConta;
             bean.nrDigito = this.nrDigito;
+            bean.nrPix = this.nrPIX;
             //Geral
             bean.dsObservacao = this.dsObservacao;
             bean.flSituacao = this.flSituacao;
@@ -227,6 +232,39 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
                     new SelectListItem { Value = "P1", Text = "PÓS CURSANDO" },
                     new SelectListItem { Value = "P2", Text = "PÓS INCOMPLETO" },
                     new SelectListItem { Value = "P3", Text = "PÓS COMPLETO" },
+                };
+            }
+        }
+
+
+
+        public static SelectListItem[] TipoConta
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "", Text = "" },
+                    new SelectListItem { Value = "C", Text = "CONTA CORRENTE" },
+                    new SelectListItem { Value = "P", Text = "CONTA POUPANÇA" },
+                    new SelectListItem { Value = "S", Text = "CONTA SALÁRIO" },
+                };
+            }
+        }
+
+
+        public static SelectListItem[] EstadoCivil
+        {
+            get
+            {
+                return new[]
+                {
+                    new SelectListItem { Value = "", Text = "" },
+                    new SelectListItem { Value = "C", Text = "CASADO(A)" },
+                    new SelectListItem { Value = "D", Text = "DIVORCIADO(A)" },
+                    new SelectListItem { Value = "S", Text = "SOLTEIRO(A)" },
+                    new SelectListItem { Value = "U", Text = "UNIÃO ESTÁVEL" },
+                    new SelectListItem { Value = "V", Text = "VIÚVO(A)" },
                 };
             }
         }

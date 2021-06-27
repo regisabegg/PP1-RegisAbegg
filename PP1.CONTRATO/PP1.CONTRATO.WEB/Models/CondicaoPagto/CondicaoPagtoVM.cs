@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PP1.CONTRATO.WEB.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,12 +8,10 @@ using System.Web.Mvc;
 
 namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
 {
-    public class CondicaoPagtoVM
+    public class CondicaoPagtoVM : Pai.PaiVM
     {
-        [Display(Name = "Código")]
-        public int idCondicaoPagto { get; set; }
-
-        [Display(Name = "CondicaoPagto")]
+        
+        [Display(Name = "Condição de Pagamento")]
         [Required]
         public string nmCondicaoPagto { get; set; }
 
@@ -25,31 +24,27 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
         [Display(Name = "Multa (%)")]
         public decimal? txMulta { get; set; }
 
-        [Display(Name = "Parcela(s)")]
+        [Display(Name = "Qtd. Parcelas")]
         public short? qtParcela { get; set; }
 
-        [Display(Name = "Cadastro")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtCadastro { get; set; }
+        [Display(Name = "Dias")]
+        public short? qtDias { get; set; }
 
-        [Display(Name = "Atualização")]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
-        public DateTime dtAtualizacao { get; set; }
+        [Display(Name = "Porcentagem (%)")]
+        public short? txPercent { get; set; }
 
-        //public Entity.CondicaoPagto VM2E(Entity.CondicaoPagto bean)
-        //{
-        //    bean.nmCondicaoPagto = this.nmCondicaoPagto;
-        //    bean.nrDDD = this.nrDDD;
-        //    bean.nrIBGE = this.nrIBGE;
-        //    bean.dtAtualizacao = this.dtAtualizacao;
-        //    bean.dtCadastro = this.dtCadastro;
-        //    bean.idEstado = this.idEstado;
+        public int idFormaPagto { get; set; }
 
-        //    return bean;
-        //}
+        public DataTablesList<FormaPagto.ConsultaVM> Itens { get; set; }
 
 
-        //public class CursoMateriaVM
+        public FormaPagto.ConsultaVM FormaPagto { get; set; }
+
+        public CondicaoPagto.ConsultaVM FormasPagto { get; set; }
+
+
+
+        //public class CodicaoFormaVM
         //{
         //    public int idFormaPagto { get; set; }
         //    public string nmFomaPagto { get; set; }
@@ -58,22 +53,25 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
         //public DataTablesList<FormaCondicaoVM> Itens { get; set; }
 
 
-        //public Entity.CondicaoPagto VM2E(Entity.CondicaoPagto bean)
-        //{
-        //    bean.id = this.id;
-        //    bean.Nome = this.Nome;
+        public Entity.CondicaoPagto VM2E(Entity.CondicaoPagto bean)
+        {
+            bean.idFormaPagto = this.idPai;
+            bean.nmCondicaoPagto = this.nmCondicaoPagto;
+            bean.txJuros = this.txJuros ?? 0;
+            bean.txMulta = this.txMulta ?? 0;
+            bean.qtParcela = this.qtParcela;
 
 
-        //    foreach (var item in Itens.Get)
-        //    {
-        //        bean.Materias.Add(new Entity.CondicaoPagto
-        //        {
-        //            idFormaPagto = item.idFormaPagto
-        //        });
-        //    }
+            //foreach (var item in Itens.Get)
+            //{
+            //    bean.Materias.Add(new Entity.CondicaoPagto
+            //    {
+            //        idFormaPagto = item.idFormaPagto
+            //    });
+            //}
 
-        //    return bean;
-        //}
+            return bean;
+        }
 
 
 

@@ -4,7 +4,7 @@
 @{
     var action = Convert.ToString(ViewBag.Action);
     bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
-    var FormaPagto = new PP1.CONTRATO.WEB.Models.FormaPagto.ConsultaVM();
+    //var FormaPagto = new PP1.CONTRATO.WEB.Models.FormaPagto.ConsultaVM();
 
 }
 
@@ -16,8 +16,8 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="form-group">
-                    @Html.LabelFor(e => e.idCondicaoPagto, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.idCondicaoPagto, new { @class = "form-control", readOnly = "readonly" })
+                    @Html.LabelFor(e => e.idPai, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
                 </div>
             </div>
             <div class="col-lg-2">
@@ -65,22 +65,37 @@
 
 
 
-<h4><i class="fa fa-cc"></i> Matérias</h4>
+<h4><i class="fa fa-cc"></i> Pagamentos</h4>
 <hr />
 
 <div class="callout callout-primary">
 
     <div class="form-layout">
         <div class="row">
-            @Html.EditorFor(model => FormaPagto, "FormaPagto/Select", new { @Required = true, Disable = readOnly })
+            @Html.EditorFor(model => model.FormaPagto, "FormaPagto/Select", new { @Required = true, Disable = readOnly })
         </div>
-    </div>
-    <div class="form-layout">
+
         <div class="row">
-            <div class="form-group">
-                @*@Html.Label("addItem", " ", new { @class = Helper.Label })*@
-                <div class="@Helper.InputLG">
-                    <button id="addItem" role="button" class="btn btn-default"><i class="fa fa-plus"></i> Adicionar</button>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.qtDias, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.qtDias, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.qtDias, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.txPercent, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.txPercent, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.txPercent, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @*@Html.Label("addItem", " ", new { @class = "form-control-label" })*@
+                    <button id="addItem" role="button" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar</button>
                 </div>
             </div>
         </div>
@@ -88,20 +103,22 @@
 
     <div class="table-wrapper">
 
-        @*@Html.HiddenFor(model => model.Itens.js)
-        @using (Html.BeginFormContainer(model => model.Itens))*@
-        @*{*@
+        @Html.HiddenFor(model => model.Itens.js)
+        @using (Html.BeginFormContainer(model => model.Itens))
+        {
             <table id="tblItens" class=" table display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th class="note-icon-orderedlist" style="width:50px"></th>
-                        <th class="wd-10p">ID</th>
-                        <th class="wd-90p">Nome</th>
+                        <th class="wd-10p">Código</th>
+                        <th class="wd-10p">Dias</th>
+                        <th class="wd-10p">Percentual</th>
+                        <th class="wd-70p">Fomar Pagto</th>
                     </tr>
                 </thead>
             </table>
-            @*@Html.ValidationMessageFor(model => model.Itens, null, new { @class = "help-block no-required" })*@
-        @*}*@
+            @Html.ValidationMessageFor(model => model.Itens, null, new { @class = "help-block no-required" })
+        }
     </div>
 </div>
 

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Servico.cs" />
+    <Compile Include="CondicaoPagto.cs" />
     <Compile Include="Funcionario.cs" />
     <Compile Include="Fornecedor.cs" />
     <Compile Include="Cliente.cs" />

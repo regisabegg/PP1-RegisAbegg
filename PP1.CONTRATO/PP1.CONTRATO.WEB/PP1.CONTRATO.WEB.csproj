@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\CondicaoPagtoController.cs" />
     <Compile Include="Controllers\FormaPagtoController.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
@@ -140,6 +141,8 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
+    <Compile Include="Models\Servico\CondicaoPagtoVM.cs" />
+    <Compile Include="Models\Servico\ConsultaVM.cs" />
     <Compile Include="Models\CondicaoPagto\ConsultaVM.cs" />
     <Compile Include="Models\CondicaoPagto\CondicaoPagtoVM.cs" />
     <Compile Include="Models\FormaPagto\FormaPagtoVM.cs" />
@@ -2089,6 +2092,10 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Cliente\Index.js" />
+    <Content Include="Scripts\Servico\Create.js" />
+    <Content Include="Scripts\Servico\Index.js" />
+    <Content Include="Scripts\CondicaoPagto\Create.js" />
+    <Content Include="Scripts\CondicaoPagto\Index.js" />
     <Content Include="Scripts\Fornecedor\Create.js" />
     <Content Include="Scripts\Fornecedor\Index.js" />
     <Content Include="Scripts\Funcionario\Create.js" />
@@ -2285,6 +2292,13 @@
     <Content Include="Views\CondicaoPagto\Edit.cshtml" />
     <Content Include="Views\CondicaoPagto\Form.cshtml" />
     <Content Include="Views\CondicaoPagto\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormaPagto\Select.cshtml" />
+    <Content Include="Views\Servico\Create.cshtml" />
+    <Content Include="Views\Servico\Delete.cshtml" />
+    <Content Include="Views\Servico\Details.cshtml" />
+    <Content Include="Views\Servico\Edit.cshtml" />
+    <Content Include="Views\Servico\Form.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

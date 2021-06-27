@@ -4,11 +4,8 @@
 @{
     var action = Convert.ToString(ViewBag.Action);
     bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
-
 }
-
 <hr />
-
 
 <div class="form-layout">
 
@@ -39,30 +36,37 @@
     <div class="row tx-roboto">
         <div class="col-lg-10">
             <div class="form-row ">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     @Html.LabelFor(e => e.nmPessoa, new { @class = "form-control-label" })
                     @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control", maxlength = "70", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                     @Html.ValidationMessageFor(model => model.nmPessoa, null, new { @class = "text-danger" }.HideIf(readOnly))
                 </div>
-                <div class="col-lg-4">
+            </div>
+            <div class="form-row ">
+                <div class="col-lg-12">
                     @Html.LabelFor(e => e.nmApelido, new { @class = "form-control-label" })
                     @Html.TextBoxFor(model => model.nmApelido, new { @class = "form-control", maxlength = "30" }.ReadOnlyIf(readOnly))
                     @Html.ValidationMessageFor(model => model.nmApelido, null, new { @class = "text-danger" }.HideIf(readOnly))
                 </div>
             </div>
             <div class="form-row ">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
+                    @Html.LabelFor(model => model.flSexo, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flSexo, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Sexo, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flSexo, null, new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3">
                     @Html.LabelFor(e => e.dtNascimento, new { @class = "form-control-label" })
                     @Html.TextBoxFor(e => e.dtNascimento, "{0:dd/MM/yyyy}", new { @class = "form-control", @mask = "99/99/9999" }.ReadOnlyIf(readOnly))
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     @Html.LabelFor(model => model.flInstrucao, new { @class = "form-control-label" })
                     @Html.DropDownListFor(model => model.flInstrucao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Instrucao, new { @class = "form-control select2" })
                     @Html.ValidationMessageFor(model => model.flInstrucao, null, new { @class = "text-danger" })
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     @Html.LabelFor(model => model.flCivil, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(model => model.flCivil, new { @class = "form-control " })
+                    @Html.DropDownListFor(model => model.flCivil, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.EstadoCivil, new { @class = "form-control select2" })
                     @Html.ValidationMessageFor(model => model.flCivil, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -144,7 +148,7 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     @Html.LabelFor(e => e.dtDemissao, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtDemissao, "{0:dd/MM/yyyy}", new { @class = "form-control", @mask = "99/99/9999" }.ReadOnlyIf(readOnly))
+                    @Html.TextBoxFor(e => e.dtDemissao, new { @class = "form-control" }.ReadOnlyIf(readOnly))
                 </div>
             </div>
         }
@@ -189,7 +193,7 @@
                 {
                     @Html.LabelFor(e => e.nrCEP, new { @class = "control-label " })
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999"}.ReadOnlyIf(readOnly))
+                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999" }.ReadOnlyIf(readOnly))
                         <div class="input-group-addon">
                             <i class="fa fa-search" onclick="getCep()"></i>
 
@@ -436,13 +440,11 @@
                 @Html.TextBoxFor(model => model.nmBanco, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmBanco, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
-        </div>
+        </div>      
         <div class="col-lg-4">
-            <div class="form-group">
-                @Html.LabelFor(e => e.flTipoConta, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.flTipoConta, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.flTipoConta, null, new { @class = "text-danger" }.HideIf(readOnly))
-            </div>
+            @Html.LabelFor(model => model.flTipoConta, new { @class = "form-control-label" })
+            @Html.DropDownListFor(model => model.flTipoConta, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.TipoConta, new { @class = "form-control select2" })
+            @Html.ValidationMessageFor(model => model.flTipoConta, null, new { @class = "text-danger" })
         </div>
     </div>
 </div>
@@ -470,6 +472,17 @@
                 @Html.ValidationMessageFor(model => model.nrDigito, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
+    </div>
+</div>
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrPIX, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrPIX, new { @class = "form-control", maxlength = "32" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrPIX, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>      
     </div>
 </div>
 

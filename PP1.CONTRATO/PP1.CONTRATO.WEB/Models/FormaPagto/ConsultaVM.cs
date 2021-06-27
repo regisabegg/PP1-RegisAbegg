@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
+namespace PP1.CONTRATO.WEB.Models.FormaPagto
 {
     public class ConsultaVM
     {
-        public int? idCondicaoPagto { get; set; }
-        public string nmCondicaoPagto { get; set; }
+        public int? idFormaPagto { get; set; }
+        public string nmFormaPagto { get; set; }
 
         public int? id { get; set; }
         public string text { get; set; }

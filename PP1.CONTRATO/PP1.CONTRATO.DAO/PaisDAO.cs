@@ -77,8 +77,8 @@ namespace PP1.CONTRATO.DAO
 
                 Cmd.Parameters.AddWithValue("@v1", id);
 
-                
-              
+
+
                 return Cmd.ExecuteNonQuery();
 
             }
@@ -159,7 +159,7 @@ namespace PP1.CONTRATO.DAO
                 }
 
                 return list;
-                
+
 
             }
             catch (Exception ex)

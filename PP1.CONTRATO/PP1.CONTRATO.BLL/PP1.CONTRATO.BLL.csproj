@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CidadeBLL.cs" />
+    <Compile Include="ServicoBLL.cs" />
+    <Compile Include="CondicaoPagtoBLL.cs" />
     <Compile Include="FuncionarioBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
