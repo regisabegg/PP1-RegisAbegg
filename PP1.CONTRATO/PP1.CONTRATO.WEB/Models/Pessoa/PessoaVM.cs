@@ -9,7 +9,7 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
 {
     public class PessoaVM : Pai.PaiVM
     {    
-        [Display(Name = "Cliente")]
+        [Display(Name = "Nome")]
         [Required(ErrorMessage = "Por favor, informe o cliente!")]
         public string nmPessoa { get; set; }
 
@@ -99,9 +99,9 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
                 return new[]
                 {
                     new SelectListItem { Value = "", Text = "" },
-                    new SelectListItem { Value = "D", Text = "DIRETOR" },
-                    new SelectListItem { Value = "G", Text = "GERENTE" },
-                    new SelectListItem { Value = "V", Text = "VENDEDOR" },
+                    new SelectListItem { Value = "C", Text = "CÔNJUGE" },
+                    new SelectListItem { Value = "M", Text = "MÃE" },
+                    new SelectListItem { Value = "P", Text = "PAI" },
                     new SelectListItem { Value = "O", Text = "OUTROS" },
                 };
             }

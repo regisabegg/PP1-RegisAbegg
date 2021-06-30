@@ -146,7 +146,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         private ActionResult GetView(int id)
         {
             CondicaoPagtoDAO objCondicaoPagto = new CondicaoPagtoDAO();
-            FormaPagtoDAO DAOFormaPagto = new FormaPagtoDAO();
+            //FormaPagtoDAO DAOFormaPagto = new FormaPagtoDAO();
             var obj = objCondicaoPagto.FindID(id);
             var result = new CondicaoPagtoVM
             {
@@ -158,8 +158,8 @@ namespace PP1.CONTRATO.WEB.Controllers
                 dtCadastro = obj.dtCadastro,
                 dtAtualizacao = obj.dtAtualizacao,
             };
-            var objFormaPagto = DAOFormaPagto.FindID(result.idFormaPagto);
-            result.FormaPagto = new Models.FormaPagto.ConsultaVM { id = objFormaPagto.idFormaPagto, text = objFormaPagto.nmFormaPagto };
+            //var objFormaPagto = DAOFormaPagto.FindID(result.idFormaPagto);
+            //result.FormaPagto = new Models.FormaPagto.ConsultaVM { id = objFormaPagto.idFormaPagto, text = objFormaPagto.nmFormaPagto };
             return View(result);
         }
         #endregion
