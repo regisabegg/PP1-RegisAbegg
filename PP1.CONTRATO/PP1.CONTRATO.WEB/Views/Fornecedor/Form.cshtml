@@ -22,13 +22,25 @@
                 </div>
             </div>
         }
-        <div class="col-lg-2">
-            <div class="form-group">
-                @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Tipo, new { @class = "form-control select2" })
-                @Html.ValidationMessageFor(model => model.flTipo, null, new { @class = "text-danger" })
+
+        @if (action == "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Tipo, new { @class = "form-control select2" }.ReadOnlyIf(readOnly))
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Tipo, new { @class = "form-control select2", readOnly = "readOnly" }.DisabledIf(readOnly))
+                </div>
+            </div>
+        }
         @if (action != "create")
         {
             <div class="col-lg-2">

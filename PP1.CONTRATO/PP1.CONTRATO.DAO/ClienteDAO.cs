@@ -181,7 +181,7 @@ namespace PP1.CONTRATO.DAO
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                    obj.vlLimite = Convert.ToInt16(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);
@@ -238,7 +238,7 @@ namespace PP1.CONTRATO.DAO
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                    obj.vlLimite = Convert.ToInt16(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);
@@ -295,7 +295,7 @@ namespace PP1.CONTRATO.DAO
                     obj.nrNumero = Convert.ToString(Dr["nrnumero"] != DBNull.Value ? Dr["nrnumero"] : null);
                     obj.nmBairro = Convert.ToString(Dr["nmbairro"] != DBNull.Value ? Dr["nmbairro"] : null);
                     obj.dsComplemento = Convert.ToString(Dr["dscomplemento"] != DBNull.Value ? Dr["dscomplemento"] : null);
-                    obj.vlLimite = Convert.ToDecimal(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
+                    obj.vlLimite = Convert.ToInt16(Dr["vllimite"] != DBNull.Value ? Dr["vllimite"] : null);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"] != DBNull.Value ? Dr["dtcadastro"] : null);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"] != DBNull.Value ? Dr["dtatualizacao"] : null);
                     obj.dtNascimento = (Dr["dtnascimento"] == DBNull.Value) ? (DateTime?)null : ((DateTime?)Dr["dtnascimento"]);

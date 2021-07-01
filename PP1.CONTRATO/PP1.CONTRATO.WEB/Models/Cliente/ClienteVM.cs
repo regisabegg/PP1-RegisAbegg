@@ -13,7 +13,7 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         [Display(Name = "Limite crédito")]
         [Column(TypeName = "decimal(8,2)")]
         [DisplayFormat(DataFormatString = "{0,c}")]
-        public decimal vlLimite { get; set; }
+        public double? vlLimite { get; set; }
                 
         public Entity.Cliente VM2E(Entity.Cliente bean)
         {
@@ -29,7 +29,7 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
             bean.nrNumero = this.nrNumero;
             bean.nmBairro = this.nmBairro;
             bean.dsComplemento = this.dsComplemento;
-            bean.vlLimite = this.vlLimite;
+            bean.vlLimite = this.vlLimite ?? 0;
             bean.dtAtualizacao = this.dtAtualizacao;
             bean.dtCadastro = this.dtCadastro;
             bean.idCidade = this.Cidade.id ?? 0;
