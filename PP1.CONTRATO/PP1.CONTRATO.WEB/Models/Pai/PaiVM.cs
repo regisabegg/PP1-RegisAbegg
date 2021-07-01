@@ -11,8 +11,6 @@ namespace PP1.CONTRATO.WEB.Models.Pai
         [Display(Name = "Código")]
         public int idPai { get; set; }
 
-
-        public string nrDDI { get; set; }
         [Display(Name = "Cadastro")]
         [DisplayFormat(DataFormatString  = "mm/dd/yyyy")]
         public DateTime dtCadastro { get; set; }

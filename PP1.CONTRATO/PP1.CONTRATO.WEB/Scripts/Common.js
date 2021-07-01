@@ -34,6 +34,15 @@
     });
 });
 
+/*******************************************************************************
+* Escritas em CAIXA ALTA
+*******************************************************************************/
+$("input, textarea, file").css('text-transform', 'uppercase').blur(function () { this.value = this.value.toUpperCase(); });
+
+
+var IsNullOrEmpty = function (value) {
+    return (!value || (value) == '' || value == null);
+};
 
 
 var PhoneMask = function (input) {
@@ -62,6 +71,20 @@ $('input.mask.fone').each(function () {
     .focusout(function () {
         PhoneMask($(this));
     });
+// adiciona a funcionalidade de foco a todos inputs com atributo [autofocus]
+this.autofocus = function () {
+    $('input[autofocus]').focus();
+};
+
+// remove a funcionalidade mascara para o elemento informado
+this.unmask = function ($input) {
+    if ($input instanceof jQuery) {
+        $input.val($input.val().replace(/[\s\-\.\/\(\)]/g, ''));
+    }
+    else {
+        return $input.replace(/[\s\-\.\/\(\)]/g, '');
+    }
+};
 
 $('.currency').each(function () {
 
@@ -157,3 +180,92 @@ var NumberFormat = function (value, mDec) {
     }
     return s;
 };
+
+var ParseFloat = function (str) {
+
+    if (window.IsNullOrEmpty(str)) {
+        return 0;
+    }
+    if (!isNaN(str)) {
+        var value = parseFloat(str);
+        return value;
+    }
+    str = str.split(".").join("");
+    str = str.split(",").join(".");
+
+    var value = parseFloat(str);
+    value = isNaN(value) ? 0 : value;
+    return value;
+};
+
+
+/*******************************************************************************
+* Escritas em CAIXA ALTA
+*******************************************************************************/
+
+
+$(document).ready(function () {
+
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#nmLogradouro").val("");
+        $("#nmBairro").val("");
+        $("#nrCEP").val("");
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#nrCEP").blur | $("#nrCEP").click(function () {
+
+        //$(document).on('change', 
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#nmLogradouro").val("...");
+                $("#nmBairro").val("...");
+                //$("#cidade").val("...");
+                //$("#uf").val("...");
+                //$("#ibge").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#nmLogradouro").val(dados.logradouro);
+                        $("#nmBairro").val(dados.bairro);
+                        //$("#cidade").val(dados.localidade);
+                        //$("#uf").val(dados.uf);
+                        //$("#ibge").val(dados.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
+});
+
+

@@ -99,15 +99,15 @@ namespace PP1.CONTRATO.BLL
         public static string RegioTipo(string flRegiao)
         {
             if (flRegiao == Estado.REGIAO_COESTE)
-                return "Centro Oeste";
+                return "CENTRO OESTE";
             if (flRegiao == Estado.REGIAO_NORDESTE)
-                return "Nordeste";
+                return "NORDESTE";
             if (flRegiao == Estado.REGIAO_NORTE)
-                return "Norte";
+                return "NORTE";
             if (flRegiao == Estado.REGIAO_SUL)
-                return "Sul";
+                return "SUL";
             if (flRegiao == Estado.REGIAO_SULDESTE)
-                return "Suldeste";
+                return "SULDESTE";
 
             return flRegiao;
         }

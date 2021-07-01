@@ -50,11 +50,11 @@ namespace PP1.CONTRATO.WEB.Models.Estado
                 return new[]
                 {
                     new SelectListItem { Text = "", Value = "" },
-                    new SelectListItem { Text = "Centro Oeste", Value = Entity.Estado.REGIAO_COESTE },
-                    new SelectListItem { Text = "Nordeste", Value = Entity.Estado.REGIAO_NORDESTE },
-                    new SelectListItem { Text = "Norte", Value = Entity.Estado.REGIAO_NORTE },
-                    new SelectListItem { Text = "Sul", Value = Entity.Estado.REGIAO_SUL },
-                    new SelectListItem { Text = "Suldeste", Value = Entity.Estado.REGIAO_SULDESTE },
+                    new SelectListItem { Text = "CENTRO OESTE", Value = Entity.Estado.REGIAO_COESTE },
+                    new SelectListItem { Text = "NORDESTE", Value = Entity.Estado.REGIAO_NORDESTE },
+                    new SelectListItem { Text = "NORTE", Value = Entity.Estado.REGIAO_NORTE },
+                    new SelectListItem { Text = "SUL", Value = Entity.Estado.REGIAO_SUL },
+                    new SelectListItem { Text = "SULDESTE", Value = Entity.Estado.REGIAO_SULDESTE },
                 };
             }
         }

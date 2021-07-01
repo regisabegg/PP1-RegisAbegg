@@ -1998,6 +1998,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\autoNumeric-1.9.25.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\lib\bootstrap\bootstrap.scss" />
@@ -2092,6 +2093,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Cliente\Index.js" />
+    <Content Include="Scripts\jquery.counter.js" />
     <Content Include="Scripts\Servico\Create.js" />
     <Content Include="Scripts\Servico\Index.js" />
     <Content Include="Scripts\CondicaoPagto\Create.js" />

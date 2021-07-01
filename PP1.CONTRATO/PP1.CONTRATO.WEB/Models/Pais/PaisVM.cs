@@ -14,7 +14,8 @@ namespace PP1.CONTRATO.WEB.Models.Pais
         [Display(Name = "Sigla")]
         public string dsSigla { get; set; }
         [Display(Name = "DDI")]
- 
+        public string nrDDI { get; set; }
+
 
         public Entity.Pais VM2E(Entity.Pais bean)
         {
