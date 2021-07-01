@@ -120,7 +120,7 @@
                     <div class="input-group">
                         @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999", maxlength = "10" }.ReadOnlyIf(readOnly))
                         <div class="input-group-addon">
-                            <i class="fa fa-search" onblur="document()" onclick="document()"></i>
+                            <button class="fa fa-search" id="document"></button>
 
                         </div>
                     </div>
@@ -222,7 +222,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Juridica.flContato, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.Juridica.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Juridica.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" })
 
             </div>
         </div>

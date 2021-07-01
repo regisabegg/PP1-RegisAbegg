@@ -270,8 +270,8 @@
         let lis = getTableEstado();
         $("#TableEstado").append(lis);
 
-        table = $('#lista').DataTable({
-            ajax: { url: $('#lista').attr('data-url') },
+        table = $('#listaEstado').DataTable({
+            ajax: { url: $('#listaEstado').attr('data-url') },
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json',
             },
@@ -297,7 +297,7 @@
 
             ],
         });
-        $('#lista tbody').on('click', 'td.details-control', function () {
+        $('#listaEstado tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             if (row.child.isShown()) {
@@ -321,7 +321,7 @@
 
       }
     function getTableEstado() {
-        let tmp = `<table id="lista" class="table table-striped table-bordered" style="width:100%" data-url="@Url.Action("JsQuery", "Estado")">
+        let tmp = `<table id="listaEstado" class="table table-striped table-bordered" style="width:100%" data-url="@Url.Action("JsQuery", "Estado")">
                         <thead>
                             <tr>
 
