@@ -280,7 +280,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.vlLimite, new { @class = "form-control-label" })
-                @Html.TextBox("vlLimite", null, new { @class = "form-control currency" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(e => e.vlLimite,  new { @class = "form-control currency" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.vlLimite, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

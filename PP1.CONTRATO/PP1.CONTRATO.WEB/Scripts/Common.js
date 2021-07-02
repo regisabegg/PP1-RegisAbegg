@@ -93,7 +93,6 @@ $('.currency').each(function () {
     var vMin = $(this).attr('vmin');
     var vMax = $(this).attr('vmax');
     var mDec = $(this).attr('mdec');
-    var moeda = $(this).attr('moeda');
     var metod = $(this).attr('metod');
 
     vMin = IsNullOrEmpty(vMin) ? '0' : vMin;
@@ -267,5 +266,4 @@ $(document).ready(function () {
         }
     });
 });
-
 

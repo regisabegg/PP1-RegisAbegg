@@ -11,9 +11,10 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
     public class ClienteVM : Pessoa.PessoaVM
     {
         [Display(Name = "Limite crédito")]
-        [Column(TypeName = "decimal(8,2)")]
-        [DisplayFormat(DataFormatString = "{0,c}")]
-        public double? vlLimite { get; set; }
+        //[Column(TypeName = "decimal(8,2)")]
+        //[DisplayFormat(DataFormatString = "{N:2}")]
+
+        public decimal? vlLimite { get; set; }
                 
         public Entity.Cliente VM2E(Entity.Cliente bean)
         {

@@ -42,7 +42,7 @@ namespace PP1.CONTRATO.Entity
 
         public string dsComplemento { get; set; }
 
-        public double? vlLimite { get; set; }
+        public decimal? vlLimite { get; set; }
 
         public DateTime dtCadastro { get; set; }
 
