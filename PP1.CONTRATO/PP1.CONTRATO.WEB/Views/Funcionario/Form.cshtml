@@ -24,7 +24,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Situacao, new { @class = "form-control select2" })
+                    @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Situacao, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                     @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="form-row ">
                 <div class="col-lg-3">
                     @Html.LabelFor(model => model.flSexo, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flSexo, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Sexo, new { @class = "form-control select2" })
+                    @Html.DropDownListFor(model => model.flSexo, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Sexo, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                     @Html.ValidationMessageFor(model => model.flSexo, null, new { @class = "text-danger" })
                 </div>
                 <div class="col-lg-3">
@@ -61,12 +61,12 @@
                 </div>
                 <div class="col-lg-3">
                     @Html.LabelFor(model => model.flInstrucao, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flInstrucao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Instrucao, new { @class = "form-control select2" })
+                    @Html.DropDownListFor(model => model.flInstrucao, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Instrucao, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                     @Html.ValidationMessageFor(model => model.flInstrucao, null, new { @class = "text-danger" })
                 </div>
                 <div class="col-lg-3">
                     @Html.LabelFor(model => model.flCivil, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flCivil, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.EstadoCivil, new { @class = "form-control select2" })
+                    @Html.DropDownListFor(model => model.flCivil, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.EstadoCivil, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                     @Html.ValidationMessageFor(model => model.flCivil, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -133,7 +133,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.flExperiencia, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.flExperiencia, Helper.SN(), string.Empty, new { @class = "form-control select2" })
+                @Html.DropDownListFor(model => model.flExperiencia, Helper.SN(), string.Empty, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                 @Html.ValidationMessageFor(model => model.flExperiencia, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -250,14 +250,14 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrTelefone, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", @mask = "(99)9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrTelefone, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCelular, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", @mask = "(99)9-9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCelular, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -324,21 +324,21 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.flContato, new { @class = "required" })
-                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Contato, new { @class = "form-control select2" })
+                @Html.DropDownListFor(model => model.flContato, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.Contato, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
                 @Html.ValidationMessageFor(model => model.flContato, null, new { @class = "text-danger" })
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrFoneEmergecia, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrFoneEmergecia, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrFoneEmergecia, new { @class = "form-control", @mask = "(99)9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrFoneEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCelularEmergecia, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCelularEmergecia, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCelularEmergecia, new { @class = "form-control", @mask = "(99)9-9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCelularEmergecia, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -443,7 +443,7 @@
         </div>      
         <div class="col-lg-4">
             @Html.LabelFor(model => model.flTipoConta, new { @class = "form-control-label" })
-            @Html.DropDownListFor(model => model.flTipoConta, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.TipoConta, new { @class = "form-control select2" })
+            @Html.DropDownListFor(model => model.flTipoConta, PP1.CONTRATO.WEB.Models.Funcionario.FuncionarioVM.TipoConta, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
             @Html.ValidationMessageFor(model => model.flTipoConta, null, new { @class = "text-danger" })
         </div>
     </div>

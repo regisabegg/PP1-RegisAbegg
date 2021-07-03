@@ -35,7 +35,7 @@
         <div class="col-lg-12">
             <div class="form-group ">
                 @Html.LabelFor(e => e.nmServico, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmServico, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nmServico, new { @class = "form-control", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmServico, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="col-lg-3">
             <div class="form-group">
                 @Html.LabelFor(e => e.vlServico, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.vlServico, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.vlServico, new { @class = "form-control currency", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.vlServico, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

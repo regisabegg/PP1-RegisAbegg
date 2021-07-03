@@ -36,7 +36,7 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Tipo, new { @class = "form-control select2", readOnly = "readOnly" }.DisabledIf(readOnly))
+                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Tipo, new { @class = "form-control select2", disabled = "readOnly" }.DisabledIf(readOnly))
                 </div>
             </div>
         }
@@ -100,7 +100,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Fisica.flSexo, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.Fisica.flSexo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Sexo, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Fisica.flSexo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Sexo, new { @class = "form-control" }.AppendIf(readOnly, "disabled", "disabled"))
             </div>
         </div>
     </div>
@@ -222,7 +222,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Juridica.flContato, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.Juridica.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" })
+                @Html.DropDownListFor(model => model.Juridica.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
 
             </div>
         </div>
@@ -281,7 +281,7 @@
             <div class="form-group">
                 @Html.LabelFor(e => e.vlLimite, new { @class = "form-control-label" })
                 @Html.TextBoxFor(e => e.vlLimite,  new { @class = "form-control currency" }.ReadOnlyIf(readOnly))
-                @Html.ValidationMessageFor(model => model.vlLimite, null, new { @class = "text-danger" }.HideIf(readOnly))
+                @*@Html.ValidationMessageFor(model => model.vlLimite, null, new { @class = "text-danger" }.HideIf(readOnly))*@
             </div>
         </div>
 

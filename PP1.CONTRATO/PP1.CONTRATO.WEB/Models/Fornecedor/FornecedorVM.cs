@@ -12,8 +12,6 @@ namespace PP1.CONTRATO.WEB.Models.Fornecedor
     {
         
         [Display(Name = "Limite crédito")]
-        [Column(TypeName = "decimal(8,2)")]
-        [DisplayFormat(DataFormatString = "{0,c}")]
         public decimal vlLimite { get; set; }
 
         public Entity.Fornecedor VM2E(Entity.Fornecedor bean)

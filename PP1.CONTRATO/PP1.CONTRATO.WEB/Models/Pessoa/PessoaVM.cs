@@ -20,6 +20,7 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
         public string nrCelular { get; set; }
 
         [Display(Name = "E-mail")]
+        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3]\.)|(([\w-]+\.)+))([a-zA-Z{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Por favor, informe um e-mail válido.")]
         public string dsEmail { get; set; }
 
         
