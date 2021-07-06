@@ -13,8 +13,11 @@ namespace PP1.CONTRATO.DAO
         //Método para gravar dados
         public void Insert(Pais obj)
         {
+
             try
             {
+                findInsert(obj.nmPais);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into pais (nmPais, dsSigla, nrDDI, dtCadastro, dtAtualizacao ) values (@v1, @v2, @v3, @v4, @v5)", Con);
 
@@ -43,6 +46,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmPais);
+
                 OpenConection();
                 Cmd = new SqlCommand("update pais set nmPais=@v1, dsSigla=@v2, nrDDI=@v3, dtCadastro=@v4, dtAtualizacao=@v5 where idpais = @v6", Con);
 
@@ -205,6 +210,33 @@ namespace PP1.CONTRATO.DAO
             {
                 throw new Exception("Erro ao pesquisar o País: " + ex.Message);
             }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+
+        public void findInsert(string text)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from pais where nmpais=@v1", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmPais"]);
+                    throw new Exception("País já cadastrado, verifique!");
+
+                }
+            }           
             finally
             {
                 CloseConection();
