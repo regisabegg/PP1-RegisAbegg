@@ -13,17 +13,19 @@ namespace PP1.CONTRATO.DAO
         //Método para gravar dados
         public void Insert(CondicaoPagto obj)
         {
+            string resp = "";
+            OpenConection();
+            SqlTransaction sqlTrans = Con.BeginTransaction();
+            SqlCommand command = Con.CreateCommand();
             try
             {
-                string resp = "";
-                OpenConection();
-                SqlTransaction sqlTrans = Con.BeginTransaction();
-                SqlCommand command = Con.CreateCommand();
+             
                 command.Transaction = sqlTrans;
 
 
 
-                command.CommandText = "insert into condicaopagto (nmcondicaopagto, flsituacao, txjuros, txmulta, dtcadastro, dtatualizacao ) values (@nmcondicaopagto, @flsituacao, @txjuros, @txmulta, @dtcadastro, @dtatualizacao );SELECT CAST(SCOPE_IDENTITY() AS int)";
+                command.CommandText = "insert into condicaopagto (nmcondicaopagto, flsituacao, txjuros, txmulta, dtcadastro, dtatualizacao ) values " +
+                    "(@nmcondicaopagto, @flsituacao, @txjuros, @txmulta, @dtcadastro, @dtatualizacao );SELECT CAST(SCOPE_IDENTITY() AS int)";
 
                 command.Parameters.AddWithValue("@nmcondicaopagto", obj.nmCondicaoPagto);
                 command.Parameters.AddWithValue("@flsituacao", obj.flSituacao);
@@ -34,26 +36,31 @@ namespace PP1.CONTRATO.DAO
                 command.Parameters.AddWithValue("@idcondicaopagto", obj.idCondicaoPagto);
                 Int32 idRetorno = Convert.ToInt32(command.ExecuteScalar());
 
-                command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual, nmformapagto ) " +
-                    "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual, @nmformapagto )";
-                //CondicaoForma objForma = new CondicaoForma();
-                foreach (var objForma in obj.CondicaoForma)
-                {
-                    command.Parameters.AddWithValue("@condicaopagto_id", idRetorno);
-                    command.Parameters.AddWithValue("@formapagto_id", objForma.idFormaPagto);
-                    command.Parameters.AddWithValue("@nrparcela", ((object)objForma.nrParcela) != DBNull.Value ? ((object)objForma.nrParcela) : 0);
-                    command.Parameters.AddWithValue("@qtdias", ((object)objForma.qtDias) != DBNull.Value ? ((object)objForma.qtDias) : 0);
-                    command.Parameters.AddWithValue("@txpercentual", ((object)objForma.txPercentual) != DBNull.Value ? ((object)objForma.txPercentual) : 0);
-                    command.Parameters.AddWithValue("@nmformapagto", objForma.nmFormaPagto);
-                    resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
-                }
-                
-                sqlTrans.Commit();
 
+                command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual, nmformapagto ) " +
+                 "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual, @nmformapagto )";
+
+                //CondicaoForma objForma = new CondicaoForma();
+                foreach (var item in obj.CondicaoForma)
+                {
+
+                  
+
+                    command.Parameters.AddWithValue("@condicaopagto_id", idRetorno);
+                    command.Parameters.AddWithValue("@formapagto_id", item.idFormaPagto);
+                    command.Parameters.AddWithValue("@nrparcela", ((object)item.nrParcela) != DBNull.Value ? ((object)item.nrParcela) : 0);
+                    command.Parameters.AddWithValue("@qtdias", ((object)item.qtDias) != DBNull.Value ? ((object)item.qtDias) : 0);
+                    command.Parameters.AddWithValue("@txpercentual", ((object)item.txPercentual) != DBNull.Value ? ((object)item.txPercentual) : 0);
+                    command.Parameters.AddWithValue("@nmformapagto", item.nmFormaPagto);
+                    //resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
+                    command.ExecuteNonQuery();
+                }
+               
+                sqlTrans.Commit();
             }
             catch (Exception ex)
             {
-
+                sqlTrans.Rollback();
                 throw new Exception("Erro ao inserir o Condicao de pagamento: " + ex.Message);
             }
             finally

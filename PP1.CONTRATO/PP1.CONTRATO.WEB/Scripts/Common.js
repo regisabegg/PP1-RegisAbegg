@@ -108,7 +108,7 @@ $('.currency').each(function () {
         vMin: vMin,
         vMax: vMax,
         mDec: mDec,
-    }).css('text-align', 'right');;
+    }).css('text-align', 'right');
 });
 
 $(".taxa").autoNumeric('init', {
@@ -117,7 +117,7 @@ $(".taxa").autoNumeric('init', {
     nBracket: '(,)',
     vMin: -999.99,
     vMax: 999.99
-});
+}).css('text-align', 'right');
 
 $(".peso").autoNumeric('init', {
     aSep: '.',
@@ -126,14 +126,14 @@ $(".peso").autoNumeric('init', {
     vMin: 0,
     mDec: 3,
     vMax: 199.99
-});
+}).css('text-align', 'right');
 
 $(".integer").autoNumeric('init', {
     vMin: 0,
     vMax: 9999999,
     mDec: 0,
     aSep: ''
-});
+}).css('text-align', 'right');
 
 
 

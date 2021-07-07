@@ -49,14 +49,14 @@
         <div class="col-lg-3">
             <div class="form-group">
                 @Html.LabelFor(e => e.txJuros, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.txJuros, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.txJuros, new { @class = "form-control taxa"}.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.txJuros, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-3">
             <div class="form-group">
                 @Html.LabelFor(e => e.txMulta, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.txMulta, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.txMulta, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.txMulta, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -79,14 +79,14 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     @Html.LabelFor(e => e.qtDias, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(model => model.qtDias, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.TextBoxFor(model => model.qtDias, new { @class = "form-control integer" }.ReadOnlyIf(readOnly))
                     @Html.ValidationMessageFor(model => model.qtDias, null, new { @class = "text-danger" }.HideIf(readOnly))
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
                     @Html.LabelFor(e => e.txPercent, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(model => model.txPercent, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.TextBoxFor(model => model.txPercent, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
                     @Html.ValidationMessageFor(model => model.txPercent, null, new { @class = "text-danger" }.HideIf(readOnly))
                 </div>
             </div>
