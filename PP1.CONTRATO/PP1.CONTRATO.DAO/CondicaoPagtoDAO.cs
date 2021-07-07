@@ -16,35 +16,34 @@ namespace PP1.CONTRATO.DAO
             string resp = "";
             OpenConection();
             SqlTransaction sqlTrans = Con.BeginTransaction();
-            SqlCommand command = Con.CreateCommand();
+            SqlCommand command;
             try
             {
-             
+
+                command = Con.CreateCommand();
                 command.Transaction = sqlTrans;
-
-
-
                 command.CommandText = "insert into condicaopagto (nmcondicaopagto, flsituacao, txjuros, txmulta, dtcadastro, dtatualizacao ) values " +
-                    "(@nmcondicaopagto, @flsituacao, @txjuros, @txmulta, @dtcadastro, @dtatualizacao );SELECT CAST(SCOPE_IDENTITY() AS int)";
+                  "(@nmcondicaopagto, @flsituacao, @txjuros, @txmulta, @dtcadastro, @dtatualizacao );SELECT CAST(SCOPE_IDENTITY() AS int)";
 
                 command.Parameters.AddWithValue("@nmcondicaopagto", obj.nmCondicaoPagto);
                 command.Parameters.AddWithValue("@flsituacao", obj.flSituacao);
                 command.Parameters.AddWithValue("@txjuros", ((object)obj.txJuros) != DBNull.Value ? ((object)obj.txJuros) : 0);
-                command.Parameters.AddWithValue("@txmulta", ((object)obj.txMulta) != DBNull.Value ? ((object)obj.txMulta) : 0 );
+                command.Parameters.AddWithValue("@txmulta", ((object)obj.txMulta) != DBNull.Value ? ((object)obj.txMulta) : 0);
                 command.Parameters.AddWithValue("@dtcadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
                 command.Parameters.AddWithValue("@dtatualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
                 command.Parameters.AddWithValue("@idcondicaopagto", obj.idCondicaoPagto);
-                Int32 idRetorno = Convert.ToInt32(command.ExecuteScalar());
-
-
-                command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual, nmformapagto ) " +
-                 "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual, @nmformapagto )";
-
+                
                 //CondicaoForma objForma = new CondicaoForma();
+                //command.ExecuteNonQuery();
+
+                Int32 idRetorno = Convert.ToInt32(command.ExecuteScalar());
                 foreach (var item in obj.CondicaoForma)
                 {
 
-                  
+                    command = Con.CreateCommand();
+                    command.Transaction = sqlTrans;
+                    command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual, nmformapagto ) " +
+                     "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual, @nmformapagto )";
 
                     command.Parameters.AddWithValue("@condicaopagto_id", idRetorno);
                     command.Parameters.AddWithValue("@formapagto_id", item.idFormaPagto);
@@ -55,7 +54,7 @@ namespace PP1.CONTRATO.DAO
                     //resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
                     command.ExecuteNonQuery();
                 }
-               
+
                 sqlTrans.Commit();
             }
             catch (Exception ex)
@@ -109,8 +108,8 @@ namespace PP1.CONTRATO.DAO
 
                 Cmd.Parameters.AddWithValue("@idcondicaopagto", id);
 
-                
-              
+
+
                 return Cmd.ExecuteNonQuery();
 
             }
@@ -149,7 +148,7 @@ namespace PP1.CONTRATO.DAO
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
 
-               
+
 
                 }
                 return obj;
@@ -194,7 +193,7 @@ namespace PP1.CONTRATO.DAO
                 }
 
                 return list;
-                
+
 
             }
             catch (Exception ex)
