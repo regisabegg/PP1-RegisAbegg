@@ -15,6 +15,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmServico, obj.idServico);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into servico (nmservico, flsituacao, vlservico, dtcadastro, dtatualizacao ) values (@nmservico, @flsituacao,  @vlservico, @dtcadastro, @dtatualizacao )", Con);
 
@@ -45,6 +47,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmServico, obj.idServico);
+
+
                 OpenConection();
                 Cmd = new SqlCommand("update servico set nmServico=@nmservico, flsituacao=@flsituacao, vlservico=@vlservico, dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao where idservico = @idservico", Con);
 
@@ -207,6 +212,34 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pesquisar o Servico: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from servico where nmservico=@v1 and idservico <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmservico"]);
+                    throw new Exception("Já existe um serviço cadastrado com esse nome, verifique!");
+
+                }
             }
             finally
             {

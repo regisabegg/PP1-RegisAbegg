@@ -50,8 +50,7 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
                     nrParcela = item.nrParcela ?? 0,
                     qtDias = item.qtDias ?? 0,
                     txPercentual = item.txPercentual ?? 0,
-                    idFormaPagto = item.idFormaPagto ?? 0,
-                    nmFormaPagto = item.nmFormaPagto
+                    idFormaPagto = item.idFormaPagto ?? 0
                 }) ;
             }
 

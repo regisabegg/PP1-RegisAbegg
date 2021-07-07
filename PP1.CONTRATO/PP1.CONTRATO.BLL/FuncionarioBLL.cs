@@ -96,14 +96,14 @@ namespace PP1.CONTRATO.BLL
             return objFuncionarioDAO.FindAll();
         }
 
-        public static string Tipo(string flTipo)
-        {
-            if (flTipo == Funcionario.TIPO_FISICA)
-                return "FÍSICO";
-            if (flTipo == Funcionario.TIPO_JURIDICA)
-                return "JURÍRIDICO";
+        //public static string Tipo(string flTipo)
+        //{
+        //    if (flTipo == Funcionario.TIPO_FISICA)
+        //        return "FÍSICO";
+        //    if (flTipo == Funcionario.TIPO_JURIDICA)
+        //        return "JURÍRIDICO";
 
-            return flTipo;
-        }
+        //    return flTipo;
+        //}
     }
 }

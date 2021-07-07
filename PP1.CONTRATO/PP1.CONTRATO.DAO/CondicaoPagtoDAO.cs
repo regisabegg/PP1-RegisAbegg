@@ -42,15 +42,14 @@ namespace PP1.CONTRATO.DAO
 
                     command = Con.CreateCommand();
                     command.Transaction = sqlTrans;
-                    command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual, nmformapagto ) " +
-                     "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual, @nmformapagto )";
+                    command.CommandText = "insert into condicaoforma (condicaopagto_id, formapagto_id, nrparcela, qtdias, txpercentual ) " +
+                     "values (@condicaopagto_id, @formapagto_id, @nrparcela, @qtdias, @txpercentual )";
 
                     command.Parameters.AddWithValue("@condicaopagto_id", idRetorno);
                     command.Parameters.AddWithValue("@formapagto_id", item.idFormaPagto);
                     command.Parameters.AddWithValue("@nrparcela", ((object)item.nrParcela) != DBNull.Value ? ((object)item.nrParcela) : 0);
                     command.Parameters.AddWithValue("@qtdias", ((object)item.qtDias) != DBNull.Value ? ((object)item.qtDias) : 0);
                     command.Parameters.AddWithValue("@txpercentual", ((object)item.txPercentual) != DBNull.Value ? ((object)item.txPercentual) : 0);
-                    command.Parameters.AddWithValue("@nmformapagto", item.nmFormaPagto);
                     //resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
                     command.ExecuteNonQuery();
                 }

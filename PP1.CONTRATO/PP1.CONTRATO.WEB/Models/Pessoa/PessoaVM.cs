@@ -29,6 +29,7 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
 
         [Display(Name = "Tipo Cliente")]
         public string flTipo { get; set; }
+        public string dsTipo { get; set; }
 
 
         [Display(Name = "Situação")]

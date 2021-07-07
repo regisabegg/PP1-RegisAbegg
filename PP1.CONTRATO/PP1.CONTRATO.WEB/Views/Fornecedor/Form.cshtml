@@ -37,7 +37,8 @@
             <div class="col-lg-2">
                 <div class="form-group">
                     @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
-                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.Fornecedor.FornecedorVM.Tipo, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
+                    @Html.TextBoxFor(model => model.dsTipo, new { @class = "form-control", readOnly = "readOnly" })
+                    @Html.HiddenFor(model => model.flTipo)
                 </div>
             </div>
         }
@@ -115,16 +116,16 @@
 <div class="form-layout">
     <div class="row">
         <div class="col-lg-2">
-            <div class="form-group ">
+            <div class="form-group " id="document">
                 @using (Html.BeginFormContainer(e => e.nrCEP))
                 {
                     @Html.LabelFor(e => e.nrCEP, new { @class = "control-label " })
                     <div class="input-group">
                         @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999", maxlength = "10" }.ReadOnlyIf(readOnly))
-                        <div class="input-group-addon">
-                            <i class="fa fa-search" onclick="getCep()"></i>
+                        @*<div class="input-group-addon">
+                            <button class="fa fa-search" id="document"></button>
 
-                        </div>
+                        </div>*@
                     </div>
                 }
             </div>
@@ -180,14 +181,14 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrTelefone, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrTelefone, new { @class = "form-control", @mask = "(99)9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrTelefone, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrCelular, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", @mask = "(99)9999-9999?9" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrCelular, new { @class = "form-control", @mask = "(99)9-9999-9999" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrCelular, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

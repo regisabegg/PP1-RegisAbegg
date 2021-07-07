@@ -9,7 +9,6 @@ namespace PP1.CONTRATO.Entity
         public short? qtDias { get; set; }
         public decimal? txPercentual { get; set; }
         public int? idFormaPagto { get; set; }
-        public string nmFormaPagto { get; set; }
 
         public FormaPagto FormaPagto { get; set; }
         public CondicaoPagto CondicaoPagto { get; set; }

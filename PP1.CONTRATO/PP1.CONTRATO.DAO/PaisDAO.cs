@@ -232,8 +232,8 @@ namespace PP1.CONTRATO.DAO
                     obj = new Pais();
 
 
-                    obj.nmPais = Convert.ToString(Dr["nmPais"]);
-                    throw new Exception("País já cadastrado, verifique!");
+                    obj.nmPais = Convert.ToString(Dr["nmpais"]);
+                    throw new Exception("Já existe um país cadastrado com esse nome, verifique!");
 
                 }
             }           

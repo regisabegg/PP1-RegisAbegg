@@ -99,9 +99,9 @@ namespace PP1.CONTRATO.BLL
         public static string Tipo(string flTipo)
         {
             if (flTipo == Cliente.TIPO_FISICA)
-                return "FÍSICO";
+                return "FÍSICA";
             if (flTipo == Cliente.TIPO_JURIDICA)
-                return "JURÍRIDICO";
+                return "JURÍDICA";
 
             return flTipo;
         }

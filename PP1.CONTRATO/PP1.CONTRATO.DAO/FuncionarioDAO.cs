@@ -16,6 +16,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmFuncionario, obj.idFuncionario);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into funcionario (nmfuncionario, nmapelido, flinstrucao, flcivil, flsexo, dtnascimento, dsimagem," +
                     " nrdocumento, nrregistro, nmorgaorg, nrctps, nrpis, nmorgaoctps, nrtitulo, nrzona, nrsecao," +
@@ -120,6 +122,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+
+                findInsert(obj.nmFuncionario, obj.idFuncionario);
+
                 OpenConection();
                 Cmd = new SqlCommand("update funcionario set nmfuncionario=@nmfuncionario, nmapelido=@nmapelido, flinstrucao=@flinstrucao, flcivil=@flcivil, flsexo=@flsexo, dtnascimento=@dtnascimento, dsimagem=@dsimagem," +
                     "nrdocumento=@nrdocumento, nrregistro=@nrregistro, nmorgaorg=@nmorgaorg, nrctps=@nrctps, nrpis=@nrpis, nmorgaoctps=@nmorgaoctps, nrtitulo=@nrtitulo, nrzona=@nrzona, nrsecao=@nrsecao," +
@@ -289,7 +294,7 @@ namespace PP1.CONTRATO.DAO
                     //Admissão (object)obj.dtCadastro) ?? DBNull.Value
                     obj.dtAdmissao = Convert.ToDateTime(Dr["dtadmissao"] != DBNull.Value ? Dr["dtadmissao"] : null);
                     obj.dtDemissao = (Dr["dtdemissao"] == DBNull.Value) ? (DateTime?)null: ((DateTime?)Dr["dtadmissao"]);
-                    obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] == DBNull.Value ? Dr["nmfuncao"] : null);
+                    obj.nmFuncao = Convert.ToString(Dr["nmfuncao"] != DBNull.Value ? Dr["nmfuncao"] : null);
                     obj.nmDepartamento = Convert.ToString(Dr["nmdepartamento"] != DBNull.Value ? Dr["nmdepartamento"] : null);
                     obj.flExperiencia = Convert.ToString(Dr["flexperiencia"] != DBNull.Value ? Dr["flexperiencia"] : null);
                     //Bancários
@@ -415,6 +420,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+
+               
+
                 OpenConection();
                 Cmd = new SqlCommand("select * from funcionario", Con);
                 Dr = Cmd.ExecuteReader();
@@ -494,6 +502,34 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pesquisar o Funcionário: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from funcionario where nmfuncionario=@v1 and idfuncionario <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmfuncionario"]);
+                    throw new Exception("Já existe um funcionário cadastrado com esse nome, verifique!");
+
+                }
             }
             finally
             {

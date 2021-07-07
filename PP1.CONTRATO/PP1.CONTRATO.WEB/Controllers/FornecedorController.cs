@@ -160,6 +160,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
                 dsObservacao = obj.dsObservacao,
                 flTipo = obj.flTipo,
+                dsTipo = (obj.flTipo == Fornecedor.TIPO_FISICA ? "FÍSICA" : "JURÍDICA"),
                 flSituacao = obj.flSituacao,
                 nrCEP = obj.nrCEP,
                 nmLogradouro = obj.nmLogradouro,

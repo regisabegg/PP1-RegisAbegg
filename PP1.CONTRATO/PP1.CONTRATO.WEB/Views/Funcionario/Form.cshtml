@@ -188,16 +188,16 @@
 <div class="form-layout">
     <div class="row">
         <div class="col-lg-2">
-            <div class="form-group ">
+            <div class="form-group " id="document">
                 @using (Html.BeginFormContainer(e => e.nrCEP))
                 {
                     @Html.LabelFor(e => e.nrCEP, new { @class = "control-label " })
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999" }.ReadOnlyIf(readOnly))
-                        <div class="input-group-addon">
-                            <i class="fa fa-search" onclick="getCep()"></i>
+                        @Html.TextBoxFor(model => model.nrCEP, new { @class = "form-control", @mask = "99999-999", maxlength = "10" }.ReadOnlyIf(readOnly))
+                        @*<div class="input-group-addon">
+                            <button class="fa fa-search" id="document"></button>
 
-                        </div>
+                        </div>*@
                     </div>
                 }
             </div>
@@ -224,7 +224,7 @@
         <div class="col-lg-8">
             <div class="form-group">
                 @Html.LabelFor(e => e.dsComplemento, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.dsComplemento, new { @class = "form-control", maxlength = "200" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.dsComplemento, new { @class = "form-control", maxlength = "70" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.dsComplemento, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -495,7 +495,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 @Html.LabelFor(e => e.dsObservacao, new { @class = "form-control-label" })
-                @Html.TextAreaFor(model => model.dsObservacao, new { @class = "form-control", maxlength = "200" }.ReadOnlyIf(readOnly))
+                @Html.TextAreaFor(model => model.dsObservacao, new { @class = "form-control", maxlength = "250" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.dsObservacao, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

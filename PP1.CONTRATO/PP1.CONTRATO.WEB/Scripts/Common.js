@@ -214,7 +214,7 @@ $(document).ready(function () {
 
     //Quando o campo cep perde o foco.
     $("#nrCEP").on('change', function () {
-        alert();
+       
         //$(document).on('change', 
 
         //Nova variável "cep" somente com dígitos.
