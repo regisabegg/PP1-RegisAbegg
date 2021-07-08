@@ -33,6 +33,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         //Documentos
 
         [Display(Name = "CPF")]
+        [Required(ErrorMessage = "Por favor, informe o CPF!")]
         public string nrCPF { get; set; }
 
         [Display(Name = "RG")]

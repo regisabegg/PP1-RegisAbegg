@@ -16,6 +16,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmEstado, obj.idEstado);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7)", Con);
 
@@ -46,6 +48,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmEstado, obj.idEstado);
+
                 OpenConection();
                 Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4,  nribge=@v5,  flregiao=@v6, idpais=@v7 where idestado = @v8", Con);
 
@@ -211,6 +215,33 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pesquisar o Estado: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from estado where nmestado=@v1 and idestado <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmestado"]);
+                    throw new Exception("Já existe um estado cadastrado com esse nome, verifique!");
+
+                }
             }
             finally
             {

@@ -90,6 +90,12 @@
                     @Html.ValidationMessageFor(model => model.txPercent, null, new { @class = "text-danger" }.HideIf(readOnly))
                 </div>
             </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.Label("txTotPercent","Total (%)", new { @class = "form-control-label" })
+                    @Html.TextBox("txTotPercent", null, new { @class = "form-control taxa", readOnly = "readonly" })
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-3">

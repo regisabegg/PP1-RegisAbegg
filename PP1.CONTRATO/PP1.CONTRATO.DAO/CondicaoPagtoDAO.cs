@@ -13,13 +13,13 @@ namespace PP1.CONTRATO.DAO
         //Método para gravar dados
         public void Insert(CondicaoPagto obj)
         {
+            findInsert(obj.nmCondicaoPagto, obj.idCondicaoPagto);
             string resp = "";
             OpenConection();
             SqlTransaction sqlTrans = Con.BeginTransaction();
             SqlCommand command;
             try
             {
-
                 command = Con.CreateCommand();
                 command.Transaction = sqlTrans;
                 command.CommandText = "insert into condicaopagto (nmcondicaopagto, flsituacao, txjuros, txmulta, dtcadastro, dtatualizacao ) values " +
@@ -50,8 +50,8 @@ namespace PP1.CONTRATO.DAO
                     command.Parameters.AddWithValue("@nrparcela", ((object)item.nrParcela) != DBNull.Value ? ((object)item.nrParcela) : 0);
                     command.Parameters.AddWithValue("@qtdias", ((object)item.qtDias) != DBNull.Value ? ((object)item.qtDias) : 0);
                     command.Parameters.AddWithValue("@txpercentual", ((object)item.txPercentual) != DBNull.Value ? ((object)item.txPercentual) : 0);
-                    //resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
-                    command.ExecuteNonQuery();
+                    resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
+                    
                 }
 
                 sqlTrans.Commit();
@@ -72,6 +72,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+
+                findInsert(obj.nmCondicaoPagto, obj.idCondicaoPagto);
+
                 OpenConection();
                 Cmd = new SqlCommand("update condicaopagto set nmCondicaoPagto=@nmcondicaopagto, flsituacao=@flsituacao, txjuros=@txjuros, txmulta=@txmulta, dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao where idcondicaopagto = @idcondicaopagto", Con);
 
@@ -244,5 +247,34 @@ namespace PP1.CONTRATO.DAO
                 CloseConection();
             }
         }
+
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from condicaopagto where nmcondicaopagto=@v1 and idcondicaopagto <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmcondicaopagto"]);
+                    throw new Exception("Já existe uma condição de pagamento cadastrada com esse nome, verifique!");
+
+                }
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
     }
 }

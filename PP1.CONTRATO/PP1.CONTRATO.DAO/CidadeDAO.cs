@@ -16,6 +16,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmCidade, obj.idCidade);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into cidade (nmcidade, nrddd, nribge, dtcadastro, dtatualizacao, idestado ) values (@v1, @v2, @v3, @v4, @v5, @v6)", Con);
 
@@ -45,6 +47,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmCidade, obj.idCidade);
+
                 OpenConection();
                 Cmd = new SqlCommand("update cidade set nmcidade=@v1, nrddd=@v2,  nribge=@v3, dtcadastro=@v4, dtatualizacao=@v5, idestado=@v6 where idcidade = @v7", Con);
 
@@ -203,6 +207,35 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pesquisar o Cidade: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from cidade where nmcidade=@v1 and idcidade <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmcidade"]);
+                    throw new Exception("Já existe uma cidade cadastrada com esse nome, verifique!");
+
+                }
             }
             finally
             {

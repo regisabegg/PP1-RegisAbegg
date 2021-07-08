@@ -15,6 +15,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmFormaPagto, obj.idFormaPagto);
+
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into formapagto (nmformapagto, flsituacao, dtcadastro, dtatualizacao ) values (@nmformapagto, @flsituacao, @dtcadastro, @dtatualizacao )", Con);
 
@@ -42,6 +45,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmFormaPagto, obj.idFormaPagto);
+
                 OpenConection();
                 Cmd = new SqlCommand("update formapagto set nmFormaPagto=@nmformapagto, flsituacao=@flsituacao, dtcadastro=@dtcadastro, dtatualizacao=@dtatualizacao where idformapagto = @idformapagto", Con);
 
@@ -204,5 +209,33 @@ namespace PP1.CONTRATO.DAO
                 CloseConection();
             }
         }
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from formapagto where nmformapagto=@v1 and idformapagto <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmformapagto"]);
+                    throw new Exception("Já existe uma forma de pagamento cadastrada com esse nome, verifique!");
+
+                }
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
     }
 }

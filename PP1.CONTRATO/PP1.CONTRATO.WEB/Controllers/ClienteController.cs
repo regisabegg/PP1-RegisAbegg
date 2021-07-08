@@ -47,6 +47,23 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Create(ClienteVM model)
         {
+            if (model.flTipo == Cliente.TIPO_JURIDICA)
+            {
+                if (Utils.ValidaCnpj(model.Juridica.nrCNPJ) == false)
+                {
+                    ModelState.AddModelError("Juridica.nrCNPJ", "O CNPJ informado é inválido. Por favor informe novamente o CNPJ!");
+                    return View(model);
+                }
+            }
+            else
+            {
+                if (Utils.ValidaCPF(model.Fisica.nrCPF) == false)
+                {
+                    ModelState.AddModelError("Fisica.nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
+                    return View(model);
+                }
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -80,6 +97,23 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Edit(int id, ClienteVM model)
         {
+            if (model.flTipo == Cliente.TIPO_JURIDICA)
+            {
+                if (Utils.ValidaCnpj(model.Juridica.nrCNPJ) == false) 
+                {
+                    ModelState.AddModelError("Juridica.nrCNPJ", "O CNPJ informado é inválido. Por favor informe novamente o CNPJ!");
+                    return View(model);
+                }                
+            }
+            else 
+            {
+                if (Utils.ValidaCPF(model.Fisica.nrCPF) == false)
+                {
+                    ModelState.AddModelError("Fisica.nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
+                    return View(model);
+                }                    
+            }
+
 
             if (ModelState.IsValid)
             {

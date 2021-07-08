@@ -16,6 +16,8 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+                findInsert(obj.nmCliente, obj.idCliente);
+
                 OpenConection();
                 Cmd = new SqlCommand("insert into cliente (nmcliente, nmapelido, nrdocumento, nrregistro, " +
                     "nrtelefone, nrcelular, dsemail, dssite, nmcontato, flcontato, dsobservacao, fltipo, " +
@@ -75,6 +77,9 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
+
+                findInsert(obj.nmCliente, obj.idCliente);
+
                 OpenConection();
                 Cmd = new SqlCommand("update cliente set nmcliente=@nmcliente, nmapelido=@nmapelido, nrdocumento=@nrdocumento, " +
                     "nrregistro=@nrregistro, nrtelefone=@nrtelefone, nrcelular=@nrcelular, dsemail=@dsemail, dssite=@dssite," +
@@ -310,6 +315,33 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pesquisar o Cliente: " + ex.Message);
+            }
+            finally
+            {
+                CloseConection();
+            }
+        }
+
+        public void findInsert(string text, int id)
+        {
+            try
+            {
+                OpenConection();
+                Cmd = new SqlCommand("select * from cliente where nmcliente=@v1 and idcliente <> @v2", Con);
+                Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
+                Dr = Cmd.ExecuteReader();
+
+                Pais obj = null;
+                if (Dr.Read())
+                {
+                    obj = new Pais();
+
+
+                    obj.nmPais = Convert.ToString(Dr["nmcliente"]);
+                    throw new Exception("Já existe um cliente cadastrado com esse nome, verifique!");
+
+                }
             }
             finally
             {
