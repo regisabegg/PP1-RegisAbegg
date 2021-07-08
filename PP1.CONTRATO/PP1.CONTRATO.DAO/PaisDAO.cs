@@ -16,7 +16,7 @@ namespace PP1.CONTRATO.DAO
 
             try
             {
-                findInsert(obj.nmPais);
+                findInsert(obj.nmPais, obj.idPais);
 
                 OpenConection();
                 Cmd = new SqlCommand("insert into pais (nmPais, dsSigla, nrDDI, dtCadastro, dtAtualizacao ) values (@v1, @v2, @v3, @v4, @v5)", Con);
@@ -46,17 +46,16 @@ namespace PP1.CONTRATO.DAO
         {
             try
             {
-                findInsert(obj.nmPais);
+                findInsert(obj.nmPais, obj.idPais);
 
                 OpenConection();
-                Cmd = new SqlCommand("update pais set nmPais=@v1, dsSigla=@v2, nrDDI=@v3, dtCadastro=@v4, dtAtualizacao=@v5 where idpais = @v6", Con);
+                Cmd = new SqlCommand("update pais set nmPais=@v1, dsSigla=@v2, nrDDI=@v3, dtAtualizacao=@v4 where idpais = @v5", Con);
 
                 Cmd.Parameters.AddWithValue("@v1", obj.nmPais);
                 Cmd.Parameters.AddWithValue("@v2", obj.dsSigla);
                 Cmd.Parameters.AddWithValue("@v3", obj.nrDDI);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v5", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v6", obj.idPais);
+                Cmd.Parameters.AddWithValue("@v4", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@v5", obj.idPais);
 
                 Cmd.ExecuteNonQuery();
 
@@ -217,13 +216,14 @@ namespace PP1.CONTRATO.DAO
         }
 
 
-        public void findInsert(string text)
+        public void findInsert(string text, int id)
         {
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from pais where nmpais=@v1", Con);
+                Cmd = new SqlCommand("select * from pais where nmpais=@v1 and idpais<>@v2", Con);
                 Cmd.Parameters.AddWithValue("@v1", text);
+                Cmd.Parameters.AddWithValue("@v2", id);
                 Dr = Cmd.ExecuteReader();
 
                 Pais obj = null;

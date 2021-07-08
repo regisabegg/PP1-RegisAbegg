@@ -47,7 +47,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Create(ClienteVM model)
         {
-            if (model.flTipo == Cliente.TIPO_JURIDICA)
+            if (model.flTipo == Cliente.TIPO_JURIDICA && !string.IsNullOrEmpty(model.Juridica.nrCNPJ))
             {
                 if (Utils.ValidaCnpj(model.Juridica.nrCNPJ) == false)
                 {
@@ -55,7 +55,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     return View(model);
                 }
             }
-            else
+            else if (model.flTipo == Cliente.TIPO_FISICA && !string.IsNullOrEmpty(model.Fisica.nrCPF))
             {
                 if (Utils.ValidaCPF(model.Fisica.nrCPF) == false)
                 {
@@ -97,7 +97,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Edit(int id, ClienteVM model)
         {
-            if (model.flTipo == Cliente.TIPO_JURIDICA)
+            if (model.flTipo == Cliente.TIPO_JURIDICA && !string.IsNullOrEmpty(model.Juridica.nrCNPJ))
             {
                 if (Utils.ValidaCnpj(model.Juridica.nrCNPJ) == false) 
                 {
@@ -105,7 +105,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                     return View(model);
                 }                
             }
-            else 
+            else if(model.flTipo == Cliente.TIPO_FISICA && !string.IsNullOrEmpty(model.Fisica.nrCPF))
             {
                 if (Utils.ValidaCPF(model.Fisica.nrCPF) == false)
                 {

@@ -19,6 +19,7 @@ namespace PP1.CONTRATO.WEB.Models.Pais
 
         public Entity.Pais VM2E(Entity.Pais bean)
         {
+            //bean.idPais = this.idPai;
             bean.nmPais = this.nmPais;
             bean.dsSigla = this.dsSigla;
             bean.nrDDI = this.nrDDI;

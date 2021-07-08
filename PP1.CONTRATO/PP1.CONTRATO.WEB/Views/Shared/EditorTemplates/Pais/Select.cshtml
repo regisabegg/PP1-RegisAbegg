@@ -37,7 +37,7 @@
 </div>
 
 <div id="@Helper.getInputId("ModalLista", Prefix)" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
-    <div class="modal-dialog modal-content modal-xl">
+    <div class="modal-dialog modal-content modal-lg">
         <div class="modal-content bd-0 tx-14">
             <div class="modal-body no-padding">
                 <div class="panel panel-primary" style="margin-bottom: -1px;">
@@ -94,7 +94,7 @@
                             <div class="form-row">
                                 <div class="@Helper.Input12">
                                     @Html.Label("nmPais", "País", new { @class = "required" })
-                                    @Html.TextBox("nmPais", null, new { @class = "form-control", maxlength = "50", style = "text-transform:uppercase" })
+                                    @Html.TextBox("nmPais", null, new { @class = "form-control", maxlength = "50" })
                                     @Html.ValidationMessage("nmPais", null, new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -102,12 +102,12 @@
                             <div class="form-row">
                                 <div class="@Helper.InputMD">
                                     @Html.Label("nrDDI", "DDI", new { @class = "required" })
-                                    @Html.TextBox("nrDDI", null, new { @class = "form-control", maxlength = "5", style = "text-transform:uppercase" })
+                                    @Html.TextBox("nrDDI", null, new { @class = "form-control", maxlength = "4", style = "text-transform:uppercase" })
                                 </div>
 
                                 <div class="@Helper.InputMD">
                                     @Html.Label("dsSigla", "Sigla", new { @class = "required" })
-                                    @Html.TextBox("dsSigla", null, new { @class = "form-control", maxlength = "2", style = "text-transform:uppercase" })
+                                    @Html.TextBox("dsSigla", null, new { @class = "form-control", maxlength = "3", style = "text-transform:uppercase" })
 
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
 
     getModel = function (form) {
         var model = {
-            idPais: form.idPais.val(),
+            idPai: form.idPais.val(),
             nmPais: form.nmPais.val(),
             nrDDI: form.nrDDI.val(),
             dsSigla: form.dsSigla.val(),

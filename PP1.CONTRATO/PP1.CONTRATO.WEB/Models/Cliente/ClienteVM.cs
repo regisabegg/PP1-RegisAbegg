@@ -51,7 +51,6 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
             public string nmApelido { get; set; }
 
             [Display(Name = "CPF")]
-            [Required(ErrorMessage = "Por favor, informe o CPF!")]
             public string nrCPF { get; set; }
 
             [Display(Name = "RG")]
@@ -82,7 +81,6 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
             public string nmFantasia { get; set; }
 
             [Display(Name = "CNPJ")]
-            [Required(ErrorMessage = "Por favor, informe o CNPJ!")]
             public string nrCNPJ { get; set; }
 
             [Display(Name = "Nº IE")]

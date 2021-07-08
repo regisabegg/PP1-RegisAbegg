@@ -178,7 +178,7 @@
 
     this.getForm = function() {
         var form = {
-                idCidade : $('#@Helper.getInputId("idCidade", Prefix)'),
+                idPai : $('#@Helper.getInputId("idCidade", Prefix)'),
                 nmCidade: $('#@Helper.getInputId("nmCidade", Prefix)'),
                 nrUF: $('#@Helper.getInputId("nrUF", Prefix)'),
                 flRegiao: $('#@Helper.getInputId("flRegiao", Prefix)'),
@@ -225,7 +225,7 @@
 
     getModel = function (form) {
         var model = {
-            idCidade: form.idCidade.val(),
+            idPai: form.idCidade.val(),
             nmCidade: form.nmCidade.val(),
             nrUF: form.nrUF.val(),
             nrIBGE: form.nrIBGE.val(),

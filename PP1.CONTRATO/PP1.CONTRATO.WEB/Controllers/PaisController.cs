@@ -82,7 +82,7 @@ namespace PP1.CONTRATO.WEB.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 try
                 {
                     // TODO: Add update logic here
@@ -122,7 +122,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             {
                 try
                 {
-                    
+
 
                     // TODO: Add update logic here
                     var bean = model.VM2E(new Pais());
@@ -184,8 +184,8 @@ namespace PP1.CONTRATO.WEB.Controllers
             }
             catch (Exception ex)
             {
-                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
 
+                Response.StatusCode = 500;
                 var result = new
                 {
                     type = "error",
@@ -201,7 +201,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             try
             {
-                var select = this.Find( );
+                var select = this.Find();
                 return Json(new JsonSelect<object>(select, page, pageSize), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -267,8 +267,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             }
             catch (Exception ex)
             {
-                this.AddFlashMessage(ex.Message, FlashMessage.ERROR);
-
+                Response.StatusCode = 500;
                 var result = new
                 {
                     type = "error",
@@ -276,6 +275,10 @@ namespace PP1.CONTRATO.WEB.Controllers
                 };
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
+
+
+
+
         }
         public JsonResult JsSearch([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
@@ -303,7 +306,7 @@ namespace PP1.CONTRATO.WEB.Controllers
                 }
 
 
-              
+
             }
             catch (Exception ex)
             {
@@ -334,7 +337,7 @@ namespace PP1.CONTRATO.WEB.Controllers
             return select.AsQueryable();
         }
 
-       
+
 
         private IQueryable<dynamic> Filter(string filter)
         {
