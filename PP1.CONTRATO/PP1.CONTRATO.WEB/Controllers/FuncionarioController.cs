@@ -47,10 +47,14 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Create(FuncionarioVM model)
         {
-            if (Utils.ValidaCPF(model.nrCPF) == false)
+          
+            if (!string.IsNullOrEmpty(model.nrCPF))
             {
-                ModelState.AddModelError("nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
-                return View(model);
+                if (Utils.ValidaCPF(model.nrCPF) == false)
+                {
+                    ModelState.AddModelError("nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
+                    return View(model);
+                }
             }
 
             if (ModelState.IsValid)
@@ -85,12 +89,15 @@ namespace PP1.CONTRATO.WEB.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FuncionarioVM model)
         {
-            if (Utils.ValidaCPF(model.nrCPF) == false)
-            {
-                ModelState.AddModelError("nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
-                return View(model);
-            }
 
+            if (!string.IsNullOrEmpty(model.nrCPF))
+            {
+                if (Utils.ValidaCPF(model.nrCPF) == false)
+                {
+                    ModelState.AddModelError("nrCPF", "O CPF informado é inválido. Por favor informe novamente o CPF!");
+                    return View(model);
+                }
+            }
             if (ModelState.IsValid)
             {
 

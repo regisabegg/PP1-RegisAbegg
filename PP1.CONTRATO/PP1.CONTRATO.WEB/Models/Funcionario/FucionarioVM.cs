@@ -33,7 +33,6 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
         //Documentos
 
         [Display(Name = "CPF")]
-        [Required(ErrorMessage = "Por favor, informe o CPF!")]
         public string nrCPF { get; set; }
 
         [Display(Name = "RG")]
@@ -199,7 +198,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
             bean.flSituacao = this.flSituacao;
             bean.dtCadastro = this.dtCadastro;
             bean.dtAtualizacao = this.dtAtualizacao;
-
+            bean.dsImagem = this.dsImagem;
 
 
             return bean;

@@ -20,7 +20,7 @@ namespace PP1.CONTRATO.WEB.Models.Cidade
         [Display(Name = "Cód. IBGE")]
         public string nrIBGE { get; set; }
         
-        [Display(Name = "Código Estadp")]
+        [Display(Name = "Código Estado")]
         public int idEstado { get; set; }
 
 
