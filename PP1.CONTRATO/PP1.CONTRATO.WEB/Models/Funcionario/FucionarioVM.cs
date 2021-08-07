@@ -102,7 +102,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 
         [Display(Name = "Admissão")]
      
-        public DateTime dtAdmissao { get; set; }
+        public DateTime? dtAdmissao { get; set; }
 
         [Display(Name = "Demissão")]
         [DataType(DataType.Date)]
@@ -181,7 +181,7 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
             bean.nrFoneEmergecia = !string.IsNullOrEmpty(this.nrFoneEmergecia) ? this.nrFoneEmergecia.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrFoneEmergecia;
             bean.nrCelularEmergecia = !string.IsNullOrEmpty(this.nrCelularEmergecia) ? this.nrCelularEmergecia.Replace("(", "").Replace(")", "").Replace("-", "") : this.nrCelularEmergecia;
             //Admissão
-            bean.dtAdmissao = this.dtAdmissao;
+            bean.dtAdmissao = this.dtAdmissao.Value;
             bean.dtDemissao = this.dtDemissao;
             bean.nmFuncao = this.nmFuncao;
             bean.nmDepartamento = this.nmDepartamento;

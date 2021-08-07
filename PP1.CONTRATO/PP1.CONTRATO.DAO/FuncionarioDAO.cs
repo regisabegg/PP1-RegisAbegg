@@ -42,7 +42,7 @@ namespace PP1.CONTRATO.DAO
                 Cmd.Parameters.AddWithValue("@flcivil", obj.flCivil ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flsexo", obj.flSexo ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dsimagem", obj.dsImagem ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsimagem", !string.IsNullOrEmpty(obj.dsImagem) ? obj.dsImagem : null );
                 //Cmd.Parameters.AddWithValue("@nmapelido", obj.imagem ?? (object)DBNull.Value);
                 //Documentos
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);
@@ -142,7 +142,7 @@ namespace PP1.CONTRATO.DAO
                 Cmd.Parameters.AddWithValue("@flcivil", obj.flCivil ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flsexo", obj.flSexo ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtnascimento", ((object)obj.dtNascimento) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@dsimagem", obj.dsImagem ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dsimagem", !string.IsNullOrEmpty(obj.dsImagem) ? obj.dsImagem : null);
                 //Cmd.Parameters.AddWithValue("@nmapelido", obj.imagem ?? (object)DBNull.Value);
                 //Documentos
                 Cmd.Parameters.AddWithValue("@nrdocumento", obj.nrDocumento ?? (object)DBNull.Value);

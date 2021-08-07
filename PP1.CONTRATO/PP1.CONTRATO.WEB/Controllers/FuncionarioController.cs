@@ -40,7 +40,8 @@ namespace PP1.CONTRATO.WEB.Controllers
         // GET: Funcionario/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new FuncionarioVM();
+            return View(model);
         }
 
         // POST: Funcionario/Create
@@ -61,6 +62,15 @@ namespace PP1.CONTRATO.WEB.Controllers
             {
                 try
                 {
+                    if (model.ImageUpload != null)
+                    {
+                        var pic = Utils.UploadPhoto(model.ImageUpload);
+                        if (!string.IsNullOrEmpty(pic))
+                        {
+                            model.dsImagem = string.Format("~/Content/UserImage/{0}", pic);
+                        }
+                    }
+
                     var bean = model.VM2E(new Funcionario());
                     var bll = new FuncionarioBLL();
                     bean.dtCadastro = DateTime.Now;
@@ -103,9 +113,24 @@ namespace PP1.CONTRATO.WEB.Controllers
 
                 try
                 {
+
                     // TODO: Add update logic here
                     FuncionarioDAO objFuncionario = new FuncionarioDAO();
                     var obj = objFuncionario.FindID(id);
+
+
+                    if (model.ImageUpload != null)
+                    {
+                        var pic = Utils.UploadPhoto(model.ImageUpload);
+                        if (!string.IsNullOrEmpty(pic))
+                        {
+                            model.dsImagem = string.Format("~/Content/UserImage/{0}", pic);
+                        }
+                    }
+                    else
+                    {
+                        model.dsImagem = obj.dsImagem;
+                    }
 
                     var bean = model.VM2E(obj);
                     var bll = new FuncionarioBLL();

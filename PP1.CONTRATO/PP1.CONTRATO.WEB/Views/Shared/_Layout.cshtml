@@ -299,6 +299,33 @@
                     ['#DC3545', '#17A2B8', '#6610F2', '#fa1e81', '#72e7a6']
                 ]
             });
+            $(document).on('mouseover', function (e) {
+                e.stopPropagation();
+
+                if ($('body').hasClass('collapsed-menu') && $('#btnLeftMenu').is(':visible')) {
+                    var targ = $(e.target).closest('.sl-sideleft').length;
+                    if (targ) {
+                        $('body').addClass('expand-menu');
+
+                        // show current shown sub menu that was hidden from collapsed
+                        $('.show-sub + .sl-menu-sub').slideDown();
+
+                        var menuText = $('.menu-item-label,.menu-item-arrow');
+                        menuText.removeClass('d-lg-none');
+                        menuText.removeClass('op-lg-0-force');
+
+                    } else {
+                        $('body').removeClass('expand-menu');
+
+                        // hide current shown menu
+                        $('.show-sub + .sl-menu-sub').slideUp();
+
+                        var menuText = $('.menu-item-label,.menu-item-arrow');
+                        menuText.addClass('op-lg-0-force');
+                        menuText.addClass('d-lg-none');
+                    }
+                }
+            });
 
         });
     </script>
