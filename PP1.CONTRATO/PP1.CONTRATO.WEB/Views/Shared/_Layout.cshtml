@@ -63,13 +63,13 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             @*@if (User.IsInRole(@PROJETO.SCHOOLAR.MODEL.Entities.Usuario.PERFIL_ADMIN))
-                {*@
+        {*@
             @*<a href="@Url.Action("Index","Usuario")" class="sl-menu-link">
-                    <div class="sl-menu-item">
-                        <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
-                        <span class="menu-item-label">Usuários</span>
-                    </div><!-- menu-item -->
-                </a><!-- sl-menu-link -->*@
+            <div class="sl-menu-item">
+                <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
+                <span class="menu-item-label">Usuários</span>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->*@
 
 
             <a href="#" class="sl-menu-link">
@@ -102,44 +102,29 @@
                 <li class="nav-item"><a href="@Url.Action("Index","CondicaoPagto")" class="nav-link">Condição de pagamento</a></li>
                 <li class="nav-item"><a href="@Url.Action("Index","Servico")" class="nav-link">Serviço</a></li>
             </ul>
-            <!--<a href="#" class="sl-menu-link">
+            <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
-                    <i class="menu-item-icon fa fa-graduation-cap tx-15"></i>
-                    <span class="menu-item-label">Alunos</span>
+                    <i class="menu-item-icon fa fa-cogs tx-15"></i>
+                    <span class="menu-item-label">Ordem de Serviço</span>
                     <i class="menu-item-arrow fa fa-angle-down"></i>
-                </div>-->
-            <!-- menu-item -->
-            <!--</a>--><!-- sl-menu-link -->
-            <!--<ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="@Url.Action("Index","Aluno")" class="nav-link">Cadastro</a></li>
-                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Matrícula</a></li>
-                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","OrdemServico")" class="nav-link">Cadastro de O.S</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","RelOrdemServico")" class="nav-link">Relatório de O.S</a></li>
             </ul>
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
-                    <i class="menu-item-icon fa fa-book tx-15"></i>
-                    <span class="menu-item-label">Cursos</span>
+                    <i class="menu-item-icon fa fa-money tx-15"></i>
+                    <span class="menu-item-label">Financeiro</span>
                     <i class="menu-item-arrow fa fa-angle-down"></i>
-                </div>-->
-            <!-- menu-item -->
-            <!--</a>--><!-- sl-menu-link -->
-            <!--<ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="@Url.Action("Index","Curso")" class="nav-link">Cadastro de cursos</a></li>
-                <li class="nav-item"><a href="@Url.Action("Index","Materia")" class="nav-link">Cadastro de matérias</a></li>
-                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("Index","ContaReceber")" class="nav-link">Contas a receber</a></li>
+                <li class="nav-item"><a href="@Url.Action("Index","ContaPagar")" class="nav-link">Contas a pagar</a></li>
             </ul>
-            <a href="#" class="sl-menu-link">
-                <div class="sl-menu-item">
-                    <i class="menu-item-icon ion-android-contacts tx-22"></i>
-                    <span class="menu-item-label">Instrutores</span>
-                    <i class="menu-item-arrow fa fa-angle-down"></i>
-                </div>-->
-            <!-- menu-item -->
-            <!--</a>--><!-- sl-menu-link -->
-            <!--<ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="@Url.Action("Index","Instrutor")" class="nav-link">Cadastro</a></li>
-                <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link">Relatórios</a></li>
-            </ul>-->
+
         </div><!-- sl-sideleft-menu -->
 
         <br>

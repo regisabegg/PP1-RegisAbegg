@@ -1,0 +1,179 @@
+﻿@model PP1.CONTRATO.WEB.Models.OrdemServico.OrdemServicoVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+    //var FormaPagto = new PP1.CONTRATO.WEB.Models.FormaPagto.ConsultaVM();
+
+}
+
+<hr />
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.idPai, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtOrdem, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtOrdem, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtTermino, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtTermino, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.OrdemServico.OrdemServicoVM.Situacao, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    @Html.EditorFor(model => model.Cliente, "Cliente/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsObservacao, new { @class = "form-control-label" })
+                @Html.TextAreaFor(model => model.dsObservacao, new { @class = "form-control textarea", maxlength = "250" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsObservacao, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<h4 style="margin-top: 1rem"><i class="fa fa-cogs"></i> Dados do serviço</h4>
+<hr />
+
+<div class="callout callout-primary">
+    <div class="row">
+        @Html.EditorFor(model => model.Servico, "Servico/Select", new { @Required = true, Disable = readOnly })
+    </div>
+
+    <div class="form-layout">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.vlServico, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.vlServico, new { @class = "form-control currency", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.vlServico, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.vlQuantidade, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.vlQuantidade, new { @class = "form-control currency", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.vlQuantidade, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.vlTotal, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(model => model.vlTotal, new { @class = "form-control currency", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                    @Html.ValidationMessageFor(model => model.vlTotal, null, new { @class = "text-danger" }.HideIf(readOnly))
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @Html.EditorFor(model => model.Funcionario, "Funcionario/Select", new { @Required = true, Disable = readOnly })
+    </div>
+
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtInicio, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtInicio, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtEntrega, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtEntrega, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.flTipo, new { @class = "form-control-label" })
+                    @Html.DropDownListFor(model => model.flTipo, PP1.CONTRATO.WEB.Models.OrdemServico.OrdemServicoVM.TipoServico, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.flTipo, null, new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    @*@Html.Label("addItem", " ", new { @class = "form-control-label" })*@
+                    <button id="addItem" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+
+        @*@Html.HiddenFor(model => model.Itens.js)
+        @using (Html.BeginFormContainer(model => model.Itens))
+        {*@
+            <table id="tblItens" class=" table display responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th class="note-icon-orderedlist" style="width:50px"></th>
+                        <th class="wd-10p">Nº</th>
+                        <th class="wd-10p">Código</th>
+                        <th class="wd-10p">Serviço</th>
+                        <th class="wd-10p">Profissional</th>
+                        <th class="wd-10p">Tipo</th>
+                        <th class="wd-10p">QTD</th>
+                        <th class="wd-10p">Valor Sugerido</th>
+                        <th class="wd-70p">Valor Total</th>
+                    </tr>
+                </thead>
+            </table>
+            @*@Html.ValidationMessageFor(model => model.Itens, null, new { @class = "help-block no-required" })
+        }*@
+    </div>
+</div>
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr />

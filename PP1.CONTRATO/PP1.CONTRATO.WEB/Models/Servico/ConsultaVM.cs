@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-
-namespace PP1.CONTRATO.WEB.Models.Servico
+﻿namespace PP1.CONTRATO.WEB.Models.Servico
 {
     public class ConsultaVM
     {

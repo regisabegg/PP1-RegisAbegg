@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\CondicaoPagtoController.cs" />
     <Compile Include="Controllers\FormaPagtoController.cs" />
@@ -142,7 +143,9 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
-    <Compile Include="Models\Servico\CondicaoPagtoVM.cs" />
+    <Compile Include="Models\OrdemServico\OrdemServicoVM.cs" />
+    <Compile Include="Models\OrdemServico\ConsultaVM.cs" />
+    <Compile Include="Models\Servico\ServicoVM.cs" />
     <Compile Include="Models\Servico\ConsultaVM.cs" />
     <Compile Include="Models\CondicaoPagto\ConsultaVM.cs" />
     <Compile Include="Models\CondicaoPagto\CondicaoPagtoVM.cs" />
@@ -2304,10 +2307,18 @@
     <Content Include="Views\Servico\Edit.cshtml" />
     <Content Include="Views\Servico\Form.cshtml" />
     <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\OrdemServico\Create.cshtml" />
+    <Content Include="Views\OrdemServico\Delete.cshtml" />
+    <Content Include="Views\OrdemServico\Details.cshtml" />
+    <Content Include="Views\OrdemServico\Edit.cshtml" />
+    <Content Include="Views\OrdemServico\Form.cshtml" />
+    <Content Include="Views\OrdemServico\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Servico\Select.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Cliente\Select.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Funcionario\Select.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\UserImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

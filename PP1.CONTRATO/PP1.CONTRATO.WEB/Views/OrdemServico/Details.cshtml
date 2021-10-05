@@ -1,4 +1,4 @@
-﻿@model PP1.CONTRATO.WEB.Models.Servico.ServicoVM
+﻿@model PP1.CONTRATO.WEB.Models.OrdemServico.OrdemServicoVM
 @using PP1.CONTRATO.WEB.Util
 
 @{
@@ -10,7 +10,7 @@
 }
 <nav class="breadcrumb sl-breadcrumb">
     <a class="breadcrumb-item" href="@Url.Action("Index","Home")">Painel</a>
-    <a class="breadcrumb-item" href="@Url.Action("Index","Servico")">Serviço</a>
+    <a class="breadcrumb-item" href="@Url.Action("Index","OrdemServico")">Ordem de Serviço</a>
     <span class="breadcrumb-item active">Detalhar</span>
 </nav>
 
@@ -22,7 +22,7 @@
         @using (Html.BeginForm())
         {
             <div class="form-horizontal">
-                <h2>Visualizar serviço</h2>
+                <h2>Visualizar ordem de serviço</h2>
                 @Html.RenderFlashMessage()
                 @Html.CustomValidationSummary(true, true, "Ocorreram alguns erros, por favor verifique!!", new { @class = "alert alert-danger", role = "alert" })
 
