@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div id="@Helper.getInputId("ModalLista", Prefix)" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+<div id="@Helper.getInputId("ModalLista", Prefix)" class="modal fade" data-backdrop="static"  data-keyboard="false" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body no-padding">
@@ -48,7 +48,7 @@
                     </div>
                     <hr />
                     <div style="text-align:right">
-                        <button id="@Helper.getInputId("Create", Prefix)" onclick="OpenModalCreate()" type="button" class="btn btn-success"><i class="fa fa-plus"></i>  Adicionar</button>
+                        <button id="@Helper.getInputId("Create", Prefix)" onclick="OpenModalCreateCidade()" type="button" class="btn btn-success"><i class="fa fa-plus"></i>  Adicionar</button>
                     </div>
                     <div id="body" class="modal-body" style="padding: 33px 0px 0px 0px;">
                         <div class="container-fluid">
@@ -58,7 +58,7 @@
                     <hr style="margin-top: 2rem" />
                     <div class="modal-footer">
                         <div style="text-align:right">
-                            <button id="@Helper.getInputId("Fechar", Prefix)" onclick="FecharModal()" type="button" class="btn btn-outline-dark"><i class="fa fa-times"></i> Fechar</button>
+                            <button id="@Helper.getInputId("Fechar", Prefix)" onclick="FecharModalCidade()" type="button" class="btn btn-outline-dark"><i class="fa fa-times"></i> Fechar</button>
                         </div>
                     </div>
 
@@ -109,9 +109,9 @@
 
                                 </div>
                             </div>
-                            <div class="form-row">
+                      
                                 @Html.EditorFor(model => Estado, "Estado/Select", new { @Required = true, Disable = readOnly })
-                            </div>
+                       
 
                             @*<div class="form-row">
                                    <div class="@Helper.InputSM">
@@ -131,7 +131,7 @@
                     <div class="modal-footer">
                         <div style="text-align:right">
                             <button id="@Helper.getInputId("btnSave", Prefix)" type="button" class="btn btn-success"><i class="fa fa-save"></i>  Salvar</button>
-                            <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreate()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
+                            <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreateCidade()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
          });
 
         $('#@Helper.getInputId("btnSave", Prefix)').on('click', function () {
-            self.save();
+            self.saveCidade();
          });
      $('#@Helper.getInputId("id", Prefix)').change(function () {
             var id = $('#@Helper.getInputId("id", Prefix)').val()
@@ -176,7 +176,7 @@
         })
      });
 
-    this.getForm = function() {
+    this.getFormCidade = function() {
         var form = {
                 idPai : $('#@Helper.getInputId("idCidade", Prefix)'),
                 nmCidade: $('#@Helper.getInputId("nmCidade", Prefix)'),
@@ -188,8 +188,8 @@
         return form;
     };
 
-    this.clear = function () {
-        var form = self.getForm();
+    this.clearCidade = function () {
+        var form = self.getFormCidade();
 
         form.nmCidade.val("");
         form.nrUF.val("");
@@ -199,9 +199,9 @@
         form.nmCidade.focus();
     };
 
-    this.isValid = function () {
+    this.isValidCidade = function () {
         var valid = true;
-        var form = self.getForm();
+        var form = self.getFormCidade();
 
         if (IsNullOrEmpty(form.nmCidade.val())) {
             form.nmCidade.blink({ msg: "Campo cidade é obrigatório" });
@@ -223,7 +223,7 @@
         return valid;
     };
 
-    getModel = function (form) {
+    getModelCidade = function (form) {
         var model = {
             idPai: form.idCidade.val(),
             nmCidade: form.nmCidade.val(),
@@ -233,11 +233,11 @@
         }
         return model;
     };
-    this.insert = function () {
-        var form = self.getForm();
-        var model = getModel(form);
+    this.insertCidade = function () {
+        var form = self.getFormCidade();
+        var model = getModelCidade(form);
 
-        if (self.isValid(model)) {
+        if (self.isValidCidade(model)) {
 
             $.ajax({
                 dataType: 'json',
@@ -247,7 +247,7 @@
                 success: function (data) {
                        $("#@Helper.getInputId("ModalCreate", Prefix)").modal("hide");
                         RecarregarModalCidade();
-                        FecharModalCreate();
+                        FecharModalCreateCidade();
                         @*$("#@Helper.getInputId("ModalCreate", @Prefix)").modal("hide");
                         $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "auto");*@
                         //$.notify({ message: data.message, icon: 'fa fa-exclamation' }, { type: 'success', z_index: 2000, });
@@ -331,18 +331,18 @@
                    </table>`;
           return tmp;
     };
-    function FecharModal() {
+    function FecharModalCidade() {
         $("#@Helper.getInputId("ModalLista", Prefix)").modal("hide");
     };
 
-    function FecharModalCreate() {
+    function FecharModalCreateCidade() {
         $("#@Helper.getInputId("ModalCreate", Prefix)").css("overflow", "hidden");
         $("#@Helper.getInputId("ModalCreate", Prefix)").modal("hide");
         $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "auto");
         self.clear();
     };
 
-    function OpenModalCreate() {
+    function OpenModalCreateCidade() {
         $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "hidden");
         $("#@Helper.getInputId("ModalCreate", Prefix)").css("overflow", "auto");
         $("#@Helper.getInputId("ModalCreate", Prefix)").modal("show");
@@ -354,7 +354,7 @@
         $("#@Helper.getInputId("text", Prefix)").val(data.text);
         return false;
     }
-    function OpenEdit(id) {
+    function OpenEditCidade(id) {
 
         $("#@Helper.getInputId("flEdit", Prefix)").val("S");
         $.ajax({
@@ -375,21 +375,21 @@
                 Functions.checkRequest(request);*@
             }
             });
-        OpenModalCreate();
+        OpenModalCreateCidade();
         return false;
     }
-    this.save = function () {
+    this.saveCidade = function () {
         if ($("#@Helper.getInputId("flEdit", Prefix)").val() == "S") {
-            self.Edit();
+            self.EditCidade();
         } else {
-            self.insert();
+            self.insertCidade();
         }
     }
-    this.Edit = function () {
-        var form = self.getForm();
-        var model = getModel(form);
+    this.EditCidade = function () {
+        var form = self.getFormCidade();
+        var model = getModelCidade(form);
 
-        if (self.isValid(model)) {
+        if (self.isValidCidade(model)) {
 
             $.ajax({
                 dataType: 'json',
@@ -413,6 +413,10 @@
         }
     };
 
-
+    //$(document).on('hidden.bs.modal', function (event) {
+    //    if ($('.modal:visible').length) {
+    //        $('body').addClass('modal-open');
+    //    }
+    //});
 </script>
 )
