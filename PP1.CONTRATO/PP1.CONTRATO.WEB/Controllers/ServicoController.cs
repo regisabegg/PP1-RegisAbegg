@@ -233,7 +233,11 @@ namespace PP1.CONTRATO.WEB.Controllers
             {
                 var daoServicoes = new ServicoBLL();
                 var select = daoServicoes.find(id);
-                return Json(select, JsonRequestBehavior.AllowGet);
+                if (select != null)
+                {
+                    return Json(select, JsonRequestBehavior.AllowGet);
+                }
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)

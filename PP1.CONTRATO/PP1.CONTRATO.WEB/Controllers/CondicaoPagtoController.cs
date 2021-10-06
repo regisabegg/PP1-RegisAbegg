@@ -239,7 +239,11 @@ namespace PP1.CONTRATO.WEB.Controllers
             {
                 var daoCondicaoPagtoes = new CondicaoPagtoBLL();
                 var select = daoCondicaoPagtoes.find(id);
-                return Json(select, JsonRequestBehavior.AllowGet);
+                if (select != null)
+                {
+                    return Json(select, JsonRequestBehavior.AllowGet);
+                }
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)
