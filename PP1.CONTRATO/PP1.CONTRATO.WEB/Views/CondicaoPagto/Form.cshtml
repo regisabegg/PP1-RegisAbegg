@@ -49,7 +49,7 @@
         <div class="col-lg-3">
             <div class="form-group">
                 @Html.LabelFor(e => e.txJuros, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.txJuros, new { @class = "form-control taxa"}.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.txJuros, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.txJuros, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -70,43 +70,54 @@
 
 <div class="callout callout-primary">
 
-    <div class="form-layout">
-        <div class="row">
-            @Html.EditorFor(model => model.FormaPagto, "FormaPagto/Select", new { @Required = true, Disable = readOnly })
-        </div>
+    @if (action == "create" || action == "edit")
+    {
+        <div class="form-layout">
+            <div class="row">
+                @Html.EditorFor(model => model.FormaPagto, "FormaPagto/Select", new { @Required = true, Disable = readOnly })
+            </div>
 
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @Html.LabelFor(e => e.qtDias, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(model => model.qtDias, new { @class = "form-control integer" }.ReadOnlyIf(readOnly))
-                    @Html.ValidationMessageFor(model => model.qtDias, null, new { @class = "text-danger" }.HideIf(readOnly))
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.LabelFor(e => e.qtDias, new { @class = "form-control-label" })
+                        @Html.TextBoxFor(model => model.qtDias, new { @class = "form-control integer" }.ReadOnlyIf(readOnly))
+                        @Html.ValidationMessageFor(model => model.qtDias, null, new { @class = "text-danger" }.HideIf(readOnly))
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.LabelFor(e => e.txPercent, new { @class = "form-control-label" })
+                        @Html.TextBoxFor(model => model.txPercent, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
+                        @Html.ValidationMessageFor(model => model.txPercent, null, new { @class = "text-danger" }.HideIf(readOnly))
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.Label("txTotPercent", "Total (%)", new { @class = "form-control-label" })
+                        @Html.TextBox("txTotPercent", null, new { @class = "form-control taxa", readOnly = "readonly" })
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @Html.LabelFor(e => e.txPercent, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(model => model.txPercent, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
-                    @Html.ValidationMessageFor(model => model.txPercent, null, new { @class = "text-danger" }.HideIf(readOnly))
+            <div class="row">
+                <div class="col-lg-1">
+                    <div class="form-group">
+                        @*@Html.Label("addItem", " ", new { @class = "form-control-label" })*@
+                        <button id="addItem" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @Html.Label("txTotPercent","Total (%)", new { @class = "form-control-label" })
-                    @Html.TextBox("txTotPercent", null, new { @class = "form-control taxa", readOnly = "readonly" })
-                </div>
+                @if (action == "create" || action == "edit")
+                {
+                    <div class="col-lg-1">
+                        <div class="form-group">
+                            @*@Html.Label("addItem", " ", new { @class = "form-control-label" })*@
+                            <button id="removeAll" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Remover Todos</button>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    @*@Html.Label("addItem", " ", new { @class = "form-control-label" })*@
-                    <button id="addItem" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    }
     <div class="table-wrapper">
 
         @Html.HiddenFor(model => model.Itens.js)
@@ -115,6 +126,12 @@
             <table id="tblItens" class=" table display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
+                        @*@if (action == "create" || action == "edit")
+                            {
+                                <th>
+                                    <a class="btn btn-danger btn-sm" id="removeAll" title="Remover parcelas"><i class="fa fa-times"></i> </a>
+                                </th>
+                            }*@
                         <th class="note-icon-orderedlist" style="width:50px"></th>
                         <th class="wd-10p">Código</th>
                         <th class="wd-10p">Dias</th>
