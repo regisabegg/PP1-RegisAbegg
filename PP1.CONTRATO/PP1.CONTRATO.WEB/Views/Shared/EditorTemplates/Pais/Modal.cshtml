@@ -1,42 +1,19 @@
-﻿@model PP1.CONTRATO.WEB.Models.Estado.ConsultaVM
+﻿@model PP1.CONTRATO.WEB.Models.Pais.ConsultaVM
 @using PP1.CONTRATO.WEB.Util;
 @{
     bool Disabled = Convert.ToBoolean(ViewData["Disabled"]);
     bool Required = Convert.ToBoolean(ViewData["Required"] ?? true);
     bool OnlySelect = Convert.ToBoolean(ViewData["onlySelect"] ?? false);
     bool LabelVertical = Convert.ToBoolean(ViewData["LabelVertical"]);
-    string Label = Convert.ToString(ViewData["Label"] ?? "Estado");
+    string Label = Convert.ToString(ViewData["Label"] ?? "País");
     string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
     string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.Input12);
     var Prefix = Html.ClientPrefixName().ToString();
     var action = Convert.ToString(ViewBag.Action);
     bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
-
-    var Pais = new PP1.CONTRATO.WEB.Models.Pais.ConsultaVM();
-
 }
 
-@Html.Hidden("flEdit")
-<div class="@classForm">
-    @Html.Label("", Label)
-    <div class="input-group">
-        <div class="input-group-btn" style="width:15%">
-            @Html.TextBoxFor(model => model.id, new { @style = "border-radius: 0px 0px 0px 0px;", @class = "form-control number", maxLength = "6" })
-            @*<span id="errmsg"></span>*@
-        </div>
-        <div class="input-group-btn" style="width:83%">
-            @Html.TextBoxFor(model => model.text, new { @class = "form-control", Disabled = true })
-        </div>
-        <div class="input-group-btn">
-            <a style="border-radius:0" data-target="#@Helper.getInputId("Modal", Prefix)" id="@Helper.getInputId("btn-localizar", Prefix)" title="Abrir a busca de @Label" class="btn btn-primary" data-toggle="modal"><i class="fa fa-search"></i></a>
-        </div>
-        @*@Html.ValidationMessageFor(model => model.id, null, new { @class = "text-danger" })*@
-
-        @Html.ValidationMessageFor(model => model.id, null, new { @class = "help-block" + (Required ? "" : " no-required") })
-    </div>
-</div>
-
-<div id="@Helper.getInputId("ModalLista", Prefix)" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+<div id="@Helper.getInputId("ModalListaPais", Prefix)" class="modal fade"  data-backdrop="static" data-keyboard="false" role="dialog">
     <div class="modal-dialog modal-content modal-lg">
         <div class="modal-content bd-0 tx-14">
             <div class="modal-body no-padding">
@@ -44,22 +21,22 @@
                     <div class="panel-heading" style="height: 41px; padding-left:2px;font-weight: bold;">
                         <h3 class="panel-title pull-right"><button type="button" style="opacity: inherit;color: #fff;" class="close" data-dismiss="modal">&times;</button></h3>
                         <ul class="nav panel-tabs" style="width:750px">
-                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Estados </b></a></li>
+                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Paises </b></a></li>
                         </ul>
                     </div>
                     <hr />
                     <div style="text-align:right">
-                        <button id="@Helper.getInputId("Create", Prefix)" onclick="OpenModalCreateEstado()" type="button" class="btn btn-success"><i class="fa fa-plus"></i>  Adicionar</button>
+                        <button id="@Helper.getInputId("Create", Prefix)" onclick="OpenModalCreatePais()" type="button" class="btn btn-success"><i class="fa fa-plus"></i>  Adicionar</button>
                     </div>
                     <div id="body" class="modal-body" style="padding: 33px 0px 0px 0px;">
                         <div class="container-fluid">
-                            <div id="TableEstados"></div>
+                            <div id="TablePaises"></div>
                         </div>
                     </div>
                     <hr style="margin-top: 2rem" />
                     <div class="modal-footer">
                         <div style="text-align:right">
-                            <button id="@Helper.getInputId("Fechar", Prefix)" onclick="FecharModalEstado()" type="button" class="btn btn-outline-dark"><i class="fa fa-times"></i> Fechar</button>
+                            <button id="@Helper.getInputId("Fechar", Prefix)" onclick="FecharModalPais()" type="button" class="btn btn-outline-dark"><i class="fa fa-times"></i> Fechar</button>
                         </div>
                     </div>
 
@@ -69,7 +46,7 @@
     </div>
 </div>
 
-<div id="@Helper.getInputId("ModalCreate", Prefix)" class="modal fade" role="dialog">
+<div id="@Helper.getInputId("ModalCreatePais", Prefix)" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body no-padding">
@@ -77,7 +54,7 @@
                     <div class="panel-heading" style="height: 41px; padding-left:2px;font-weight: bold;">
                         <h3 class="panel-title pull-right"><button type="button" style="opacity: inherit;color: #fff;" class="close" data-dismiss="modal">&times;</button></h3>
                         <ul class="nav panel-tabs" style="width:400px">
-                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Cadastrar Estado</b></a></li>
+                            <li class="active"><a data-event="true" style="margin-top:1px;color: black;" data-toggle="tab"><b><i class="fa fa-list-alt" aria-hidden="true"></i> Cadastrar país</b></a></li>
                         </ul>
                     </div>
                     <hr />
@@ -93,30 +70,24 @@
 
                             <div class="form-row">
                                 <div class="@Helper.Input12">
-                                    @Html.Label("nmEstado", "Estado", new { @class = "required" })
-                                    @Html.TextBox("nmEstado", null, new { @class = "form-control", maxlength = "50" })
-                                    @Html.ValidationMessage("nmEstado", null, new { @class = "text-danger" })
+                                    @Html.Label("nmPais", "País", new { @class = "required" })
+                                    @Html.TextBox("nmPais", null, new { @class = "form-control", maxlength = "50" })
+                                    @Html.ValidationMessage("nmPais", null, new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="@Helper.InputMD">
-                                    @Html.Label("dsUF", "UF", new { @class = "required" })
-                                    @Html.TextBox("dsUF", null, new { @class = "form-control", maxlength = "5", style = "text-transform:uppercase" })
+                                    @Html.Label("nrDDI", "DDI", new { @class = "required" })
+                                    @Html.TextBox("nrDDI", null, new { @class = "form-control", maxlength = "4", style = "text-transform:uppercase" })
                                 </div>
+
                                 <div class="@Helper.InputMD">
-                                    @Html.Label("flRegiao", "Região", new { @class = "required" })
-                                    @Html.DropDownList("flRegiao", PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control", style = "text-transform:uppercase" })
-                                </div>
-                                <div class="@Helper.InputMD">
-                                    @Html.Label("nrIBGE", "Cód. IBGE", new { @class = "required" })
-                                    @Html.TextBox("nrIBGE", null, new { @class = "form-control", maxlength = "2", style = "text-transform:uppercase" })
+                                    @Html.Label("dsSigla", "Sigla", new { @class = "required" })
+                                    @Html.TextBox("dsSigla", null, new { @class = "form-control", maxlength = "3", style = "text-transform:uppercase" })
 
                                 </div>
                             </div>
-
-                            @Html.EditorFor(model => Pais, "Pais/Select", new { @Required = true, Disable = readOnly })
-
 
                             @*<div class="form-row">
                                    <div class="@Helper.InputSM">
@@ -136,7 +107,7 @@
                     <div class="modal-footer">
                         <div style="text-align:right">
                             <button id="@Helper.getInputId("btnSave", Prefix)" type="button" class="btn btn-success"><i class="fa fa-save"></i>  Salvar</button>
-                            <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreateEstado()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
+                            <button id="@Helper.getInputId("FecharCreate", Prefix)" onclick="FecharModalCreatePais()" type="button" class="btn btn-danger"><i class="fa fa-ban"></i>  Cancelar</button>
                         </div>
                     </div>
                 </div>
@@ -145,18 +116,16 @@
     </div>
 </div>
 
-@Html.EditorFor(model => Pais, "Pais/Modal", new { @Required = true, Disable = readOnly })
-
 @Html.AddScriptBlock(
 @<script type="text/javascript">
      self = this;
     $(function () {
          $("#@Helper.getInputId("btn-localizar", Prefix)").on("click", function () {
-             InitModalEstado();
+             InitModalPais();
          });
 
         $('#@Helper.getInputId("btnSave", Prefix)').on('click', function () {
-            self.saveEstado();
+            self.savePais();
         });
         $('#@Helper.getInputId("id", Prefix)').change(function (data, e) {
             var id = $('#@Helper.getInputId("id", Prefix)').val();
@@ -168,7 +137,7 @@
                 $.ajax({
                     dataType: 'json',
                     type: 'Get',
-                    url: '@Url.Action("jsDetails", "Estado")',
+                    url: '@Url.Action("jsDetails", "Pais")',
                     data: { 'id': id },
                     success: function (data) {
 
@@ -177,8 +146,8 @@
                             alert("Registro não encontrado!");
                         }
 
-                        $('#@Helper.getInputId("id", Prefix)').val(data.idEstado);
-                        $('#@Helper.getInputId("text", Prefix)').val(data.nmEstado);
+                        $('#@Helper.getInputId("id", Prefix)').val(data.idPais);
+                        $('#@Helper.getInputId("text", Prefix)').val(data.nmPais);
                     },
 
                 });
@@ -186,75 +155,72 @@
         });
      });
 
-    this.getFormEstado = function() {
+    this.getFormPais = function() {
         var form = {
-                idEstado : $('#@Helper.getInputId("idPai", Prefix)'),
-                nmEstado: $('#@Helper.getInputId("nmEstado", Prefix)'),
+                idPais : $('#@Helper.getInputId("idPai", Prefix)'),
+                nmPais: $('#@Helper.getInputId("nmPais", Prefix)'),
                 nrDDI: $('#@Helper.getInputId("nrDDI", Prefix)'),
                 dsSigla: $('#@Helper.getInputId("dsSigla", Prefix)'),
         }
         return form;
     };
 
-    this.clearEstado = function () {
-        var form = self.getFormEstado();
-        form.nmEstado.val("");
-        form.nrUF.val("");
-        form.flRegiao.val("");
-        form.nrIBGE.val("");
-        form.idPais.val("");
-        form.nmEstado.focus();
+    this.clearPais = function () {
+        var form = self.getFormPais();
+        form.nmPais.val("");
+        form.nrDDI.val("");
+        form.dsSigla.val("");
+        form.nmPais.focus();
     };
 
-    this.isValidEstado = function () {
+    this.isValidPais = function () {
         var valid = true;
-        var form = self.getFormEstado();
+        var form = self.getFormPais();
 
-        if (IsNullOrEmpty(form.nmEstado.val())) {
-            form.nmEstado.blink({ msg: "Campo Estado é obrigatório" });
-            form.nmEstado.focus();
+        if (IsNullOrEmpty(form.nmPais.val())) {
+            form.nmPais.blink({ msg: "Campo país é obrigatório" });
+            form.nmPais.focus();
             valid = false;
         }
 
-        //else if (IsNullOrEmpty(form.nrDDI.val())) {
-        //    form.nrDDI.blink({ msg: "Campo DDI é obrigatório" });
-        //    form.ddi.focus();
-        //    valid = false;
-        //}
+        else if (IsNullOrEmpty(form.nrDDI.val())) {
+            form.nrDDI.blink({ msg: "Campo DDI é obrigatório" });
+            form.ddi.focus();
+            valid = false;
+        }
 
-        //else if (IsNullOrEmpty(form.dsSigla.val())) {
-        //    form.dsSigla.blink({ msg: "Campo sigla é obrigatório" });
-        //    form.dsSigla.focus();
-        //    valid = false;
-        //}
+        else if (IsNullOrEmpty(form.dsSigla.val())) {
+            form.dsSigla.blink({ msg: "Campo sigla é obrigatório" });
+            form.dsSigla.focus();
+            valid = false;
+        }
         return valid;
     };
 
-    getModelEstado = function (form) {
+    getModelPais = function (form) {
         var model = {
-            idPai: form.idEstado.val(),
-            nmEstado: form.nmEstado.val(),
-            nrUF: form.nrUF.val(),
-            nrIBGE: form.nrIBGE.val(),
-            idPais: form.idPais.val(),
+            idPai: form.idPais.val(),
+            nmPais: form.nmPais.val(),
+            nrDDI: form.nrDDI.val(),
+            dsSigla: form.dsSigla.val(),
         }
         return model;
     };
-    this.insertEstado = function () {
-        var form = self.getFormEstado();
-        var model = getModeEstado(form);
+    this.insertPais = function () {
+        var form = self.getFormPais();
+        var model = getModelPais(form);
 
-        if (self.isValidEstado(model)) {
+        if (self.isValidPais(model)) {
 
             $.ajax({
                 dataType: 'json',
                 type: 'POST',
-                url: '@Url.Action("jsCreate", "Estado")',
+                url: '@Url.Action("jsCreate", "Pais")',
                 data: model,
                 success: function (data) {
-                       $("#@Helper.getInputId("ModalCreate", Prefix)").modal("hide");
-                        RecarregarModalEstado();
-                        FecharModalCreate();
+                       $("#@Helper.getInputId("ModalCreatePais", Prefix)").modal("hide");
+                        RecarregarModalPais();
+                        FecharModalCreatePais();
                         @*$("#@Helper.getInputId("ModalCreate", @Prefix)").modal("hide");
                         $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "auto");*@
                         //$.notify({ message: data.message, icon: 'fa fa-exclamation' }, { type: 'success', z_index: 2000, });
@@ -267,14 +233,17 @@
         }
     };
 
-    function RecarregarModalEstado() {
-        $("#TableEstados").empty();
-        let table = null
-        let lis = getTableEstado();
-        $("#TableEstados").append(lis);
+    function RecarregarModalPais() {
 
-        table = $('#listaEstado').DataTable({
-            ajax: { url: $('#listaEstado').attr('data-url') },
+        $("#TablePaises").empty();
+        let table = null
+        let lis = getTablePais();
+        $("#TablePaises").append(lis);
+        console.log(lis);
+            $("#@Helper.getInputId("ModalListaPais", Prefix)").modal("show");
+
+        table = $('#listaPais').DataTable({
+            ajax: { url: $('#listaPais').attr('data-url') },
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json',
             },
@@ -300,7 +269,7 @@
 
             ],
         });
-        $('#listaEstado tbody').on('click', 'td.details-control', function () {
+        $('#listaPais tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             if (row.child.isShown()) {
@@ -310,21 +279,19 @@
                 });
             }
             else {
-                row.child(SelectEstado(row.data())).show();
+                row.child(SelectPais(row.data())).show();
                 tr.addClass('shown');
                 $('div.slider', row.child()).slideDown();
             }
         });
     }
 
-    function InitModalEstado() {
-        RecarregarModalEstado();
-        $("#@Helper.getInputId("ModalLista", Prefix)").modal("show");
+    function InitModalPais() {
+        RecarregarModalPais();
 
-
-      }
-    function getTableEstado() {
-        let tmp = `<table id="listaEstado" class="table table-striped table-bordered" style="width:100%" data-url="@Url.Action("JsQuery", "Estado")">
+    }
+    function getTablePais() {
+        let tmp = `<table id="listaPais" class="table table-striped table-bordered" style="width:100%" data-url="@Url.Action("JsQuery", "Pais")">
                         <thead>
                             <tr>
 
@@ -338,76 +305,75 @@
                    </table>`;
           return tmp;
     };
-    function FecharModalEstado() {
-        $("#@Helper.getInputId("ModalLista", Prefix)").modal("hide");
+    function FecharModalPais() {
+        $("#@Helper.getInputId("ModalListaPais", Prefix)").modal("hide");
     };
 
-    function FecharModalCreateEstado() {
-        $("#@Helper.getInputId("ModalCreate", Prefix)").css("overflow", "hidden");
-        $("#@Helper.getInputId("ModalCreate", Prefix)").modal("hide");
-        $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "auto");
-        self.clearEstado();
+    function FecharModalCreatePais() {
+        $("#@Helper.getInputId("ModalCreatePais", Prefix)").css("overflow", "hidden");
+        $("#@Helper.getInputId("ModalCreatePais", Prefix)").modal("hide");
+        $("#@Helper.getInputId("ModalListaPais", Prefix)").css("overflow", "auto");
+        self.clearPais();
     };
 
-    function OpenModalCreateEstado() {
-        $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "hidden");
-        $("#@Helper.getInputId("ModalCreate", Prefix)").css("overflow", "auto");
-        $("#@Helper.getInputId("ModalCreate", Prefix)").modal("show");
+    function OpenModalCreatePais() {
+        $("#@Helper.getInputId("ModalListaPais", Prefix)").css("overflow", "hidden");
+        $("#@Helper.getInputId("ModalCreatePais", Prefix)").css("overflow", "auto");
+        $("#@Helper.getInputId("ModalCreatePais", Prefix)").modal("show");
     };
 
-    function SelectEstado(data) {
-        $("#@Helper.getInputId("ModalLista", Prefix)").modal("hide");
+    function SelectPais(data) {
+        $("#@Helper.getInputId("ModalListaPais", Prefix)").modal("hide");
         $("#@Helper.getInputId("id", Prefix)").val(data.id);
         $("#@Helper.getInputId("text", Prefix)").val(data.text);
         return false;
     }
-    function OpenEditEstado(id) {
+    function OpenEditPais(id) {
 
         $("#@Helper.getInputId("flEdit", Prefix)").val("S");
         $.ajax({
             dataType: 'json',
             type: 'Get',
-            url: '@Url.Action("jsDetails", "Estado")',
+            url: '@Url.Action("jsDetails", "Pais")',
             data: { id : id },
             success: function (data) {
-                var form = self.getFormEstado();
-                    form.idEstado.val(data.idEstado);
-                    form.nmEstado.val(data.nmEstado);
-                    form.nrUF.val(data.nrUF);
-                    form.nrIBGE.val(data.nrIBGE);
+                var form = self.getFormPais();
                     form.idPais.val(data.idPais);
+                    form.nmPais.val(data.nmPais);
+                    form.nrDDI.val(data.nrDDI);
+                    form.dsSigla.val(data.dsSigla);
             },
             error: function (request) {
                 @*shared_function["@Prefix"].button('reset');
                 Functions.checkRequest(request);*@
             }
             });
-        OpenModalCreateEstado();
+        OpenModalCreatePais();
         return false;
     }
-    this.saveEstado = function () {
+    this.savePais = function () {
         if ($("#@Helper.getInputId("flEdit", Prefix)").val() == "S") {
-            self.EditEstado();
+            self.EditPais();
         } else {
-            self.insertEstado();
+            self.insertPais();
         }
     }
-    this.EditEstado = function () {
-        var form = self.getFormEstado();
-        var model = getModelEstado(form);
+    this.EditPais = function () {
+        var form = self.getFormPais();
+        var model = getModelPais(form);
 
-        if (self.isValidEstado(model)) {
+        if (self.isValidPais(model)) {
 
             $.ajax({
                 dataType: 'json',
                 type: 'POST',
-                url: '@Url.Action("JsEdit", "Estado")',
+                url: '@Url.Action("JsEdit", "Pais")',
                 data: model,
                 success: function (data) {
-                    $("#@Helper.getInputId("ModalCreate", Prefix)").modal("hide");
+                    $("#@Helper.getInputId("ModalCreatePais", Prefix)").modal("hide");
                     $("#@Helper.getInputId("flEdit", Prefix)").val("N");
-                        RecarregarModalEstado();
-                        FecharModalCreateEstado();
+                        RecarregarModalPais();
+                    FecharModalCreatePais();
                         @*$("#@Helper.getInputId("ModalCreate", @Prefix)").modal("hide");
                         $("#@Helper.getInputId("ModalLista", Prefix)").css("overflow", "auto");*@
                         //$.notify({ message: data.message, icon: 'fa fa-exclamation' }, { type: 'success', z_index: 2000, });
@@ -428,3 +394,4 @@
 
 </script>
 )
+
