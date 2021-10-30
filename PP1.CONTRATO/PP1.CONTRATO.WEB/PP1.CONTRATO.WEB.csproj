@@ -128,6 +128,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\ContaContabeisController.cs" />
+    <Compile Include="Controllers\ContaReceberController.cs" />
+    <Compile Include="Controllers\ContaPagarController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\CondicaoPagtoController.cs" />
@@ -143,6 +146,12 @@
     </Compile>
     <Compile Include="Models\Cidade\ConsultaVM.cs" />
     <Compile Include="Models\Cidade\CidadeVM.cs" />
+    <Compile Include="Models\ContaContabeis\ConsultaVM.cs" />
+    <Compile Include="Models\ContaContabeis\ContaContabeisVM.cs" />
+    <Compile Include="Models\ContaReceber\ConsultaVM.cs" />
+    <Compile Include="Models\ContaReceber\ContaReceberVM.cs" />
+    <Compile Include="Models\ContaPagar\ConsultaVM.cs" />
+    <Compile Include="Models\ContaPagar\ContaPagarVM.cs" />
     <Compile Include="Models\OrdemServico\OrdemServicoVM.cs" />
     <Compile Include="Models\OrdemServico\ConsultaVM.cs" />
     <Compile Include="Models\Servico\ServicoVM.cs" />
@@ -2098,6 +2107,9 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Cliente\Index.js" />
+    <Content Include="Scripts\ContaContabeis\Index.js" />
+    <Content Include="Scripts\ContaReceber\Index.js" />
+    <Content Include="Scripts\ContaPagar\Index.js" />
     <Content Include="Scripts\jquery.validate.custom.pt-br.js" />
     <Content Include="Scripts\jquery.counter.js" />
     <Content Include="Scripts\Servico\Create.js" />
@@ -2317,6 +2329,26 @@
     <Content Include="Views\Shared\EditorTemplates\Cliente\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Funcionario\Select.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Pais\Modal.cshtml" />
+    <Content Include="Views\ContaPagar\Create.cshtml" />
+    <Content Include="Views\ContaPagar\Delete.cshtml" />
+    <Content Include="Views\ContaPagar\Details.cshtml" />
+    <Content Include="Views\ContaPagar\Edit.cshtml" />
+    <Content Include="Views\ContaPagar\Form.cshtml" />
+    <Content Include="Views\ContaPagar\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Fornecedor\Select.cshtml" />
+    <Content Include="Views\ContaReceber\Create.cshtml" />
+    <Content Include="Views\ContaReceber\Delete.cshtml" />
+    <Content Include="Views\ContaReceber\Details.cshtml" />
+    <Content Include="Views\ContaReceber\Edit.cshtml" />
+    <Content Include="Views\ContaReceber\Form.cshtml" />
+    <Content Include="Views\ContaReceber\Index.cshtml" />
+    <Content Include="Views\ContaContabeis\Create.cshtml" />
+    <Content Include="Views\ContaContabeis\Delete.cshtml" />
+    <Content Include="Views\ContaContabeis\Details.cshtml" />
+    <Content Include="Views\ContaContabeis\Edit.cshtml" />
+    <Content Include="Views\ContaContabeis\Form.cshtml" />
+    <Content Include="Views\ContaContabeis\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ContaContabeis\Select.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

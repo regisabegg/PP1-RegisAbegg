@@ -1,0 +1,119 @@
+﻿@model PP1.CONTRATO.WEB.Models.ContaReceber.ContaReceberVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    var action = Convert.ToString(ViewBag.Action);
+    bool readOnly = Convert.ToBoolean(ViewBag.ReadOnly);
+
+}
+
+<hr />
+
+
+<div class="form-layout">
+
+    <div class="row">
+        @if (action != "create")
+        {
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.idPai, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        }
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.flSituacao, new { @class = "form-control-label" })
+                @Html.DropDownListFor(model => model.flSituacao, PP1.CONTRATO.WEB.Models.ContaReceber.ContaReceberVM.Situacao, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.flSituacao, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-layout">
+    <div class="row mg-b-0">
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(e => e.nrParcela, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.nrParcela, new { @class = "form-control" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.nrParcela, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-layout">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dsDescricao, new { @class = "form-control-label" })
+                @Html.TextAreaFor(model => model.dsDescricao, new { @class = "form-control", maxlength = "250" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.dsDescricao, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    @Html.EditorFor(model => model.Cliente, "Cliente/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+<div class="row">
+    @Html.EditorFor(model => model.FormaPagto, "FormaPagto/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+
+<div class="row">
+    @Html.EditorFor(model => model.ContaContabeis, "ContaContabeis/Select", new { @Required = true, Disable = readOnly })
+</div>
+
+<div class="form-layout">
+    <div class="row mg-b-0">
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.vlConta, new { @class = "form-control-label" })
+                @Html.TextBoxFor(model => model.vlConta, new { @class = "form-control taxa" }.ReadOnlyIf(readOnly))
+                @Html.ValidationMessageFor(model => model.vlConta, null, new { @class = "text-danger" }.HideIf(readOnly))
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dtVencimento, new { @class = "form-control-label" })
+                @Html.TextBoxFor(e => e.dtVencimento, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                @Html.LabelFor(e => e.dtRecebimento, new { @class = "form-control-label" })
+                @Html.TextBoxFor(e => e.dtRecebimento, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (action != "create")
+{
+    <div class="form-layout">
+        <div class="row mg-b-0">
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr />

@@ -1,0 +1,51 @@
+﻿@model PP1.CONTRATO.WEB.Models.ContaReceber.ContaReceberVM
+@using PP1.CONTRATO.WEB.Util
+
+@{
+    ViewBag.Title = "Editar registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.action = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString().ToLower();
+    ViewBag.readOnly = false;
+}
+
+<nav class="breadcrumb sl-breadcrumb">
+    <a class="breadcrumb-item" href="@Url.Action("Index","Home")">Painel</a>
+    <a class="breadcrumb-item" href="@Url.Action("Index","ContaReceber")">Contas a Receber</a>
+    <span class="breadcrumb-item active">Editar</span>
+</nav>
+
+<div class="sl-pagebody">
+    <div class="card pd-20 pd-sm-40">
+
+
+
+        @using (Html.BeginForm("Edit", "ContaReceber", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h2>Editar fconta a receber</h2>
+                <div class="form-horizontal">
+                    @Html.RenderFlashMessage()
+                    @Html.CustomValidationSummary(true, false, "Ocorreram alguns erros, por favor verifique!!", new { @class = "alert alert-danger", role = "alert" })
+
+                    @Html.Partial("Form", Model)
+
+                    <div class="form-group" style="float:right; margin-bottom:2px">
+                        <label class="control-label col-xs-12">AÇÕES</label><div class="col-xs-12">
+                            <a class="btn btn-secondary" style="min-width:120px; margin-bottom:5px" href="@Url.Action("Index")" title="Voltar"><span class="ion-arrow-left-a"></span> Voltar</a>
+                            <a class="btn btn-warning" style="min-width:120px; margin-bottom:5px" href="@Url.Action("Edit")" title="Limpar o formulário"><i class="ion-refresh"></i> Limpar</a>
+                            <button class="btn btn-success" style="min-width:120px; margin-bottom:5px" data-loading-text="Aguarde..." title="Salvar registro" type="submit" value="create"><i class="fa fa-save"></i> Salvar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        }
+    </div>
+</div><!-- sl-pagebody -->
+
+@section scripts {
+    @Scripts.Render("~/Scripts/ContaReceber/Create.js?")
+    <script src="~/Scripts/Common.js"></script>
+}
