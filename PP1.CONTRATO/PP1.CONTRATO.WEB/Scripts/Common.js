@@ -86,6 +86,26 @@ this.unmask = function ($input) {
     }
 };
 
+//valid input select_id
+$(".number").keypress(function (e) {
+    if (e.which != 8 && e.which != 0 && e.which != 43 && e.which !=45 && (e.which < 48 || e.which > 57)) {
+        $("#errmsg").html("Apenas numeros").show().fadeOut("slow");
+        return false;
+    }
+});
+
+//valid input select_text
+$(".sotexto").keypress(function (e) {
+    e = e || window.event;
+    var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
+    var charStr = String.fromCharCode(charCode);
+    if (/\d/.test(charStr)) {
+        return false;
+    }
+});
+
+
+
 $('.currency').each(function () {
 
     var aSep = $(this).attr('asep');
@@ -196,6 +216,22 @@ var ParseFloat = function (str) {
     value = isNaN(value) ? 0 : value;
     return value;
 };
+
+
+//Remove o * dos campos obrigatórios
+if ($("fieldset").length) {
+    let input = $('input');
+    let select = $('select');
+    for (var i = 0; i < input.length; i++) {
+        let id = $(input[i]).attr("id");
+        $('label[for="' + id + '"]').removeClass('required');
+        let idSelect = $(select[i]).attr("id");
+        $('label[for="' + idSelect + '"]').removeClass('required');
+        let k = $('label[for="' + id + '"]').removeClass('required');
+    }
+}
+
+
 
 
 /*******************************************************************************

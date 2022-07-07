@@ -2107,6 +2107,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Cliente\Index.js" />
+    <Content Include="Scripts\functions.js" />
+    <Content Include="Scripts\functionsb3.js" />
     <Content Include="Scripts\ContaContabeis\Index.js" />
     <Content Include="Scripts\ContaReceber\Index.js" />
     <Content Include="Scripts\ContaPagar\Index.js" />
