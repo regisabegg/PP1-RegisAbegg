@@ -19,13 +19,13 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmPais, obj.idPais);
 
                 OpenConection();
-                Cmd = new SqlCommand("insert into pais (nmPais, dsSigla, nrDDI, dtCadastro, dtAtualizacao ) values (@v1, @v2, @v3, @v4, @v5)", Con);
+                Cmd = new SqlCommand("insert into pais (nmPais, dsSigla, nrDDI, dtCadastro, dtAtualizacao ) values (@nmPais, @dsSigla, @nrDDI, @dtCadastro, @dtAtualizacao)", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmPais);
-                Cmd.Parameters.AddWithValue("@v2", obj.dsSigla);
-                Cmd.Parameters.AddWithValue("@v3", obj.nrDDI);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v5", obj.dtAtualizacao);
+                Cmd.Parameters.AddWithValue("@nmPais", obj.nmPais);
+                Cmd.Parameters.AddWithValue("@dsSigla", obj.dsSigla ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrDDI", obj.nrDDI ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -49,13 +49,13 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmPais, obj.idPais);
 
                 OpenConection();
-                Cmd = new SqlCommand("update pais set nmPais=@v1, dsSigla=@v2, nrDDI=@v3, dtAtualizacao=@v4 where idpais = @v5", Con);
+                Cmd = new SqlCommand("update pais set nmPais=@nmPais, dsSigla=@dsSigla, nrDDI=@nrDDI, dtAtualizacao=@dtAtualizacao where idpais = @idPais", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmPais);
-                Cmd.Parameters.AddWithValue("@v2", obj.dsSigla);
-                Cmd.Parameters.AddWithValue("@v3", obj.nrDDI);
-                Cmd.Parameters.AddWithValue("@v4", ((object)obj.dtAtualizacao) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@v5", obj.idPais);
+                Cmd.Parameters.AddWithValue("@nmPais", obj.nmPais);
+                Cmd.Parameters.AddWithValue("@dsSigla", obj.dsSigla);
+                Cmd.Parameters.AddWithValue("@nrDDI", obj.nrDDI);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idPais", ((object)obj.idPais) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -77,9 +77,9 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("delete from pais where idpais = @v1", Con);
+                Cmd = new SqlCommand("delete from pais where idpais = @idPais", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", id);
+                Cmd.Parameters.AddWithValue("@idPais", id);
 
 
 
@@ -103,8 +103,8 @@ namespace PP1.CONTRATO.DAO
             try
             {
                 OpenConection();
-                Cmd = new SqlCommand("select * from pais where idpais=@v1", Con);
-                Cmd.Parameters.AddWithValue("@v1", id);
+                Cmd = new SqlCommand("select * from pais where idpais=@idPais", Con);
+                Cmd.Parameters.AddWithValue("@idPais", id);
                 Dr = Cmd.ExecuteReader();
 
 

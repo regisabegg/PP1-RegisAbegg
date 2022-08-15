@@ -5,7 +5,7 @@
     bool Required = Convert.ToBoolean(ViewData["Required"] ?? true);
     bool OnlySelect = Convert.ToBoolean(ViewData["onlySelect"] ?? false);
     bool LabelVertical = Convert.ToBoolean(ViewData["LabelVertical"]);
-    string Label = Convert.ToString(ViewData["Label"] ?? "País");
+    string Label = Convert.ToString(ViewData["Label"] ?? "País:");
     string classLabel = Convert.ToString(ViewData["classLabel"] ?? Helper.Label);
     string classForm = Convert.ToString(ViewData["classForm"] ?? Helper.Input12);
     var Prefix = Html.ClientPrefixName().ToString();
@@ -19,6 +19,7 @@
 @Html.Hidden("flEdit")
 <div class="@classForm">
     @Html.Label("", Label)
+    <span class="tx-danger">*</span>
     <div class="input-group">
         <div class="input-group-btn" style="width:15%">
             @Html.TextBoxFor(model => model.id, new { @style = "border-radius: 0px 0px 0px 0px;", @class = "form-control number", maxLength = "6" })

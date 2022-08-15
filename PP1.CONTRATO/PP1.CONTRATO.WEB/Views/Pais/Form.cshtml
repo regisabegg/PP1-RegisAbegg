@@ -19,7 +19,7 @@
                     @Html.TextBoxFor(e => e.idPai, new { @class = "form-control", readOnly = "readonly" })
                 </div>
             </div>
-           
+
         </div>
     </div>
 
@@ -29,6 +29,7 @@
         <div class="col-lg-8">
             <div class="form-group">
                 @Html.LabelFor(e => e.nmPais, new { @class = "form-control-label" })
+                <span class="tx-danger">*</span>
                 @Html.TextBoxFor(model => model.nmPais, new { @class = "form-control sotexto", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmPais, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
@@ -43,7 +44,10 @@
         <div class="col-lg-2">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrDDI, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrDDI, new { @class = "form-control number", maxlength = "4" }.ReadOnlyIf(readOnly))
+                <div class="input-group">
+                    <span class="input-group-addon tx-size-sm lh-2">+</span>
+                    @Html.TextBoxFor(model => model.nrDDI, new { @class = "form-control number", maxlength = "4", @mask = "+999" }.ReadOnlyIf(readOnly))
+                </div>
                 @Html.ValidationMessageFor(model => model.nrDDI, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -68,6 +72,13 @@
             </div>
         </div>
     </div>
+
+    @*<span >@Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })</span>
+    @Html.LabelFor(model => model.dtCadastro, string.Format("{0:dd/MM/yyyy}", Model.dtCadastro));
+    <span>
+        @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+    </span>
+    @Html.LabelFor(model => model.dtAtualizacao, string.Format("{0:dd/MM/yyyy}", Model.dtAtualizacao));*@
 
 }
 <hr />

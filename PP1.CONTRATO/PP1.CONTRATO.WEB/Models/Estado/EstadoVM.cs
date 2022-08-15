@@ -10,16 +10,16 @@ namespace PP1.CONTRATO.WEB.Models.Estado
     public class EstadoVM : Pai.PaiVM
     {
       
-        [Display(Name = "Estado")]
+        [Display(Name = "Estado:")]
         [Required]
         public string nmEstado { get; set; }
-        [Display(Name = "UF")]
+        [Display(Name = "UF:")]
         public string dsUF { get; set; }
      
-        [Display(Name = "Cód. IBGE")]
+        [Display(Name = "Cód. IBGE:")]
         public string nrIBGE { get; set; }
 
-        [Display(Name = "Região")]
+        [Display(Name = "Região:")]
         public string flRegiao { get; set; }
 
 
@@ -27,7 +27,7 @@ namespace PP1.CONTRATO.WEB.Models.Estado
 
         public Pais.ConsultaVM Pais { get; set; }
 
-        [Display(Name = "Código País")]
+        [Required]
         public int idPais { get; set; }
 
         public Entity.Estado VM2E(Entity.Estado bean)

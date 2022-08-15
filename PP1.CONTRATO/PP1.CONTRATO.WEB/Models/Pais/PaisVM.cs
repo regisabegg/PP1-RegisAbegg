@@ -8,12 +8,14 @@ namespace PP1.CONTRATO.WEB.Models.Pais
 {
     public class PaisVM : Pai.PaiVM
     {       
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome:" )]
         [Required]
         public string nmPais { get; set; }
-        [Display(Name = "Sigla")]
+
+        [Display(Name = "Sigla:")]
         public string dsSigla { get; set; }
-        [Display(Name = "DDI")]
+
+        [Display(Name = "DDI:")]
         public string nrDDI { get; set; }
 
 

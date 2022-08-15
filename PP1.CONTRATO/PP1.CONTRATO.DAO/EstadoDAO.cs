@@ -19,15 +19,16 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmEstado, obj.idEstado);
 
                 OpenConection();
-                Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) values (@v1, @v2, @v3, @v4, @v5, @v6, @v7)", Con);
+                Cmd = new SqlCommand("insert into estado (nmestado, dsuf, dtcadastro, dtatualizacao, idpais, nribge, flregiao ) " +
+                                     "values (@nmEstado, @dsUF, @dtCadastro, @dtAtualizacao, @idPais, @nrIBGE, @flRegiao)", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
-                Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
-                Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v5", obj.idPais);
-                Cmd.Parameters.AddWithValue("@v6", obj.nrIBGE);
-                Cmd.Parameters.AddWithValue("@v7", obj.flRegiao);
+                Cmd.Parameters.AddWithValue("@nmEstado", obj.nmEstado);
+                Cmd.Parameters.AddWithValue("@dsUF", obj.dsUF ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idPais", obj.idPais);
+                Cmd.Parameters.AddWithValue("@nrIBGE", obj.nrIBGE ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flRegiao", obj.flRegiao ?? (object)DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 

@@ -28,11 +28,12 @@
         <div class="col-lg-12">
             <div class="form-group">
                 @Html.LabelFor(e => e.nmEstado, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nmEstado, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                <span class="tx-danger">*</span>
+                @Html.TextBoxFor(model => model.nmEstado, new { @class = "form-control sotexto", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmEstado, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
-        
+
 
     </div>
 </div>
@@ -42,7 +43,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.dsUF, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.dsUF, new { @class = "form-control", maxlength = "3" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.dsUF, new { @class = "form-control sotexto", maxlength = "3" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.dsUF, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -56,37 +57,39 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(e => e.nrIBGE, new { @class = "form-control-label" })
-                @Html.TextBoxFor(model => model.nrIBGE, new { @class = "form-control", maxlength = "15" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nrIBGE, new { @class = "form-control number", maxlength = "15" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nrIBGE, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    @Html.EditorFor(model => model.Pais, "Pais/Select", new { @Required = true, Disable = readOnly })
+<div class="form-layout">
+    <div class="row">
+        @Html.EditorFor(model => model.Pais, "Pais/Select", new { @required = true, Disable = readOnly })
+    </div>
 </div>
 
 
-@if (action != "create")
-{
-    <div class="form-layout">
-        <div class="row mg-b-0">
-            <div class="col-lg-2">
-                <div class="form-group">
-                    @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+    @if (action != "create")
+    {
+        <div class="form-layout">
+            <div class="row mg-b-0">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        @Html.LabelFor(e => e.dtCadastro, new { @class = "form-control-label" })
+                        @Html.TextBoxFor(e => e.dtCadastro, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="form-group">
-                    @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
-                    @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        @Html.LabelFor(e => e.dtAtualizacao, new { @class = "form-control-label" })
+                        @Html.TextBoxFor(e => e.dtAtualizacao, "{0:dd/MM/yyyy}", new { @class = "form-control", readOnly = "readonly" })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-}
+    }
 
-<hr />
+    <hr />

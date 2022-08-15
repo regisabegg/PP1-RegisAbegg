@@ -8,13 +8,13 @@ namespace PP1.CONTRATO.WEB.Models.Pai
 {
     public class PaiVM
     {
-        [Display(Name = "Código")]
+        [Display(Name = "Código:")]
         public int idPai { get; set; }
 
-        [Display(Name = "Cadastro")]
+        [Display(Name = "Cadastro:")]
         [DisplayFormat(DataFormatString  = "mm/dd/yyyy")]
         public DateTime dtCadastro { get; set; }
-        [Display(Name = "Atualização")]
+        [Display(Name = "Atualização:")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtAtualizacao { get; set; }
 
