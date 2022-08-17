@@ -49,8 +49,11 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                @Html.LabelFor(e => e.flRegiao, new { @class = "form-control-label" })
-                @Html.DropDownList("flRegiao", PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control select2" }.DisabledIf(readOnly))
+                @Html.LabelFor(model => model.flRegiao, new { @class = "form-control-label" })
+                @*@Html.DropDownListFor(model => model.flRegiao, PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control select2" }.ReadOnlyIf(readOnly))*@
+
+                @Html.DropDownListFor(model => model.flRegiao, PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control" }.AppendIf(readOnly, "disabled", "disabled"))
+                @*@Html.DropDownListFor("flRegiao", PP1.CONTRATO.WEB.Models.Estado.EstadoVM.RegiaoTipo, new { @class = "form-control select2" }.DisabledIf(readOnly))*@
                 @Html.ValidationMessageFor(model => model.flRegiao, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

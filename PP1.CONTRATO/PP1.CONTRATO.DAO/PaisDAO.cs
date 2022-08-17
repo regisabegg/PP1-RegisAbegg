@@ -52,10 +52,10 @@ namespace PP1.CONTRATO.DAO
                 Cmd = new SqlCommand("update pais set nmPais=@nmPais, dsSigla=@dsSigla, nrDDI=@nrDDI, dtAtualizacao=@dtAtualizacao where idpais = @idPais", Con);
 
                 Cmd.Parameters.AddWithValue("@nmPais", obj.nmPais);
-                Cmd.Parameters.AddWithValue("@dsSigla", obj.dsSigla);
-                Cmd.Parameters.AddWithValue("@nrDDI", obj.nrDDI);
+                Cmd.Parameters.AddWithValue("@dsSigla", obj.dsSigla ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrDDI", obj.nrDDI ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@idPais", ((object)obj.idPais) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 

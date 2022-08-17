@@ -26,7 +26,7 @@ namespace PP1.CONTRATO.DAO
                 Cmd.Parameters.AddWithValue("@dsUF", obj.dsUF ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
-                Cmd.Parameters.AddWithValue("@idPais", obj.idPais);
+                Cmd.Parameters.AddWithValue("@idPais", ((object)obj.idPais) ?? DBNull.Value);
                 Cmd.Parameters.AddWithValue("@nrIBGE", obj.nrIBGE ?? (object)DBNull.Value);
                 Cmd.Parameters.AddWithValue("@flRegiao", obj.flRegiao ?? (object)DBNull.Value);
 
@@ -52,16 +52,17 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmEstado, obj.idEstado);
 
                 OpenConection();
-                Cmd = new SqlCommand("update estado set nmestado=@v1, dsuf=@v2, dtcadastro=@v3, dtatualizacao=@v4,  nribge=@v5,  flregiao=@v6, idpais=@v7 where idestado = @v8", Con);
+                Cmd = new SqlCommand("update estado set nmestado=@nmEstado, dsuf=@dsUF, dtcadastro=@dtCadastro, dtatualizacao=@dtAtualizacao, " +
+                                     " nribge=@nrIBGE,  flregiao=@flRegiao, idpais=@idPais where idestado = @idEstado", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmEstado);
-                Cmd.Parameters.AddWithValue("@v2", obj.dsUF);
-                Cmd.Parameters.AddWithValue("@v3", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v5", obj.nrIBGE);
-                Cmd.Parameters.AddWithValue("@v6", obj.flRegiao);
-                Cmd.Parameters.AddWithValue("@v7", obj.idPais);
-                Cmd.Parameters.AddWithValue("@v8", obj.idEstado);
+                Cmd.Parameters.AddWithValue("@nmEstado", obj.nmEstado);
+                Cmd.Parameters.AddWithValue("@dsUF", obj.dsUF ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrIBGE", obj.nrIBGE ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@flRegiao", obj.flRegiao ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idPais", ((object)obj.idPais) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idEstado", ((object)obj.idEstado) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 

@@ -19,14 +19,15 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmCidade, obj.idCidade);
 
                 OpenConection();
-                Cmd = new SqlCommand("insert into cidade (nmcidade, nrddd, nribge, dtcadastro, dtatualizacao, idestado ) values (@v1, @v2, @v3, @v4, @v5, @v6)", Con);
+                Cmd = new SqlCommand("insert into cidade (nmcidade, nrddd, nribge, dtcadastro, dtatualizacao, idestado ) " +
+                                     "values (@nmCidade, @nrDDD, @nrIBGE, @dtCadastro, @dtAtualizacao, @idEstado)", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmCidade);
-                Cmd.Parameters.AddWithValue("@v2", obj.nrDDD);
-                Cmd.Parameters.AddWithValue("@v3", obj.nrIBGE);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v5", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v6", obj.idEstado);
+                Cmd.Parameters.AddWithValue("@nmCidade", obj.nmCidade);
+                Cmd.Parameters.AddWithValue("@nrDDD", obj.nrDDD ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrIBGE", obj.nrIBGE ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idEstado", ((object)obj.idEstado) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -50,15 +51,16 @@ namespace PP1.CONTRATO.DAO
                 findInsert(obj.nmCidade, obj.idCidade);
 
                 OpenConection();
-                Cmd = new SqlCommand("update cidade set nmcidade=@v1, nrddd=@v2,  nribge=@v3, dtcadastro=@v4, dtatualizacao=@v5, idestado=@v6 where idcidade = @v7", Con);
+                Cmd = new SqlCommand("update cidade set nmcidade=@nmCidade, nrddd=@nrDDD,  nribge=@nrIBGE, dtcadastro=@dtCadastro," +
+                                     " dtatualizacao=@dtAtualizacao, idestado=@idEstado where idcidade = @idCidade", Con);
 
-                Cmd.Parameters.AddWithValue("@v1", obj.nmCidade);
-                Cmd.Parameters.AddWithValue("@v2", obj.nrDDD);
-                Cmd.Parameters.AddWithValue("@v3", obj.nrIBGE);
-                Cmd.Parameters.AddWithValue("@v4", obj.dtCadastro);
-                Cmd.Parameters.AddWithValue("@v5", obj.dtAtualizacao);
-                Cmd.Parameters.AddWithValue("@v6", obj.idEstado); ;
-                Cmd.Parameters.AddWithValue("@v7", obj.idCidade);
+                Cmd.Parameters.AddWithValue("@nmCidade", obj.nmCidade);
+                Cmd.Parameters.AddWithValue("@nrDDD", obj.nrDDD ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@nrIBGE", obj.nrIBGE ?? (object)DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtCadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@dtAtualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idEstado", ((object)obj.idEstado) ?? DBNull.Value);
+                Cmd.Parameters.AddWithValue("@idCidade", ((object)obj.idCidade) ?? DBNull.Value);
 
                 Cmd.ExecuteNonQuery();
 
@@ -66,7 +68,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao atualizar o Cidade: " + ex.Message);
+                throw new Exception("Erro ao atualizar a Cidade: " + ex.Message);
             }
             finally
             {
@@ -90,7 +92,7 @@ namespace PP1.CONTRATO.DAO
             catch (Exception ex)
             {
 
-                throw new Exception("Erro ao excluir o Cidade: " + ex.Message);
+                throw new Exception("Erro ao excluir a Cidade: " + ex.Message);
             }
             finally
             {
@@ -126,7 +128,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cidade: " + ex.Message);
+                throw new Exception("Erro ao pesquisar a Cidade: " + ex.Message);
             }
             finally
             {
@@ -206,7 +208,7 @@ namespace PP1.CONTRATO.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar o Cidade: " + ex.Message);
+                throw new Exception("Erro ao pesquisar a Cidade: " + ex.Message);
             }
             finally
             {

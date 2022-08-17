@@ -59,7 +59,8 @@
             <div class="form-group ">
                 @Html.LabelFor(e => e.nmPessoa, "Razão Social", new { @class = "form-control-label juridica " })
                 @Html.LabelFor(e => e.nmPessoa, "Cliente", new { @class = "form-control-label fisica" })
-                @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                <span class="tx-danger">*</span>
+                @Html.TextBoxFor(model => model.nmPessoa, new { @class = "form-control sotexto", maxlength = "50", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmPessoa, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
@@ -101,7 +102,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(model => model.Fisica.flSexo, new { @class = "form-control-label" })
-                @Html.DropDownListFor(model => model.Fisica.flSexo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Sexo, new { @class = "form-control" }.AppendIf(readOnly, "disabled", "disabled"))
+                @Html.DropDownListFor(model => model.Fisica.flSexo, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Sexo, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
             </div>
         </div>
     </div>
@@ -213,18 +214,18 @@
 
 <div class="form-layout juridica">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="form-group">
                 @Html.LabelFor(e => e.Juridica.nmContato, new { @class = "form-control-label" })
                 @Html.TextBoxFor(model => model.Juridica.nmContato, new { @class = "form-control", maxlength = "50" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.Juridica.nmContato, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>
-        <div class="col-lg-4">
+       
+        <div class="col-lg-4">            
             <div class="form-group">
                 @Html.LabelFor(model => model.Juridica.flContato, new { @class = "form-control-label" })
                 @Html.DropDownListFor(model => model.Juridica.flContato, PP1.CONTRATO.WEB.Models.Cliente.ClienteVM.Contato, new { @class = "form-control select2" }.AppendIf(readOnly, "disabled", "disabled"))
-
             </div>
         </div>
 

@@ -10,17 +10,17 @@ namespace PP1.CONTRATO.WEB.Models.Cidade
     public class CidadeVM : Pai.PaiVM
     {
         
-        [Display(Name = "Cidade")]
+        [Display(Name = "Cidade:")]
         [Required]
         public string nmCidade { get; set; }
         
-        [Display(Name = "DDD")]
+        [Display(Name = "DDD:")]
         public string nrDDD { get; set; }
 
-        [Display(Name = "Cód. IBGE")]
+        [Display(Name = "Cód. IBGE:")]
         public string nrIBGE { get; set; }
         
-        [Display(Name = "Código Estado")]
+        [Display(Name = "Código Estado:")]
         public int idEstado { get; set; }
 
 

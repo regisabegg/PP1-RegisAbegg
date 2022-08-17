@@ -47,52 +47,6 @@
 
 
 @section scripts {
-
-    @Scripts.Render("~/Scripts/Cliente/Create.js?")
-    <script src="~/Scripts/Common.js"></script>
-    @*<script>
-        function getCep() {
-            const cep = $("#nrCEP").val();
-            const bairro = $("#nmBairro").val();
-            const logradouro = $("#nmLogradouro").val();
-            const ibge = $("#nrIBGE").val();
-
-            if (cep != "") {
-                fetch("https://viacep.com.br/ws/" + cep + "/json/")
-                    .then(
-                        function (response) {
-                            if (response.status !== 200) {
-                                //console.log(response.status);
-
-                                return;
-                            }
-
-                            response.json().then(function (data) {
-                                $("#nrCEP").val(data.cep);
-                                $("#nmCidade").val(data.localidade);
-                                $("#nmBairro").val(data.bairro);
-                                $("#nmLogradouro").val(data.logradouro);
-                                $("#nrIBGE").val(data.ibge);
-
-                                if (data.logradouro == "") {
-                                    $("#nmLogradouro").focus();
-                                }
-                                else {
-                                    $("#nrNumero").focus();
-
-                                }
-                            });
-
-                        }
-                    )
-                    .catch(function (err) {
-                        console.log('Erro: ', err);
-                    });
-            } else {
-                alert("Informe o número");
-            }
-        }
-    </script>*@
     <script>
         $(function () {
             'use strict';
@@ -103,4 +57,50 @@
             $('#selectForm').parsley();
         })
     </script>
+    @Scripts.Render("~/Scripts/Cliente/Create.js?")
+    <script src="~/Scripts/Common.js"></script>
+    @*<script>
+            function getCep() {
+                const cep = $("#nrCEP").val();
+                const bairro = $("#nmBairro").val();
+                const logradouro = $("#nmLogradouro").val();
+                const ibge = $("#nrIBGE").val();
+
+                if (cep != "") {
+                    fetch("https://viacep.com.br/ws/" + cep + "/json/")
+                        .then(
+                            function (response) {
+                                if (response.status !== 200) {
+                                    //console.log(response.status);
+
+                                    return;
+                                }
+
+                                response.json().then(function (data) {
+                                    $("#nrCEP").val(data.cep);
+                                    $("#nmCidade").val(data.localidade);
+                                    $("#nmBairro").val(data.bairro);
+                                    $("#nmLogradouro").val(data.logradouro);
+                                    $("#nrIBGE").val(data.ibge);
+
+                                    if (data.logradouro == "") {
+                                        $("#nmLogradouro").focus();
+                                    }
+                                    else {
+                                        $("#nrNumero").focus();
+
+                                    }
+                                });
+
+                            }
+                        )
+                        .catch(function (err) {
+                            console.log('Erro: ', err);
+                        });
+                } else {
+                    alert("Informe o número");
+                }
+            }
+        </script>*@
+
 }
