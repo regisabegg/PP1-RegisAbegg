@@ -88,7 +88,7 @@ this.unmask = function ($input) {
 
 //valid input select_id
 $(".number").keypress(function (e) {
-    if (e.which != 8 && e.which != 0 && e.which != 43 && e.which !=45 && (e.which < 48 || e.which > 57)) {
+    if (e.which != 8 && e.which != 0 && e.which != 43 && e.which != 45 && (e.which < 48 || e.which > 57)) {
         $("#errmsg").html("Apenas numeros").show().fadeOut("slow");
         return false;
     }
@@ -240,7 +240,7 @@ if ($("fieldset").length) {
 
 
 $(document).ready(function () {
-   
+
     function limpa_formulário_cep() {
         // Limpa valores do formulário de cep.
         $("#nmLogradouro").val("");
@@ -250,7 +250,7 @@ $(document).ready(function () {
 
     //Quando o campo cep perde o foco.
     $("#nrCEP").on('change', function () {
-       
+
         //$(document).on('change', 
 
         //Nova variável "cep" somente com dígitos.
@@ -308,3 +308,37 @@ $(document).ready(function () {
 //        $('body').addClass('modal-open');
 //    }
 //});
+
+
+
+
+/*******************************************************************************
+*SELECT 2
+*******************************************************************************/
+
+
+
+$(function () {
+    'use strict';
+    $('.select2').select2({
+        minimumResultsForSearch: Infinity
+    });
+
+    $('#selectForm').parsley();
+
+
+    // Select2 by showing the search
+    $('.select2-show-search').select2({
+        minimumResultsForSearch: ''
+    });
+
+    // Select2 with tagging support
+    $('.select2-tag').select2({
+        tags: true,
+        tokenSeparators: [',', ' ']
+    });
+
+
+
+})
+

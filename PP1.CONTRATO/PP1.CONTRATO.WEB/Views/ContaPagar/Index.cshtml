@@ -39,7 +39,7 @@
                         <div class="col-md-7">
                             <div class=" visible-md hi visible-lg hidden-xs">
                                 @Html.CustomButton("Localizar", "submit", new { @class = "btn btn-info btn-form", id = "btnFilter" }, new { @left = "ion-search" }, false)
-                                @Html.CustomActionLink("Limpar", "Index", new { @clear = true }, new { @class = "btn btn-secondary btn-form" }, new { @left = "ion-close" }, false)
+                                @Html.CustomActionLink("Limpar", "Index", new { @clear = true }, new { @class = "btn btn-secondary btn-form" }, new { @left = "ion-refresh" }, false)
                                 @Html.CustomActionLink(" Adicionar", "Create", new { @class = "btn btn-success btn-form", @title = "Novo registro" }, new { @left = "ion-plus" }, false)
                             </div>
                             <div class="hidden-sm-up hidden-md-up  hidden-xl-up">
@@ -47,7 +47,7 @@
                                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#" title="Mais ações"><i class="glyphicon glyphicon-cog"></i> Ações <span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-black">
                                         <li><a href="#" data-form-type="submit"><i class="ion-search"></i> Localizar</a></li>
-                                        <li><a href="@Url.Action("Index", new { clear = true })"><i class="ion-close"></i> Limpar</a></li>
+                                        <li><a href="@Url.Action("Index", new { clear = true })"><i class="ion-refresh"></i> Limpar</a></li>
                                         <li><a href="@Url.Action("Create")"><i class="ion-plus"></i> Adicionar</a></li>
                                     </ul>
                                 </div>
