@@ -31,6 +31,9 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
         [Display(Name = "Porcentagem (%):")]
         public short? txPercent { get; set; }
 
+        [Display(Name = "Desconto (%):")]
+        public short? txDesconto { get; set; }
+
         public int idFormaPagto { get; set; }
 
         public Entity.CondicaoPagto VM2E(Entity.CondicaoPagto bean)
