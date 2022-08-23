@@ -10,7 +10,7 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
 {
     public class ClienteVM : Pessoa.PessoaVM
     {
-        [Display(Name = "Limite crédito")]
+        [Display(Name = "Limite crédito:")]
         //[Column(TypeName = "decimal(8,2)")]
         //[DisplayFormat(DataFormatString = "{N:2}")]
 
@@ -47,19 +47,19 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
 
         public class PessoaFisicaVM
         {
-            [Display(Name = "Apelido")]
+            [Display(Name = "Apelido:")]
             public string nmApelido { get; set; }
 
-            [Display(Name = "CPF")]
+            [Display(Name = "CPF:")]
             public string nrCPF { get; set; }
 
-            [Display(Name = "RG")]
+            [Display(Name = "RG:")]
             public string nrRG { get; set; }
 
-            [Display(Name = "Dt. nascimento")]
+            [Display(Name = "Dt. nascimento:")]
             public DateTime? dtNascimento { get; set; }
 
-            [Display(Name = "Sexo")]
+            [Display(Name = "Sexo:")]
             public string flSexo { get; set; }
 
             public Entity.Cliente VM2E(Entity.Cliente bean)
@@ -77,22 +77,22 @@ namespace PP1.CONTRATO.WEB.Models.Cliente
         public class PessoaJuridicaVM
         {
 
-            [Display(Name = "Nome fantasia")]
+            [Display(Name = "Nome fantasia:")]
             public string nmFantasia { get; set; }
 
-            [Display(Name = "CNPJ")]
+            [Display(Name = "CNPJ:")]
             public string nrCNPJ { get; set; }
 
-            [Display(Name = "Nº IE")]
+            [Display(Name = "Nº IE:")]
             public string nrIE { get; set; }
 
-            [Display(Name = "Site")]
+            [Display(Name = "Site:")]
             public string dsSite { get; set; }
 
-            [Display(Name = "Contato")]
+            [Display(Name = "Contato:")]
             public string nmContato { get; set; }
 
-            [Display(Name = "Tipo Contato")]
+            [Display(Name = "Tipo Contato:")]
             public string flContato { get; set; }
 
 

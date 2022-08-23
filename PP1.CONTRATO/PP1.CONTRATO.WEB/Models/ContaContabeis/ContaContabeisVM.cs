@@ -9,23 +9,23 @@ namespace PP1.CONTRATO.WEB.Models.ContaContabeis
 {
     public class ContaContabeisVM : Pai.PaiVM
     {
-        [Display(Name = "Conta")]
+        [Display(Name = "Conta:")]
         public string nmConta { get; set; }
 
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
-        [Display(Name = "Classificação")]
+        [Display(Name = "Classificação:")]
         public string nrClassificacao { get; set; }
 
-        [Display(Name = "Saldo")]
+        [Display(Name = "Saldo:")]
         public decimal vlSaldo { get; set; }
 
-        [Display(Name = "Data de vencimento")]
+        [Display(Name = "Data de vencimento:")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtVencimento { get; set; }
 
-        [Display(Name = "Data de pagamento")]
+        [Display(Name = "Data de pagamento:")]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime dtRecebimento { get; set; }
 

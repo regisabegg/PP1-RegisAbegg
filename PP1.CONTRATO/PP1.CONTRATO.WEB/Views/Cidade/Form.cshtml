@@ -29,7 +29,7 @@
             <div class="form-group">
                 @Html.LabelFor(e => e.nmCidade, new { @class = "form-control-label" })
                 <span class="tx-danger">*</span>
-                @Html.TextBoxFor(model => model.nmCidade, new { @class = "form-control sotexto", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
+                @Html.TextBoxFor(model => model.nmCidade, new { @class = "form-control", maxlength = "100", @autofocus = "autofocus" }.ReadOnlyIf(readOnly))
                 @Html.ValidationMessageFor(model => model.nmCidade, null, new { @class = "text-danger" }.HideIf(readOnly))
             </div>
         </div>

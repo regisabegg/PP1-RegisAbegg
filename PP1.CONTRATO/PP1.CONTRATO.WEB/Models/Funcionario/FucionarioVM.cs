@@ -9,19 +9,19 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 {
     public class FuncionarioVM : Pessoa.PessoaVM
     {
-        [Display(Name = "Apelido/Crachá")]
+        [Display(Name = "Apelido/Crachá:")]
         public string nmApelido{ get; set; }
 
-        [Display(Name = "Grau de instrução")]
+        [Display(Name = "Grau de instrução:")]
         public string flInstrucao { get; set; }
 
-        [Display(Name = "Estado civil")]
+        [Display(Name = "Estado civil:")]
         public string flCivil { get; set; }
 
-        [Display(Name = "Sexo")]
+        [Display(Name = "Sexo:")]
         public string flSexo { get; set; }
 
-        [Display(Name = "Nascimento")]
+        [Display(Name = "Nascimento:")]
    
         public DateTime? dtNascimento { get; set; }
 
@@ -32,109 +32,109 @@ namespace PP1.CONTRATO.WEB.Models.Funcionario
 
         //Documentos
 
-        [Display(Name = "CPF")]
+        [Display(Name = "CPF:")]
         public string nrCPF { get; set; }
 
-        [Display(Name = "RG")]
+        [Display(Name = "RG:")]
         public string nrRG { get; set; }
 
-        [Display(Name = "Orgão exp. RG")]
+        [Display(Name = "Orgão exp. RG:")]
         public string nmOrgaoRG { get; set; }
 
-        [Display(Name = "CTPS/Série")]
+        [Display(Name = "CTPS/Série:")]
         public string nrCTPS { get; set; }
 
-        [Display(Name = "PIS")]
+        [Display(Name = "PIS:")]
         public string nrPIS { get; set; }
 
-        [Display(Name = "Orgão exp. CTPS")]
+        [Display(Name = "Orgão exp. CTPS:")]
         public string nmOrgaoCTPS { get; set; }
 
-        [Display(Name = "Titulo de eleitor")]
+        [Display(Name = "Titulo de eleitor:")]
         public string nrTitulo { get; set; }
 
-        [Display(Name = "Zona")]
+        [Display(Name = "Zona:")]
         public string nrZona { get; set; }
 
-        [Display(Name = "Seção")]
+        [Display(Name = "Seção:")]
         public string nrSecao { get; set; }       
 
 
         //Filiação
 
-        [Display(Name = "Nome da mãe")]
+        [Display(Name = "Nome da mãe:")]
         public string nmMae { get; set; }
 
-        [Display(Name = "Nome do pai")]
+        [Display(Name = "Nome do pai:")]
         public string nmPai { get; set; }
 
 
         //Contato
 
-        [Display(Name = "Site")]
+        [Display(Name = "Site:")]
         public string dsSite { get; set; }
 
-        [Display(Name = "Linkedin")]
+        [Display(Name = "Linkedin:")]
         public string dsLinkedin { get; set; }
 
-        [Display(Name = "Facebook")]
+        [Display(Name = "Facebook:")]
         public string dsFacebook { get; set; }
 
-        [Display(Name = "Instagram")]
+        [Display(Name = "Instagram:")]
         public string dsInstagram { get; set; }
 
         
         //Emergência
 
-        [Display(Name = "Contato")]
+        [Display(Name = "Contato:")]
         public string nmContato { get; set; }
 
-        [Display(Name = "Tipo Contato")]
+        [Display(Name = "Tipo Contato:")]
         public string flContato { get; set; }
 
-        [Display(Name = "Telefone")]
+        [Display(Name = "Telefone:")]
         public string nrFoneEmergecia { get; set; }
 
-        [Display(Name = "Celular")]
+        [Display(Name = "Celular:")]
         public string nrCelularEmergecia { get; set; }
 
         //Admissão
 
-        [Display(Name = "Admissão")]
+        [Display(Name = "Admissão:")]
      
         public DateTime? dtAdmissao { get; set; }
 
-        [Display(Name = "Demissão")]
+        [Display(Name = "Demissão:")]
         [DataType(DataType.Date)]
         public DateTime? dtDemissao { get; set; }
 
-        [Display(Name = "Função")]
+        [Display(Name = "Função:")]
         public string nmFuncao { get; set; }
 
-        [Display(Name = "Departamento")]
+        [Display(Name = "Departamento:")]
         public string nmDepartamento { get; set; }
 
-        [Display(Name = "Regime de experiência")]
+        [Display(Name = "Regime de experiência:")]
         public string flExperiencia { get; set; }
 
         //Bancários
 
-        [Display(Name = "Banco")]
+        [Display(Name = "Banco:")]
         public string nmBanco { get; set; }
 
-        [Display(Name = "Tipo Conta")]
+        [Display(Name = "Tipo Conta:")]
         public string flTipoConta { get; set; }
 
-        [Display(Name = "Agência")]
+        [Display(Name = "Agência:")]
         public string nrAgencia { get; set; }
 
-        [Display(Name = "Conta")]
+        [Display(Name = "Conta:")]
         public string nrConta{ get; set; }
 
-        [Display(Name = "Dígito")]
+        [Display(Name = "Dígito:")]
         public string nrDigito { get; set; }
 
-        [Display(Name = "Chave PIX")]
+        [Display(Name = "Chave PIX:")]
         public string nrPIX { get; set; }
 
         public Entity.Funcionario VM2E(Entity.Funcionario bean)
