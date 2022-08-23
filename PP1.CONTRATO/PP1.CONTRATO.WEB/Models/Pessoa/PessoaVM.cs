@@ -9,14 +9,14 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
 {
     public class PessoaVM : Pai.PaiVM
     {    
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome:")]
         [Required(ErrorMessage = "Por favor, informe o cliente!")]
         public string nmPessoa { get; set; }
 
         [Display(Name = "Telefone")]
         public string nrTelefone { get; set; }
 
-        [Display(Name = "Celular")]
+        [Display(Name = "Celular:")]
         public string nrCelular { get; set; }
 
         [Display(Name = "E-mail")]
@@ -24,33 +24,33 @@ namespace PP1.CONTRATO.WEB.Models.Pessoa
         public string dsEmail { get; set; }
 
         
-        [Display(Name = "Observações")]
+        [Display(Name = "Observações:")]
         public string dsObservacao { get; set; }
 
-        [Display(Name = "Tipo Cliente")]
+        [Display(Name = "Tipo Cliente:")]
         public string flTipo { get; set; }
         public string dsTipo { get; set; }
 
 
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
-        [Display(Name = "CEP")]
+        [Display(Name = "CEP:")]
         public string nrCEP { get; set; }
 
-        [Display(Name = "Logradouro")]
+        [Display(Name = "Logradouro:")]
         public string nmLogradouro { get; set; }
 
-        [Display(Name = "Número")]
+        [Display(Name = "Número:")]
         public string nrNumero { get; set; }
 
-        [Display(Name = "Bairro")]
+        [Display(Name = "Bairro:")]
         public string nmBairro { get; set; }
 
-        [Display(Name = "Complemento")]
+        [Display(Name = "Complemento:")]
         public string dsComplemento { get; set; }
 
-        [Display(Name = "Código Cidade")]
+        [Display(Name = "Código Cidade:")]
         public int idCidade { get; set; }
 
         public Cidade.ConsultaVM Cidade { get; set; }

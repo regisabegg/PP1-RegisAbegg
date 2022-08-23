@@ -7,40 +7,40 @@ namespace PP1.CONTRATO.WEB.Models.OrdemServico
     public class OrdemServicoVM : Pai.PaiVM
     {
 
-        [Display(Name = "Descrição O.S")]
+        [Display(Name = "Descrição O.S:")]
         [Required]
         public string dsObservacao { get; set; }
 
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
-        [Display(Name = "Tipo do serviço")]
+        [Display(Name = "Tipo do serviço:")]
         public string flTipo { get; set; }
 
-        [Display(Name = "Valor ($)")]
+        [Display(Name = "Valor ($):")]
         public decimal? vlOrdemServico { get; set; }
 
-        [Display(Name = "Valor ($)")]
+        [Display(Name = "Valor ($):")]
         public decimal? vlServico { get; set; }
 
-        [Display(Name = "Quantidade")]
+        [Display(Name = "Quantidade:")]
         public int? vlQuantidade { get; set; }
 
-        [Display(Name = "Total ($)")]
+        [Display(Name = "Total ($):")]
         public decimal? vlTotal { get; set; }
 
         public int idFormaPagto { get; set; }
 
-        [Display(Name = "Data da O.S")]
+        [Display(Name = "Data da O.S:")]
         public DateTime dtOrdem { get; set; }
 
-        [Display(Name = "Data do Término")]
+        [Display(Name = "Data do Término:")]
         public DateTime dtTermino { get; set; }
 
-        [Display(Name = "Data da início")]
+        [Display(Name = "Data da início:")]
         public DateTime dtInicio { get; set; }
 
-        [Display(Name = "Data da Entrega")]
+        [Display(Name = "Data da Entrega:")]
         public DateTime dtEntrega{ get; set; }
 
         public Cliente.ConsultaVM Cliente { get; set; }

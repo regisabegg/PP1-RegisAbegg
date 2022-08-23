@@ -11,7 +11,7 @@ namespace PP1.CONTRATO.WEB.Models.Fornecedor
     public class FornecedorVM : Pessoa.PessoaVM
     {
         
-        [Display(Name = "Limite crédito")]
+        [Display(Name = "Limite crédito:")]
         public decimal vlLimite { get; set; }
 
         public Entity.Fornecedor VM2E(Entity.Fornecedor bean)
@@ -45,19 +45,19 @@ namespace PP1.CONTRATO.WEB.Models.Fornecedor
 
         public class PessoaFisicaVM
         {
-            [Display(Name = "Apelido")]
+            [Display(Name = "Apelido:")]
             public string nmApelido { get; set; }
 
-            [Display(Name = "CPF")]
+            [Display(Name = "CPF:")]
             public string nrCPF { get; set; }
 
-            [Display(Name = "RG")]
+            [Display(Name = "RG:")]
             public string nrRG { get; set; }
 
-            [Display(Name = "Dt. nascimento")]
+            [Display(Name = "Dt. nascimento:")]
             public DateTime? dtNascimento { get; set; }
 
-            [Display(Name = "Sexo")]
+            [Display(Name = "Sexo:")]
             public string flSexo { get; set; }
 
             public Entity.Fornecedor VM2E(Entity.Fornecedor bean)
@@ -75,22 +75,22 @@ namespace PP1.CONTRATO.WEB.Models.Fornecedor
         public class PessoaJuridicaVM
         {
 
-            [Display(Name = "Nome fantasia")]
+            [Display(Name = "Nome fantasia:")]
             public string nmFantasia { get; set; }
 
-            [Display(Name = "CNPJ")]
+            [Display(Name = "CNPJ:")]
             public string nrCNPJ { get; set; }
 
-            [Display(Name = "Nº IE")]
+            [Display(Name = "Nº IE:")]
             public string nrIE { get; set; }
 
-            [Display(Name = "Site")]
+            [Display(Name = "Site:")]
             public string dsSite { get; set; }
 
-            [Display(Name = "Contato")]
+            [Display(Name = "Contato:")]
             public string nmContato { get; set; }
 
-            [Display(Name = "Tipo Contato")]
+            [Display(Name = "Tipo Contato:")]
             public string flContato { get; set; }
 
             public Entity.Fornecedor VM2E(Entity.Fornecedor bean)

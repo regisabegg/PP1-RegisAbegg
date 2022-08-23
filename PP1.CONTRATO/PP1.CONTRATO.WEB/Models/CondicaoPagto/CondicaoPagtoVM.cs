@@ -12,23 +12,23 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
     public class CondicaoPagtoVM : Pai.PaiVM
     {
         
-        [Display(Name = "Condição de Pagamento")]
+        [Display(Name = "Condição de Pagamento:")]
         [Required]
         public string nmCondicaoPagto { get; set; }
 
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
-        [Display(Name = "Juros (%)")]
+        [Display(Name = "Juros (%):")]
         public decimal? txJuros { get; set; }
 
-        [Display(Name = "Multa (%)")]
+        [Display(Name = "Multa (%):")]
         public decimal? txMulta { get; set; }
 
-        [Display(Name = "Dias")]
+        [Display(Name = "Dias:")]
         public short? qtDias { get; set; }
 
-        [Display(Name = "Porcentagem (%)")]
+        [Display(Name = "Porcentagem (%):")]
         public short? txPercent { get; set; }
 
         public int idFormaPagto { get; set; }

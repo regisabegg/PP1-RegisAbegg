@@ -6,14 +6,14 @@ namespace PP1.CONTRATO.WEB.Models.Servico
     public class ServicoVM : Pai.PaiVM
     {
 
-        [Display(Name = "Condição de Pagamento")]
+        [Display(Name = "Condição de Pagamento:")]
         [Required]
         public string nmServico { get; set; }
 
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
-        [Display(Name = "Valor ($)")]
+        [Display(Name = "Valor ($):")]
         public decimal? vlServico { get; set; }
 
         public int idFormaPagto { get; set; }

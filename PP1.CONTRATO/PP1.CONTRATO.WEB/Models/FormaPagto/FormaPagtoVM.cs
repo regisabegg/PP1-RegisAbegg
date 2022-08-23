@@ -9,10 +9,10 @@ namespace PP1.CONTRATO.WEB.Models.FormaPagto
 {
     public class FormaPagtoVM : Pai.PaiVM
     {
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome:")]
         [Required]
         public string nmFormaPagto { get; set; }
-        [Display(Name = "Situação")]
+        [Display(Name = "Situação:")]
         public string flSituacao { get; set; }
 
 
