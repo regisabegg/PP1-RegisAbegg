@@ -32,7 +32,7 @@ namespace PP1.CONTRATO.DAO
                 command.Parameters.AddWithValue("@dtcadastro", ((object)obj.dtCadastro) ?? DBNull.Value);
                 command.Parameters.AddWithValue("@dtatualizacao", ((object)obj.dtAtualizacao) ?? DBNull.Value);
                 command.Parameters.AddWithValue("@idcondicaopagto", obj.idCondicaoPagto);
-                
+
                 //CondicaoForma objForma = new CondicaoForma();
                 //command.ExecuteNonQuery();
 
@@ -51,7 +51,7 @@ namespace PP1.CONTRATO.DAO
                     command.Parameters.AddWithValue("@qtdias", ((object)item.qtDias) != DBNull.Value ? ((object)item.qtDias) : 0);
                     command.Parameters.AddWithValue("@txpercentual", ((object)item.txPercentual) != DBNull.Value ? ((object)item.txPercentual) : 0);
                     resp = command.ExecuteNonQuery() == 1 ? "OK" : "Registro não foi inserido";
-                    
+
                 }
 
                 sqlTrans.Commit();
@@ -149,11 +149,11 @@ namespace PP1.CONTRATO.DAO
                     obj.txMulta = Convert.ToInt32(Dr["txmulta"]);
                     obj.dtCadastro = Convert.ToDateTime(Dr["dtcadastro"]);
                     obj.dtAtualizacao = Convert.ToDateTime(Dr["dtatualizacao"]);
-
-
+                    obj.CondicaoForma = this.FindByForma(obj.idCondicaoPagto);
+                    return obj;
 
                 }
-                return obj;
+                else return null;
 
             }
             catch (Exception ex)
@@ -165,6 +165,76 @@ namespace PP1.CONTRATO.DAO
                 CloseConection();
             }
         }
+
+        public List<CondicaoForma> FindByForma(int? id)
+        {
+            OpenConection();
+            List<CondicaoForma> obj = new List<CondicaoForma>();
+            Cmd = new SqlCommand("select * from condicaoforma where idcondicaopagto=@idcondicaopagto", Con);
+            Cmd.Parameters.AddWithValue("@idcondicaopagto", id);
+            Dr = Cmd.ExecuteReader();
+            while (Dr.Read())
+            {
+                CondicaoForma obj2 = new CondicaoForma();
+                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("idCondicaoPagto"));
+                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("nrParcela"));
+                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("qtDias"));
+                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("txPercentual"));
+                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("idFormaPagto"));
+                obj.Add(obj2);
+            }
+            return obj;
+
+        }
+
+
+        //public Funcionario FindById(int id)
+        //{
+        //    string sql = @"SELECT * FROM Funcionarios WHERE Id = ?";
+
+        //    using (OdbcConnection conexao = ConnectionFactory.CreateConnection())
+        //    {
+        //        OdbcCommand comando = new OdbcCommand(sql, conexao);
+        //        comando.Parameters.AddWithValue("@Id", id);
+        //        conexao.Open();
+        //       OdbcDataReader resultado = comando.ExecuteReader();
+        //        while (resultado.Read())
+        //        {
+        //            Funcionario funcionario = new Funcionario();
+        //            funcionario.ID = Convert.ToInt32(resultado["Id"] as string);
+        //            funcionario.Nome = resultado["Nome"] as string;
+        //            funcionario.Salario = resultado.GetDouble
+        //              (resultado.GetOrdinal("Salario"));
+        //            funcionario.Dependentes =
+        //              this.FindByFuncionario(funcionario.ID, conexao);
+        //            return funcionario;
+        //        }
+        //        else return null;
+        //    }
+        //}
+
+        //private List<Dependente> FindByFuncionario  (int id, OdbcConnection conexao)
+        //{
+        //    List<Dependente> dependentes = new List<Dependente>();
+        //    string sql = @"SELECT * FROM Dependentes WHERE FuncionarioId = ?";
+
+        //    OdbcCommand comando = new OdbcCommand(sql, conexao);
+        //        comando.Parameters.AddWithValue("@FuncionarioId", id);
+        //        OdbcDataReader resultado = comando.ExecuteReader();
+        //        while (resultado.Read())
+        //        {
+        //            Dependente d = new Dependente();
+        //            d.ID = resultado.GetInt32(resultado.GetOrdinal("Id"));
+        //            d.Nome = resultado.GetString(resultado.GetOrdinal("Nome"));
+        //            d.Parentesco =
+        //                  resultado.GetString(resultado.GetOrdinal("Parentesco"));
+        //            dependentes.Add(d);
+        //        }
+        //        return dependentes;
+        //   }
+
+
+
 
         //Método para localizar todos os dados
         public List<CondicaoPagto> FindFilter(string filter)
