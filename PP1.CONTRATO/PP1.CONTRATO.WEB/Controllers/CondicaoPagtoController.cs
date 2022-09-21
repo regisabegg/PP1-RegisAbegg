@@ -327,6 +327,9 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             var daoCondicaoPagtoes = new CondicaoPagtoBLL();
             var list = daoCondicaoPagtoes.findAll();
+
+            
+
             var select = list.Select(u => new
             {
                 id = u.idCondicaoPagto,
@@ -337,7 +340,9 @@ namespace PP1.CONTRATO.WEB.Controllers
                 u.txJuros,
                 u.txMulta,
                 u.dtCadastro,
-                u.dtAtualizacao
+                u.dtAtualizacao,
+                
+                
 
             }).OrderBy(u => u.idCondicaoPagto).ToList();
             return select.AsQueryable();
@@ -349,6 +354,7 @@ namespace PP1.CONTRATO.WEB.Controllers
         {
             var daoCondicaoPagtoes = new CondicaoPagtoBLL();
             var list = daoCondicaoPagtoes.findFilter(filter);
+                        
             var select = list.Select(u => new
             {
                 id = u.idCondicaoPagto,

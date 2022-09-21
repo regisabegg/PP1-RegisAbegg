@@ -96,21 +96,21 @@ namespace PP1.CONTRATO.WEB.Models.CondicaoPagto
             public string nmFormaPagto { get; set; }
         }
 
-        //public string jsItens { get; set; }
+        public string jsItens { get; set; }
 
-        //public List<CodicaoFormaVM> ListCondicao
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(jsItens))
-        //            return new List<CodicaoFormaVM>();
-        //        return JsonConvert.DeserializeObject<List<CodicaoFormaVM>>(jsItens);
-        //    }
-        //    set
-        //    {
-        //        jsItens = JsonConvert.SerializeObject(value);
-        //    }
-        //}
+        public List<CodicaoFormaVM> ListCondicao
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(jsItens))
+                    return new List<CodicaoFormaVM>();
+                return JsonConvert.DeserializeObject<List<CodicaoFormaVM>>(jsItens);
+            }
+            set
+            {
+                jsItens = JsonConvert.SerializeObject(value);
+            }
+        }
 
 
     }

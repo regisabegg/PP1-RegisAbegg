@@ -170,17 +170,17 @@ namespace PP1.CONTRATO.DAO
         {
             OpenConection();
             List<CondicaoForma> obj = new List<CondicaoForma>();
-            Cmd = new SqlCommand("select * from condicaoforma where idcondicaopagto=@idcondicaopagto", Con);
+            Cmd = new SqlCommand("select * from condicaoforma where condicaopagto_id=@idcondicaopagto", Con);
             Cmd.Parameters.AddWithValue("@idcondicaopagto", id);
             Dr = Cmd.ExecuteReader();
             while (Dr.Read())
             {
                 CondicaoForma obj2 = new CondicaoForma();
-                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("idCondicaoPagto"));
-                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("nrParcela"));
-                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("qtDias"));
-                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("txPercentual"));
-                obj2.idFormaPagto = Dr.GetInt32(Dr.GetOrdinal("idFormaPagto"));
+                obj2.idCondicaoPagto = Convert.ToInt32(Dr["condicaopagto_id"]);
+                obj2.idFormaPagto = Convert.ToInt32(Dr["formapagto_id"]);
+                obj2.nrParcela = Convert.ToInt16(Dr["nrParcela"]);
+                obj2.qtDias = Convert.ToInt16(Dr["qtDias"]);
+                obj2.txPercentual = Convert.ToInt32(Dr["txPercentual"]);
                 obj.Add(obj2);
             }
             return obj;
